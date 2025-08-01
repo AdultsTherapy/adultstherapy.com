@@ -173,4 +173,109 @@ body[class*="page-therapy"] .wp-block-navigation a[href*="/therapy/"] {
   .wp-block-navigation__responsive-container-close:hover {
     transform: rotate(90deg);
   }
+}
+
+/* ========================================
+ * VISUAL DIVIDERS - Inspired by reference sites
+ * ======================================== */
+
+/* 1. Accent Lines (Inspired by Lincoln Park Therapy Group) */
+.section-divider {
+  width: 60px;
+  height: 3px;
+  background: linear-gradient(90deg, var(--primary-purple), var(--primary-blue));
+  margin: 0 auto 2rem auto;
+  border-radius: 2px;
+  display: block;
+}
+
+.section-divider.full-width {
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--primary-purple), transparent);
+  margin: 2rem 0;
+}
+
+.section-divider.left-aligned {
+  margin-left: 0;
+  margin-right: auto;
+}
+
+/* 2. Subtle Background Transitions */
+.section-alt-bg {
+  background-color: #f8f9fa;
+  position: relative;
+}
+
+.section-alt-bg::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(126, 103, 155, 0.2), transparent);
+}
+
+/* 3. Decorative Section Breaks */
+.section-divider-decorative {
+  text-align: center;
+  margin: 3rem 0;
+  position: relative;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.section-divider-decorative::before,
+.section-divider-decorative::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  width: 40%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(126, 103, 155, 0.3), transparent);
+}
+
+.section-divider-decorative::before {
+  left: 0;
+}
+
+.section-divider-decorative::after {
+  right: 0;
+}
+
+.section-divider-decorative i {
+  background: transparent;
+  padding: 0 1rem;
+  color: var(--primary-purple);
+  font-size: 1.2rem;
+  z-index: 1;
+  position: relative;
+}
+
+/* 4. Section spacing improvements */
+.section-spacer {
+  margin-top: 4rem;
+  margin-bottom: 4rem;
+}
+
+.section-spacer.large {
+  margin-top: 6rem;
+  margin-bottom: 6rem;
+}
+
+/* 5. Enhanced section headers with dividers */
+.section-header-with-divider {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.section-header-with-divider h2 {
+  margin-bottom: 1rem;
+}
+
+.section-header-with-divider .section-divider {
+  margin-top: 0.5rem;
 } 

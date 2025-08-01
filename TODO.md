@@ -1,4 +1,22 @@
-# SEO Optimization TODO List for Adults and Couples Therapy of Oregon
+# TODO List for Adults and Couples Therapy of Oregon
+
+## Priority 0: Urgent Business Updates
+
+### Insurance Information Update
+1. [x] Update insurance companies accepted across all pages
+   1. [x] Remove Pacific Source (denied coverage)
+   2. [x] Confirm and update with current accepted insurances:
+     1. CIGNA
+     2. Moda
+     3. Cascade Health Alliance (CHA)
+     4. TriWest
+     5. Atrio
+     6. Other current accepted insurances
+
+   Confirm that the following pages are updated:
+   3. [x] index.html (Adults and Couples Therapy of Oregon)
+   4. [x] about/index.html (About)
+   5. [x] Any other pages with insurance information (therapy/eft/index.html, therapy/talk-therapy/index.html)
 
 ## Priority 1: High-Traffic Page Optimizations
 
@@ -202,11 +220,11 @@ Pages:
 
 ## Priority 5: Visual Design Improvements
 
-references:
-openpathcollective.org
-rowiteen.com
-lincolnparktherapygroup.com
-therapyrising.com
+### 5.0.1 Design References:
+- openpathcollective.org
+- rowiteen.com
+- lincolnparktherapygroup.com
+- therapyrising.com
 
 ### Layout and Structure
 30. [ ] Add more whitespace between sections to improve readability - skip for now
@@ -284,6 +302,22 @@ https://stock.adobe.com/search/free
 44. [ ] Add professional headshot with consistent styling across pages
 45. [x] Create visual icons for different therapy modalities (use fontawesome.com)
 46. [ ] Add visual dividers between content sections
+    Pages:
+    1. [x] index.html (Adults and Couples Therapy of Oregon)
+    2. [x] about/index.html (About)
+    3. [x] education/index.html (Education)
+    4. [ ] privacy/index.html (Privacy)
+    5. [ ] sitemap/index.html (Sitemap)
+    6. [x] skills/index.html (Skills)
+    7. [ ] terms/index.html (Terms)
+    8. [x] therapy/index.html (Therapy)
+    9. [x] therapy/cbt/index.html (Cognitive Behavioral Therapy)
+    10. [x] therapy/dbt/index.html (Dialectical Behavior Therapy)
+    11. [x] therapy/gottman/index.html (Gottman's Couple Therapy)
+    12. [x] therapy/military/index.html (Military)
+    13. [x] therapy/mindfulness/index.html (Mindfulness)
+    14. [x] therapy/talk-therapy/index.html (Talk Therapy)
+    15. [x] therapy/eft/index.html (Emotional Freedom Technique)
 
 ### Page-Specific Design
 47. [ ] Homepage: Create impactful hero section with background image

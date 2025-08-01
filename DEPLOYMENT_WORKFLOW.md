@@ -12,7 +12,9 @@ This document outlines the workflow for deploying changes from the development s
 
 ## Automated Deployment (Recommended)
 
-### Quick Deployment
+### Quick Deployment Options
+
+#### Option 1: Direct Deployment (Automated)
 ```bash
 cd /Users/seandinwiddie/GitHub/preview.adultstherapy.com
 ./deploy-to-production.sh
@@ -25,6 +27,21 @@ The script will:
 4. Show what will be deployed
 5. Sync files from dev to production
 6. Commit and optionally push changes
+
+#### Option 2: Pull Request Deployment (Recommended for Team Work)
+```bash
+cd /Users/seandinwiddie/GitHub/preview.adultstherapy.com
+./deploy-via-pr.sh
+```
+
+The script will:
+1. Create a backup of production
+2. Check for uncommitted changes
+3. Create a new branch in production repo
+4. Sync files from dev to production
+5. Preserve production CNAME file
+6. Create a Pull Request with detailed description
+7. Provide PR URL for review and merge
 
 ## Manual Deployment Steps
 
@@ -96,6 +113,57 @@ git push origin main
 2. **Testing**: Test changes on preview.adultstherapy.com
 3. **Deployment**: Use the automated script or manual sync
 4. **Production**: Deploy to adultstherapy.com
+
+## Script vs. Pull Request Comparison
+
+### Benefits of Using `deploy-to-production.sh`
+
+#### **1. Automated Deployment**
+- **Speed**: Automates the entire deployment workflow (backup, code sync, commits, and pushes), eliminating manual steps and reducing human error
+- **Consistency**: Ensures the same process is followed every time, reducing variability compared to manual PR reviews or manual deployment
+
+#### **2. Backup and Safety**
+- **Backup**: Creates a backup of the production repository before deployment, safeguarding against accidental data loss
+- **Safety Checks**: Prompts for confirmation before critical steps (e.g., pulling changes, pushing to production), reducing the risk of unintended actions
+
+#### **3. Environment-Specific Preservation**
+- **Preserves Critical Files**: The script explicitly backs up environment-specific files (e.g., `CNAME`), ensuring configurations like custom domains are maintained
+
+#### **4. Version Control Integration**
+- **Git Workflow**: Leverages Git for version control, ensuring changes are tracked and committed before deployment
+- **Commit History**: Logs the latest changes from the dev repository, providing a clear audit trail
+
+#### **5. Simplified Post-Deployment Tasks**
+- **Automated Cleanup**: Includes instructions for removing the backup after deployment, reducing manual follow-up
+- **Next Steps Guidance**: Provides clear instructions for testing, monitoring, and cleanup
+
+### When to Use Script vs. Pull Request
+
+#### **Use the script if:**
+- You need rapid, repeatable deployments
+- You want to minimize manual intervention
+- You require automated backups and safety checks
+- You're working in a CI/CD pipeline or a team with strict deployment automation
+- You're deploying to a staging environment that doesn't require code review
+
+#### **Use a pull request if:**
+- Code review and testing are critical before deployment
+- You want to ensure changes are vetted by team members
+- You prefer a more manual, collaborative approach
+- You're working in a team environment where multiple people need to approve changes
+- You need to maintain a formal review process for compliance or quality assurance
+
+### Trade-Offs Summary
+
+| Aspect | Script | Pull Request |
+|--------|--------|--------------|
+| **Speed** | Fast (automated) | Slower (manual review) |
+| **Safety** | Good (backups + checks) | Better (code review) |
+| **Consistency** | High (automated process) | Variable (depends on reviewers) |
+| **Collaboration** | Limited | High (team involvement) |
+| **Audit Trail** | Git commits | PR history + commits |
+| **Error Prevention** | Automated checks | Human review |
+| **Deployment Frequency** | High (can deploy frequently) | Lower (requires approval) |
 
 ## Troubleshooting
 

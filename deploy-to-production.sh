@@ -16,7 +16,6 @@ NC='\033[0m' # No Color
 # Configuration
 DEV_REPO_PATH="/Users/seandinwiddie/GitHub/preview.adultstherapy.com"
 PROD_REPO_PATH="/Users/seandinwiddie/Documents/GitHub/adultstherapy.com"
-BACKUP_DIR="/tmp/adultstherapy-backup-$(date +%Y%m%d-%H%M%S)"
 
 # Function to print colored output
 print_status() {
@@ -37,12 +36,7 @@ if [ ! -d "$DEV_REPO_PATH" ] || [ ! -d "$PROD_REPO_PATH" ]; then
     exit 1
 fi
 
-# Step 1: Create backup of production
-print_status "Creating backup of production repository..."
-cp -r "$PROD_REPO_PATH" "$BACKUP_DIR"
-print_status "Backup created at: $BACKUP_DIR"
-
-# Step 2: Check for uncommitted changes in both repos
+# Step 1: Check for uncommitted changes in both repos
 echo "🔍 Checking for uncommitted changes..."
 
 cd "$DEV_REPO_PATH"
@@ -69,12 +63,12 @@ if ! git diff-index --quiet HEAD --; then
     fi
 fi
 
-# Step 3: Get latest changes from dev
+# Step 2: Get latest changes from dev
 print_status "Pulling latest changes from dev repository..."
 cd "$DEV_REPO_PATH"
 git pull origin main
 
-# Step 4: Show what will be deployed
+# Step 3: Show what will be deployed
 echo "📋 Changes to be deployed:"
 git log --oneline -5
 
@@ -85,29 +79,16 @@ if [[ ! "$response" =~ ^[Yy]$ ]]; then
     exit 1
 fi
 
-# Step 5: Preserve environment-specific files
-print_status "Preserving environment-specific files..."
-cd "$PROD_REPO_PATH"
-# Backup production-specific files
-cp CNAME /tmp/prod-CNAME-backup 2>/dev/null || print_warning "No CNAME file found in production"
-
-# Step 6: Sync files (excluding environment-specific files)
+# Step 4: Sync files from dev to production (preserving production CNAME)
 print_status "Syncing files from dev to production..."
+cd "$PROD_REPO_PATH"
 rsync -av --exclude='.git' --exclude='.DS_Store' --exclude='CNAME' --delete "$DEV_REPO_PATH/" "$PROD_REPO_PATH/"
 
-# Step 7: Restore environment-specific files
-print_status "Restoring production-specific files..."
-if [ -f /tmp/prod-CNAME-backup ]; then
-    cp /tmp/prod-CNAME-backup "$PROD_REPO_PATH/CNAME"
-    rm /tmp/prod-CNAME-backup
-    print_status "Production CNAME file restored"
-else
-    # If no backup exists, create the correct production CNAME
-    echo "adultstherapy.com" > "$PROD_REPO_PATH/CNAME"
-    print_status "Production CNAME file created with correct domain"
-fi
+# Ensure production CNAME is correct
+echo "adultstherapy.com" > "$PROD_REPO_PATH/CNAME"
+print_status "Production CNAME set to: adultstherapy.com"
 
-# Step 8: Commit changes in production
+# Step 5: Commit changes in production
 print_status "Committing changes in production repository..."
 cd "$PROD_REPO_PATH"
 git add .
@@ -125,7 +106,7 @@ else
     print_status "Changes committed in production repository"
 fi
 
-# Step 9: Push to production
+# Step 6: Push to production
 print_warning "Push changes to production remote? (y/n)"
 read -r response
 if [[ "$response" =~ ^[Yy]$ ]]; then
@@ -137,11 +118,53 @@ fi
 
 echo ""
 print_status "🎉 Deployment completed successfully!"
-print_status "Backup available at: $BACKUP_DIR"
 print_status "Production CNAME preserved: adultstherapy.com"
+
+# Step 7: Optional cleanup of old deployment branches
+echo ""
+print_warning "Clean up old deployment branches? (y/n)"
+read -r response
+if [[ "$response" =~ ^[Yy]$ ]]; then
+    print_status "Cleaning up old deployment branches..."
+    
+    # Clean up in production repo
+    OLD_BRANCHES=$(git branch --list "deploy-from-dev-*" | sed 's/^[ *]*//' | xargs)
+    if [ -n "$OLD_BRANCHES" ]; then
+        # Clean up local branches
+        for branch in $OLD_BRANCHES; do
+            git branch -D "$branch" 2>/dev/null && print_status "Deleted local branch: $branch" || true
+        done
+        
+        # Clean up remote branches  
+        for branch in $OLD_BRANCHES; do
+            git push origin --delete "$branch" 2>/dev/null && print_status "Deleted remote branch: $branch" || true
+        done
+        
+        print_status "Production deployment branches cleaned up"
+    else
+        print_status "No old deployment branches found in production"
+    fi
+    
+    # Clean up in dev repo if accessible
+    if [ -d "$DEV_REPO_PATH" ]; then
+        cd "$DEV_REPO_PATH"
+        DEV_OLD_BRANCHES=$(git branch --list "deploy-from-dev-*" | sed 's/^[ *]*//' | xargs)
+        if [ -n "$DEV_OLD_BRANCHES" ]; then
+            for branch in $DEV_OLD_BRANCHES; do
+                git branch -D "$branch" 2>/dev/null && print_status "Deleted dev branch: $branch" || true
+            done
+            print_status "Development deployment branches cleaned up"
+        fi
+        cd "$PROD_REPO_PATH"
+    fi
+    
+    print_status "🧹 Branch cleanup completed"
+fi
+
 echo ""
 echo "Next steps:"
 echo "- Test the production site"
 echo "- Verify custom domain is working"
 echo "- Monitor for any issues"
-echo "- Remove backup when satisfied: rm -rf $BACKUP_DIR"
+echo ""
+print_info "To clean up branches anytime, run: ./cleanup-deployment-branches.sh"

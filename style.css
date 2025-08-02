@@ -278,4 +278,190 @@ body[class*="page-therapy"] .wp-block-navigation a[href*="/therapy/"] {
 
 .section-header-with-divider .section-divider {
   margin-top: 0.5rem;
+}
+
+/* Hero Section Styles */
+.hero-section {
+  position: relative;
+  min-height: 60vh;  /* Adjust height as needed */
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: white;
+  overflow: hidden;
+}
+
+.hero-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.4); /* Dark overlay for text readability */
+  z-index: 1;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  max-width: 800px;
+  padding: 2rem;
+}
+
+.hero-title {
+  font-size: 3rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.hero-subtitle {
+  font-size: 1.3rem;
+  margin-bottom: 2rem;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+  line-height: 1.4;
+}
+
+.hero-cta-buttons {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-bottom: 1.5rem;
+}
+
+.hero-cta-buttons .wp-block-button__link {
+  padding: 1rem 2rem;
+  font-size: 1.1rem;
+  font-weight: bold;
+  border: 2px solid white;
+  background-color: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  transition: all 0.3s ease;
+}
+
+.hero-cta-buttons .wp-block-button__link:hover {
+  background-color: white;
+  color: var(--primary-purple);
+  transform: translateY(-2px);
+}
+
+.hero-quick-nav {
+  margin-top: 1rem;
+}
+
+.hero-quick-nav .wp-block-button__link {
+  background-color: rgba(126, 103, 155, 0.8);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  padding: 0.8rem 1.5rem;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+}
+
+.hero-quick-nav .wp-block-button__link:hover {
+  background-color: var(--primary-purple);
+  transform: translateY(-1px);
+}
+
+/* Responsive hero styles */
+@media (max-width: 768px) {
+  .hero-section {
+    min-height: 50vh;
+  }
+  
+  .hero-title {
+    font-size: 2.2rem;
+  }
+  
+  .hero-subtitle {
+    font-size: 1.1rem;
+  }
+  
+  .hero-cta-buttons {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .hero-cta-buttons .wp-block-button__link {
+    min-width: 250px;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-title {
+    font-size: 1.8rem;
+  }
+  
+  .hero-subtitle {
+    font-size: 1rem;
+  }
+}
+
+/* Content with Side Image Layout Enhancements */
+.content-with-side-image {
+  display: flex;
+  gap: 2rem;
+  align-items: flex-start;
+  margin: 2rem 0;
+}
+
+.content-with-side-image .content-column {
+  flex: 1;
+  min-width: 0; /* Prevents flex item from overflowing */
+}
+
+.content-with-side-image .image-column {
+  flex: 0 0 40%;
+  position: sticky;
+  top: 2rem; /* Sticky positioning for better UX */
+}
+
+.content-with-side-image .feature-image {
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.content-with-side-image .feature-image:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+/* Enhanced typography for side-by-side content */
+.content-with-side-image p {
+  margin-bottom: 1.5rem;
+  line-height: 1.7;
+}
+
+.content-with-side-image ul {
+  margin-top: 1.5rem;
+}
+
+.content-with-side-image li {
+  margin-bottom: 0.8rem;
+  padding-left: 0.5rem;
+}
+
+/* Mobile responsiveness for side-by-side layout */
+@media (max-width: 968px) {
+  .content-with-side-image {
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+  
+  .content-with-side-image .image-column {
+    flex: none;
+    position: static;
+    order: -1; /* Show image first on mobile */
+  }
+  
+  .content-with-side-image .feature-image {
+    max-width: 100%;
+    height: auto;
+  }
 } 

@@ -17,7 +17,6 @@ NC='\033[0m' # No Color
 # Configuration
 DEV_REPO_PATH="/Users/seandinwiddie/GitHub/preview.adultstherapy.com"
 PROD_REPO_PATH="/Users/seandinwiddie/Documents/GitHub/adultstherapy.com"
-BACKUP_DIR="/tmp/adultstherapy-backup-$(date +%Y%m%d-%H%M%S)"
 BRANCH_NAME="deploy-from-dev-$(date +%Y%m%d-%H%M%S)"
 
 # Function to print colored output
@@ -51,12 +50,7 @@ if ! command -v gh &> /dev/null; then
     exit 1
 fi
 
-# Step 1: Create backup of production
-print_status "Creating backup of production repository..."
-cp -r "$PROD_REPO_PATH" "$BACKUP_DIR"
-print_status "Backup created at: $BACKUP_DIR"
-
-# Step 2: Check for uncommitted changes in dev repo
+# Step 1: Check for uncommitted changes in dev repo
 echo "🔍 Checking for uncommitted changes..."
 
 cd "$DEV_REPO_PATH"
@@ -73,12 +67,12 @@ if ! git diff-index --quiet HEAD --; then
     fi
 fi
 
-# Step 3: Get latest changes from dev
+# Step 2: Get latest changes from dev
 print_status "Pulling latest changes from dev repository..."
 cd "$DEV_REPO_PATH"
 git pull origin main
 
-# Step 4: Show what will be deployed
+# Step 3: Show what will be deployed
 echo "📋 Changes to be deployed:"
 git log --oneline -5
 
@@ -89,33 +83,21 @@ if [[ ! "$response" =~ ^[Yy]$ ]]; then
     exit 1
 fi
 
-# Step 5: Create new branch in production repo
+# Step 4: Create new branch in production repo
 print_status "Creating new branch in production repository..."
 cd "$PROD_REPO_PATH"
 git checkout -b "$BRANCH_NAME"
 print_status "Created branch: $BRANCH_NAME"
 
-# Step 6: Backup production-specific files
-print_status "Backing up production-specific files..."
-cp CNAME /tmp/prod-CNAME-backup 2>/dev/null || print_warning "No CNAME file found in production"
-
-# Step 7: Sync files from dev to production (excluding environment-specific files)
+# Step 5: Sync files from dev to production (preserving production CNAME)
 print_status "Syncing files from dev to production..."
 rsync -av --exclude='.git' --exclude='.DS_Store' --exclude='CNAME' --delete "$DEV_REPO_PATH/" "$PROD_REPO_PATH/"
 
-# Step 8: Restore production-specific files
-print_status "Restoring production-specific files..."
-if [ -f /tmp/prod-CNAME-backup ]; then
-    cp /tmp/prod-CNAME-backup "$PROD_REPO_PATH/CNAME"
-    rm /tmp/prod-CNAME-backup
-    print_status "Production CNAME file restored"
-else
-    # If no backup exists, create the correct production CNAME
-    echo "adultstherapy.com" > "$PROD_REPO_PATH/CNAME"
-    print_status "Production CNAME file created with correct domain"
-fi
+# Ensure production CNAME is correct
+echo "adultstherapy.com" > "$PROD_REPO_PATH/CNAME"
+print_status "Production CNAME set to: adultstherapy.com"
 
-# Step 9: Commit changes in production
+# Step 6: Commit changes in production
 print_status "Committing changes in production repository..."
 cd "$PROD_REPO_PATH"
 git add .
@@ -137,12 +119,12 @@ else
     print_status "Changes committed in production repository"
 fi
 
-# Step 10: Push branch to remote
+# Step 7: Push branch to remote
 print_status "Pushing branch to remote repository..."
 git push origin "$BRANCH_NAME"
 print_status "Branch pushed to remote"
 
-# Step 11: Create Pull Request
+# Step 8: Create Pull Request
 print_status "Creating Pull Request..."
 PR_TITLE="Deploy from dev: $(date +%Y-%m-%d)"
 PR_BODY="## Deployment Summary
@@ -156,14 +138,12 @@ This PR deploys changes from the development environment to production.
 
 ### Pre-deployment Checklist:
 - [ ] Dev changes tested and working
-- [ ] Production backup created
 - [ ] CNAME file preserved for production domain
 
 ### Post-deployment Tasks:
 - [ ] Test production site functionality
 - [ ] Verify custom domain is working
 - [ ] Monitor for any issues
-- [ ] Remove backup when satisfied
 
 ### Latest Dev Commit:
 \`\`\`
@@ -192,13 +172,12 @@ else
     print_info "You can create it manually at: https://github.com/AdultsTherapy/adultstherapy.com/compare/main...$BRANCH_NAME"
 fi
 
-# Step 12: Return to main branch
+# Step 9: Return to main branch
 print_status "Switching back to main branch..."
 git checkout main
 
 echo ""
 print_status "🎉 Pull Request deployment workflow completed!"
-print_status "Backup available at: $BACKUP_DIR"
 print_status "Production CNAME preserved: adultstherapy.com"
 echo ""
 echo "Next steps:"
@@ -206,7 +185,60 @@ echo "1. Review the Pull Request at: $PR_URL"
 echo "2. Test the changes in the PR branch"
 echo "3. Merge the PR when ready"
 echo "4. Monitor production after merge"
-echo "5. Remove backup when satisfied: rm -rf $BACKUP_DIR"
 echo ""
 print_info "To merge the PR via command line:"
-echo "  gh pr merge $PR_URL --merge" 
+echo "  gh pr merge $PR_URL --merge"
+echo ""
+print_warning "Would you like to automatically merge this PR now? (y/n)"
+read -r response
+if [[ "$response" =~ ^[Yy]$ ]]; then
+    # Step 10: Auto-merge the PR
+    print_status "Merging Pull Request automatically..."
+    if gh pr merge "$PR_URL" --merge; then
+        print_status "Pull Request merged successfully!"
+        
+        # Step 11: Clean up branches after successful merge
+        print_status "Cleaning up deployment branches..."
+        
+        # Delete local branch
+        git branch -D "$BRANCH_NAME" 2>/dev/null || print_warning "Local branch already cleaned up"
+        
+        # Delete remote branch
+        git push origin --delete "$BRANCH_NAME" 2>/dev/null || print_warning "Remote branch already cleaned up"
+        
+        print_status "Branch cleanup completed"
+        
+        # Step 12: Clean up any old deployment branches
+        print_status "Checking for old deployment branches to clean up..."
+        OLD_BRANCHES=$(git branch --list "deploy-from-dev-*" | grep -v "$BRANCH_NAME" | xargs)
+        if [ -n "$OLD_BRANCHES" ]; then
+            print_warning "Found old deployment branches: $OLD_BRANCHES"
+            print_warning "Delete these old branches? (y/n)"
+            read -r cleanup_response
+            if [[ "$cleanup_response" =~ ^[Yy]$ ]]; then
+                # Clean up old local branches
+                echo "$OLD_BRANCHES" | xargs -r git branch -D 2>/dev/null || true
+                
+                # Clean up old remote branches
+                for branch in $OLD_BRANCHES; do
+                    git push origin --delete "$branch" 2>/dev/null || true
+                done
+                print_status "Old deployment branches cleaned up"
+            fi
+        fi
+        
+        echo ""
+        print_status "🎉 Deployment completed successfully!"
+        print_status "✅ PR merged: $PR_URL"
+        print_status "🧹 Branches cleaned up automatically"
+        print_status "🌐 Production is now live with latest changes"
+    else
+        print_error "Failed to merge PR automatically"
+        echo "You can merge it manually at: $PR_URL"
+    fi
+else
+    echo ""
+    print_info "PR created but not merged. Manual steps:"
+    echo "1. Review and merge: $PR_URL"
+    echo "2. Clean up branch: git branch -D $BRANCH_NAME && git push origin --delete $BRANCH_NAME"
+fi

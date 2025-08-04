@@ -7,6 +7,12 @@
 	<link rel="stylesheet" href="./style.css">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer">
 	<script src="./script.js" defer></script>
+	<style>
+	.therapy-card:hover {
+		transform: translateY(-5px);
+		box-shadow: 0 8px 15px rgba(0,0,0,0.2);
+	}
+	</style>
 	<style>img:is([sizes="auto" i], [sizes^="auto," i]) { contain-intrinsic-size: 3000px 1500px }</style>
 	<meta name="description" content="Expert evidence-based therapy in Oregon for anxiety, depression, and relationship challenges. Schedule your consultation today and start your healing journey with proven therapeutic approaches.">
 	<!-- This site is optimized with the Yoast SEO plugin v24.4 - https://yoast.com/wordpress/plugins/seo/ -->
@@ -589,6 +595,115 @@ if (window.location.hostname === 'preview.adultstherapy.com') {
         </div>
     </div>
 </section>
+
+<!-- Therapy Approaches Cards Section -->
+<section class="therapy-cards-section" style="padding: 4rem 2rem; background-color: #f8f9fa;">
+    <div class="wp-block-group has-global-padding is-layout-constrained wp-block-group-is-layout-constrained">
+        <div class="section-header-with-divider">
+            <h2 class="wp-block-heading has-text-align-center has-large-font-size">Evidence-Based Therapy Approaches</h2>
+            <div class="section-divider"></div>
+            <p class="has-text-align-center" style="margin-bottom: 3rem;">I offer a range of proven therapeutic approaches to address your unique needs and goals</p>
+        </div>
+        
+        <div class="therapy-cards-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; margin-top: 2rem;">
+            
+            <!-- Gottman Couples Therapy Card -->
+            <div class="therapy-card" style="background: white; border-radius: 12px; padding: 2rem; box-shadow: 0 4px 6px rgba(0,0,0,0.1); transition: transform 0.3s ease, box-shadow 0.3s ease; text-align: center;">
+                <div class="therapy-card-icon" style="font-size: 3rem; color: #7e679b; margin-bottom: 1rem;">
+                    <i class="fas fa-heart"></i>
+                </div>
+                <h3 class="wp-block-heading" style="margin-bottom: 1rem;">Gottman Couples Therapy</h3>
+                <p style="margin-bottom: 1.5rem; color: #666;">Evidence-based approach to strengthen relationships and improve communication between partners.</p>
+                <div class="wp-block-button">
+                    <a class="wp-block-button__link wp-element-button" href="/therapy/gottman/">Learn More</a>
+                </div>
+            </div>
+            
+            <!-- CBT Card -->
+            <div class="therapy-card" style="background: white; border-radius: 12px; padding: 2rem; box-shadow: 0 4px 6px rgba(0,0,0,0.1); transition: transform 0.3s ease, box-shadow 0.3s ease; text-align: center;">
+                <div class="therapy-card-icon" style="font-size: 3rem; color: #7e679b; margin-bottom: 1rem;">
+                    <i class="fas fa-brain"></i>
+                </div>
+                <h3 class="wp-block-heading" style="margin-bottom: 1rem;">Cognitive Behavioral Therapy</h3>
+                <p style="margin-bottom: 1.5rem; color: #666;">Structured approach to change thought patterns and behaviors for improved mental health.</p>
+                <div class="wp-block-button">
+                    <a class="wp-block-button__link wp-element-button" href="/therapy/cbt/">Learn More</a>
+                </div>
+            </div>
+            
+            <!-- DBT Card -->
+            <div class="therapy-card" style="background: white; border-radius: 12px; padding: 2rem; box-shadow: 0 4px 6px rgba(0,0,0,0.1); transition: transform 0.3s ease, box-shadow 0.3s ease; text-align: center;">
+                <div class="therapy-card-icon" style="font-size: 3rem; color: #7e679b; margin-bottom: 1rem;">
+                    <i class="fas fa-balance-scale"></i>
+                </div>
+                <h3 class="wp-block-heading" style="margin-bottom: 1rem;">Dialectical Behavior Therapy</h3>
+                <p style="margin-bottom: 1.5rem; color: #666;">Skills-based therapy focusing on emotion regulation and mindfulness techniques.</p>
+                <div class="wp-block-button">
+                    <a class="wp-block-button__link wp-element-button" href="/therapy/dbt/">Learn More</a>
+                </div>
+            </div>
+            
+            <!-- EFT Card -->
+            <div class="therapy-card" style="background: white; border-radius: 12px; padding: 2rem; box-shadow: 0 4px 6px rgba(0,0,0,0.1); transition: transform 0.3s ease, box-shadow 0.3s ease; text-align: center;">
+                <div class="therapy-card-icon" style="font-size: 3rem; color: #7e679b; margin-bottom: 1rem;">
+                    <i class="fas fa-hands-helping"></i>
+                </div>
+                <h3 class="wp-block-heading" style="margin-bottom: 1rem;">Emotional Freedom Technique</h3>
+                <p style="margin-bottom: 1.5rem; color: #666;">Energy psychology technique for addressing trauma, emotional pain, and physical symptoms.</p>
+                <div class="wp-block-button">
+                    <a class="wp-block-button__link wp-element-button" href="/therapy/eft/">Learn More</a>
+                </div>
+            </div>
+            
+            <!-- Mindfulness Card -->
+            <div class="therapy-card" style="background: white; border-radius: 12px; padding: 2rem; box-shadow: 0 4px 6px rgba(0,0,0,0.1); transition: transform 0.3s ease, box-shadow 0.3s ease; text-align: center;">
+                <div class="therapy-card-icon" style="font-size: 3rem; color: #7e679b; margin-bottom: 1rem;">
+                    <i class="fas fa-leaf"></i>
+                </div>
+                <h3 class="wp-block-heading" style="margin-bottom: 1rem;">Mindfulness Therapy</h3>
+                <p style="margin-bottom: 1.5rem; color: #666;">Present-focused approach to reducing stress and improving emotional regulation.</p>
+                <div class="wp-block-button">
+                    <a class="wp-block-button__link wp-element-button" href="/therapy/mindfulness/">Learn More</a>
+                </div>
+            </div>
+            
+            <!-- Talk Therapy Card -->
+            <div class="therapy-card" style="background: white; border-radius: 12px; padding: 2rem; box-shadow: 0 4px 6px rgba(0,0,0,0.1); transition: transform 0.3s ease, box-shadow 0.3s ease; text-align: center;">
+                <div class="therapy-card-icon" style="font-size: 3rem; color: #7e679b; margin-bottom: 1rem;">
+                    <i class="fas fa-comments"></i>
+                </div>
+                <h3 class="wp-block-heading" style="margin-bottom: 1rem;">Talk Therapy</h3>
+                <p style="margin-bottom: 1.5rem; color: #666;">Traditional psychotherapy providing a safe space to explore thoughts, feelings, and experiences.</p>
+                <div class="wp-block-button">
+                    <a class="wp-block-button__link wp-element-button" href="/therapy/talk-therapy/">Learn More</a>
+                </div>
+            </div>
+            
+            <!-- Military Therapy Card -->
+            <div class="therapy-card" style="background: white; border-radius: 12px; padding: 2rem; box-shadow: 0 4px 6px rgba(0,0,0,0.1); transition: transform 0.3s ease, box-shadow 0.3s ease; text-align: center;">
+                <div class="therapy-card-icon" style="font-size: 3rem; color: #7e679b; margin-bottom: 1rem;">
+                    <i class="fas fa-shield-alt"></i>
+                </div>
+                <h3 class="wp-block-heading" style="margin-bottom: 1rem;">Military & Veteran Therapy</h3>
+                <p style="margin-bottom: 1.5rem; color: #666;">Specialized trauma-informed treatment for military personnel and veterans.</p>
+                <div class="wp-block-button">
+                    <a class="wp-block-button__link wp-element-button" href="/therapy/military/">Learn More</a>
+                </div>
+            </div>
+            
+        </div>
+        
+        <div class="therapy-cards-cta" style="text-align: center; margin-top: 3rem;">
+            <div class="wp-block-button">
+                <a class="wp-block-button__link wp-element-button" href="/therapy/">
+                    <i class="fas fa-arrow-right"></i> Explore All Therapy Options
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+
 
 <main class="wp-block-query is-layout-flow wp-block-query-is-layout-flow">
 <div class="wp-block-group is-layout-flow wp-block-group-is-layout-flow" style="margin-top:var(--wp--preset--spacing--50);padding-right:var(--wp--preset--spacing--70);padding-left:var(--wp--preset--spacing--70)"><div class="entry-content wp-block-post-content is-layout-flow wp-block-post-content-is-layout-flow">

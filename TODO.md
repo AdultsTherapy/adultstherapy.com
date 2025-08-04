@@ -320,8 +320,8 @@ https://stock.adobe.com/search/free
     15. [x] therapy/eft/index.html (Emotional Freedom Technique)
 
 ### Page-Specific Design
-47. [ ] Homepage: Create impactful hero section with background image
-48. [ ] Homepage: Add visual cards for each therapy approach with icons
+47. [x] Homepage: Create impactful hero section with background image
+48. [x] Homepage: Add visual cards for each therapy approach with icons
 49. [ ] Homepage: Implement testimonial carousel with subtle styling
 50. [ ] Therapy Pages: Create consistent visual templates for all modality pages
 51. [ ] Therapy Pages: Add relevant imagery for each approach

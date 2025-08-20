@@ -18,6 +18,12 @@
    4. [x] about/index.html (About)
    5. [x] Any other pages with insurance information (therapy/eft/index.html, therapy/talk-therapy/index.html)
 
+### Service Area Update - Pacific Source Insurance Limitation
+2. [x] Remove Bend, Oregon from service areas due to Pacific Source insurance denial
+   1. [x] Update index.html - Remove Bend from Regional Centers list
+   2. [x] Update about/index.html - Remove Bend from Central Oregon service area
+   3. [ ] Consider if other Central Oregon areas (Redmond, Sisters, La Pine) should also be removed if they primarily use Pacific Source
+
 ## Priority 1: High-Traffic Page Optimizations
 
 ### Header (Sitewide)
@@ -320,8 +326,8 @@ https://stock.adobe.com/search/free
     15. [x] therapy/eft/index.html (Emotional Freedom Technique)
 
 ### Page-Specific Design
-47. [ ] Homepage: Create impactful hero section with background image
-48. [ ] Homepage: Add visual cards for each therapy approach with icons
+47. [x] Homepage: Create impactful hero section with background image
+48. [x] Homepage: Add visual cards for each therapy approach with icons
 49. [ ] Homepage: Implement testimonial carousel with subtle styling
 50. [ ] Therapy Pages: Create consistent visual templates for all modality pages
 51. [ ] Therapy Pages: Add relevant imagery for each approach

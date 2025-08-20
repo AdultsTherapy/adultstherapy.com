@@ -18,6 +18,12 @@
    4. [x] about/index.html (About)
    5. [x] Any other pages with insurance information (therapy/eft/index.html, therapy/talk-therapy/index.html)
 
+### Service Area Update - Pacific Source Insurance Limitation
+2. [x] Remove Bend, Oregon from service areas due to Pacific Source insurance denial
+   1. [x] Update index.html - Remove Bend from Regional Centers list
+   2. [x] Update about/index.html - Remove Bend from Central Oregon service area
+   3. [ ] Consider if other Central Oregon areas (Redmond, Sisters, La Pine) should also be removed if they primarily use Pacific Source
+
 ## Priority 1: High-Traffic Page Optimizations
 
 ### Header (Sitewide)

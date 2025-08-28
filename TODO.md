@@ -23,6 +23,13 @@
    1. [x] Update index.html - Remove Bend from Regional Centers list
    2. [x] Update about/index.html - Remove Bend from Central Oregon service area
    3. [ ] Consider if other Central Oregon areas (Redmond, Sisters, La Pine) should also be removed if they primarily use Pacific Source
+      - **DECISION NEEDED**: Research required to determine primary insurance providers in Redmond, Sisters, and La Pine
+      - **Current Central Oregon areas listed**: Redmond, Sisters, and La Pine
+      - **Recommendation**: Contact local healthcare providers or insurance brokers in these areas to determine:
+        * Primary insurance companies used by residents
+        * Whether Pacific Source is a major provider in these communities
+        * Alternative insurance options available to residents
+      - **Action**: If Pacific Source is the primary insurance in these areas, consider removing them to avoid service area conflicts
 
 ## Priority 1: High-Traffic Page Optimizations
 
@@ -336,9 +343,9 @@ https://stock.adobe.com/search/free
 54. [ ] About Page: Add visual elements to highlight professional affiliations
 
 ### Functional Design
-55. [ ] Make phone/email buttons more prominent with complementary colors
-56. [ ] Add floating contact button for accessibility
-57. [ ] Optimize image sizes for faster loading
+55. [x] Make phone/email buttons more prominent with complementary colors
+56. [x] Add floating contact button for accessibility
+57. [x] Optimize image sizes for faster loading
 
 ## Priority 6: Ad Copy & Content Optimization
 

@@ -286,20 +286,20 @@ Please distribute the images evenly down the pages.
 
     Pages:
     1. [x] index.html (Adults and Couples Therapy of Oregon)
-    2. [ ] about/index.html (About)
-    3. [ ] education/index.html (Education)
-    4. [ ] privacy/index.html (Privacy)
-    5. [ ] sitemap/index.html (Sitemap)
+    2. [x] about/index.html (About)
+    3. [x] education/index.html (Education)
+    4. [ ] privacy/index.html (Privacy) - SKIP
+    5. [ ] sitemap/index.html (Sitemap) - SKIP
     6. [x] skills/index.html (Skills)
-    7. [ ] terms/index.html (Terms)
+    7. [ ] terms/index.html (Terms) - SKIP
     8. [x] therapy/index.html (Therapy)
     9. [x] therapy/cbt/index.html (Cognitive Behavioral Therapy)
     10. [x] therapy/dbt/index.html (Dialectical Behavior Therapy)
     11. [x] therapy/gottman/index.html (Gottman's Couple Therapy)
-    12. [ ] therapy/military/index.html (Military)
+    12. [x] therapy/military/index.html (Military)
     13. [x] therapy/mindfulness/index.html (Mindfulness)
     14. [x] therapy/talk-therapy/index.html (Talk Therapy)
-    15. [ ] therapy/eft/index.html (Emotional Freedom Technique)
+    15. [x] therapy/eft/index.html (Emotional Freedom Technique)
 
 https://stock.adobe.com/search/free
 **Note: Don't reuse images that have already been used elsewhere on the site**

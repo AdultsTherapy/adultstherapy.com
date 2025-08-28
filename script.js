@@ -8,7 +8,8 @@ document.addEventListener('DOMContentLoaded', () => {
   // Compose our functions together
   const run = pipe(
     highlightNavigation,
-    setupAccessibility
+    setupAccessibility,
+    addFloatingContactButton
   );
   
   // Execute our composed function
@@ -340,6 +341,42 @@ const applyDirectHighlighting = (doc) => {
     }
   });
   
+  return doc;
+};
+
+/**
+ * Adds a floating contact button for accessibility
+ * @param {Document} doc - The document object
+ * @returns {Document} - The document for chaining
+ */
+const addFloatingContactButton = (doc) => {
+  // Check if floating button already exists
+  if (doc.querySelector('.floating-contact-button')) {
+    return doc;
+  }
+
+  // Create floating contact button
+  const floatingButton = doc.createElement('a');
+  floatingButton.href = 'tel:+15413638817';
+  floatingButton.className = 'floating-contact-button';
+  floatingButton.innerHTML = '📞';
+  floatingButton.setAttribute('aria-label', 'Call for immediate assistance');
+  floatingButton.setAttribute('title', 'Call 541-363-8817');
+
+  // Add to body
+  doc.body.appendChild(floatingButton);
+
+  // Add click event for analytics (if needed)
+  floatingButton.addEventListener('click', () => {
+    // Track contact button clicks
+    if (typeof gtag !== 'undefined') {
+      gtag('event', 'click', {
+        'event_category': 'Contact',
+        'event_label': 'Floating Contact Button'
+      });
+    }
+  });
+
   return doc;
 };
 

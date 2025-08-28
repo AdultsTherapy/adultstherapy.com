@@ -23,6 +23,13 @@
    1. [x] Update index.html - Remove Bend from Regional Centers list
    2. [x] Update about/index.html - Remove Bend from Central Oregon service area
    3. [ ] Consider if other Central Oregon areas (Redmond, Sisters, La Pine) should also be removed if they primarily use Pacific Source
+      - **DECISION NEEDED**: Research required to determine primary insurance providers in Redmond, Sisters, and La Pine
+      - **Current Central Oregon areas listed**: Redmond, Sisters, and La Pine
+      - **Recommendation**: Contact local healthcare providers or insurance brokers in these areas to determine:
+        * Primary insurance companies used by residents
+        * Whether Pacific Source is a major provider in these communities
+        * Alternative insurance options available to residents
+      - **Action**: If Pacific Source is the primary insurance in these areas, consider removing them to avoid service area conflicts
 
 ## Priority 1: High-Traffic Page Optimizations
 
@@ -286,20 +293,20 @@ Please distribute the images evenly down the pages.
 
     Pages:
     1. [x] index.html (Adults and Couples Therapy of Oregon)
-    2. [ ] about/index.html (About)
-    3. [ ] education/index.html (Education)
-    4. [ ] privacy/index.html (Privacy)
-    5. [ ] sitemap/index.html (Sitemap)
+    2. [x] about/index.html (About)
+    3. [x] education/index.html (Education)
+    4. [ ] privacy/index.html (Privacy) - SKIP
+    5. [ ] sitemap/index.html (Sitemap) - SKIP
     6. [x] skills/index.html (Skills)
-    7. [ ] terms/index.html (Terms)
+    7. [ ] terms/index.html (Terms) - SKIP
     8. [x] therapy/index.html (Therapy)
     9. [x] therapy/cbt/index.html (Cognitive Behavioral Therapy)
     10. [x] therapy/dbt/index.html (Dialectical Behavior Therapy)
     11. [x] therapy/gottman/index.html (Gottman's Couple Therapy)
-    12. [ ] therapy/military/index.html (Military)
+    12. [x] therapy/military/index.html (Military)
     13. [x] therapy/mindfulness/index.html (Mindfulness)
     14. [x] therapy/talk-therapy/index.html (Talk Therapy)
-    15. [ ] therapy/eft/index.html (Emotional Freedom Technique)
+    15. [x] therapy/eft/index.html (Emotional Freedom Technique)
 
 https://stock.adobe.com/search/free
 **Note: Don't reuse images that have already been used elsewhere on the site**
@@ -336,9 +343,9 @@ https://stock.adobe.com/search/free
 54. [ ] About Page: Add visual elements to highlight professional affiliations
 
 ### Functional Design
-55. [ ] Make phone/email buttons more prominent with complementary colors
-56. [ ] Add floating contact button for accessibility
-57. [ ] Optimize image sizes for faster loading
+55. [x] Make phone/email buttons more prominent with complementary colors
+56. [x] Add floating contact button for accessibility
+57. [x] Optimize image sizes for faster loading
 
 ## Priority 6: Ad Copy & Content Optimization
 

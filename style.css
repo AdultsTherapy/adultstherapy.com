@@ -548,6 +548,62 @@ body[class*="page-therapy"] .wp-block-navigation a[href*="/therapy/"] {
   transform: scale(0.95);
 }
 
+/* Subtle Background Patterns */
+.section-alt-bg {
+  background-image: 
+    radial-gradient(circle at 25% 25%, rgba(126, 103, 155, 0.03) 0%, transparent 50%),
+    radial-gradient(circle at 75% 75%, rgba(126, 103, 155, 0.03) 0%, transparent 50%);
+  background-size: 200px 200px;
+}
+
+.hero-section {
+  background-image: 
+    linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),
+    url('https://images.unsplash.com/photo-1461468611824-46457c0e11fd');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+}
+
+/* Enhanced Visual Dividers */
+.section-divider-decorative {
+  text-align: center;
+  margin: 40px 0;
+  position: relative;
+}
+
+.section-divider-decorative::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, #7e679b, transparent);
+  z-index: 1;
+}
+
+.section-divider-decorative i {
+  background: white;
+  padding: 0 20px;
+  color: #7e679b;
+  font-size: 1.5em;
+  position: relative;
+  z-index: 2;
+}
+
+/* Image Optimization for Faster Loading */
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  will-change: auto;
+  contain: layout style paint;
+  image-rendering: optimizeSpeed;
+  image-rendering: -webkit-optimize-contrast;
+  image-rendering: optimize-contrast;
+}
+
 /* Responsive adjustments for contact buttons */
 @media (max-width: 768px) {
   .wp-block-button__link[href^="tel:"],

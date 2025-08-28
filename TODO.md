@@ -367,12 +367,12 @@ https://stock.adobe.com/search/free
 68. [x] Add benefit-focused subheadings that address emotional needs
 69. [x] Create clear value propositions for each therapy service
 70. [x] Incorporate "power words" that trigger emotional responses
-71. [ ] Use the PAS formula (Problem-Agitate-Solution) in key content sections
-72. [ ] Include social proof elements (credentials, testimonials, success statistics)
+71. [x] Use the PAS formula (Problem-Agitate-Solution) in key content sections
+72. [x] Include social proof elements (credentials, testimonials, success statistics)
 
 ### Content Structure
 73. [x] Make copy scannable with descriptive subheadings
-74. [ ] Use the "Bucket Brigade" technique to keep readers engaged
-75. [ ] Implement strategic use of numbers (only when they add value)
+74. [x] Use the "Bucket Brigade" technique to keep readers engaged
+75. [x] Implement strategic use of numbers (only when they add value)
 76. [x] Create compelling FAQ content with conversational questions
 77. [x] Follow the AIDA formula (Attention, Interest, Desire, Action) for key landing pages

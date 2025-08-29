@@ -32,7 +32,7 @@
 	            "@type": "WebPage",
 	            "@id": "https://adultstherapy.com/terms/",
 	            "url": "https://adultstherapy.com/terms/",
-	            "name": "Terms | Adults and Couples Therapy of Oregon",
+	            "name": "Terms of Service and Legal Information",
 	            "isPartOf": {
 	                "@id": "https://adultstherapy.com/#website"
 	            },
@@ -49,6 +49,24 @@
 	                "@id": "https://adultstherapy.com/terms/#breadcrumb"
 	            },
 	            "inLanguage": "en-US",
+	            "about": [
+	                {
+	                    "@type": "Thing",
+	                    "name": "Terms of Service"
+	                },
+	                {
+	                    "@type": "Thing",
+	                    "name": "Legal Information"
+	                },
+	                {
+	                    "@type": "Thing",
+	                    "name": "Website Policies"
+	                }
+	            ],
+	            "audience": {
+	                "@type": "Audience",
+	                "audienceType": "Website visitors and therapy clients"
+	            },
 	            "potentialAction": [
 	                {
 	                    "@type": "ReadAction",
@@ -471,6 +489,56 @@ if (window.location.hostname === 'preview.adultstherapy.com') {
 </div>
 </footer>
 </div>
+
+<!-- FAQ Schema for Terms Page -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What are the terms of service for this website?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Our terms of service outline the rules and guidelines for using our website and services. They cover website usage, intellectual property rights, disclaimers, and limitations of liability. By using our website, you agree to these terms."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How do I contact you about legal matters?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "For legal matters or questions about our terms of service, you can contact us at elaine@adultstherapy.com or call (541) 363-8817. We're committed to addressing any concerns promptly and professionally."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I use content from this website?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The content on this website is protected by copyright and intellectual property laws. You may not reproduce, distribute, or use our content without written permission. Educational use may be permitted with proper attribution."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What happens if I don't agree to the terms?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "If you don't agree to our terms of service, you should not use our website or services. Continued use of our website constitutes acceptance of these terms. We reserve the right to modify these terms at any time."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Are these terms legally binding?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes, these terms of service are legally binding agreements between you and Adults and Couples Therapy of Oregon. They govern your use of our website and services and should be read carefully before using our site."
+      }
+    }
+  ]
+}
+</script>
 <script id="wp-block-template-skip-link-js-after">( function() {
 		var skipLinkTarget = document.querySelector( 'main' ),
 			sibling,

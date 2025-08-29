@@ -30,7 +30,7 @@
 	    "@context": "https://schema.org",
 	    "@graph": [
 	        {
-	            "@type": "WebPage",
+	            "@type": "MedicalWebPage",
 	            "@id": "https://adultstherapy.com/therapy/cbt/",
 	            "url": "https://adultstherapy.com/therapy/cbt/",
 	            "name": "Cognitive Behavioral Therapy",
@@ -50,6 +50,24 @@
 	                "@id": "https://adultstherapy.com/therapy/cbt/#breadcrumb"
 	            },
 	            "inLanguage": "en-US",
+	            "about": [
+	                {
+	                    "@type": "MedicalCondition",
+	                    "name": "Depression"
+	                },
+	                {
+	                    "@type": "MedicalCondition", 
+	                    "name": "Anxiety"
+	                },
+	                {
+	                    "@type": "MedicalCondition",
+	                    "name": "Mental Health Disorders"
+	                }
+	            ],
+	            "audience": {
+	                "@type": "Audience",
+	                "audienceType": "Adults seeking evidence-based therapy"
+	            },
 	            "potentialAction": [
 	                {
 	                    "@type": "ReadAction",
@@ -758,6 +776,104 @@ if (window.location.hostname === 'preview.adultstherapy.com') {
 </div>
 </footer>
 </div>
+
+<!-- Enhanced Service Schema for CBT -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "MedicalProcedure",
+  "name": "Cognitive Behavioral Therapy (CBT)",
+  "description": "Evidence-based psychological therapy that helps identify and change negative thought patterns and behaviors affecting emotions. A goal-oriented approach focusing on the present moment.",
+  "bodyLocation": "Brain",
+  "preparation": "No special preparation required. Initial consultation to discuss goals and treatment plan.",
+  "followup": "Regular weekly sessions recommended, with homework assignments between sessions.",
+  "howPerformed": "Talk therapy with structured exercises, cognitive restructuring, behavioral experiments, and skill-building techniques.",
+  "indication": [
+    "Depression",
+    "Anxiety disorders",
+    "Panic attacks",
+    "Phobias",
+    "Obsessive-compulsive disorder",
+    "Post-traumatic stress disorder",
+    "Eating disorders",
+    "Substance abuse"
+  ],
+  "contraindication": "Not suitable for severe psychotic disorders without medication management",
+  "expectedPrognosis": "Significant improvement in symptoms within 12-20 sessions for most conditions",
+  "provider": {
+    "@type": "Person",
+    "name": "Elaine Dinwiddie",
+    "jobTitle": "Licensed Professional Counselor",
+    "hasCredential": [
+      {
+        "@type": "EducationalOccupationalCredential",
+        "name": "Licensed Professional Counselor",
+        "recognizedBy": {
+          "@type": "Organization",
+          "name": "Oregon Board of Licensed Professional Counselors and Therapists"
+        }
+      }
+    ]
+  },
+  "availableService": {
+    "@type": "MedicalService",
+    "name": "CBT Therapy Session",
+    "description": "50-minute individual CBT session",
+    "price": "120.00",
+    "priceCurrency": "USD"
+  }
+}
+</script>
+
+<!-- FAQ Schema for CBT -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What is Cognitive Behavioral Therapy (CBT)?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "CBT is a form of psychological therapy that helps you identify and change negative thought patterns and behaviors that affect your emotions. It's a goal-oriented approach that focuses on the present moment, rather than dwelling on the past."
+      }
+    },
+    {
+      "@type": "Question", 
+      "name": "How long does CBT treatment take?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "CBT is typically a short-term treatment, with most people seeing significant improvement in 12-20 weekly sessions. The exact duration depends on the individual and their specific concerns."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What conditions can CBT help with?",
+      "acceptedAnswer": {
+        "@type": "Answer", 
+        "text": "CBT is effective for depression, anxiety disorders, panic attacks, phobias, obsessive-compulsive disorder, PTSD, eating disorders, and substance abuse. It's one of the most researched and evidence-based forms of therapy."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What happens during a CBT session?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Sessions typically last 50 minutes and involve discussing your thoughts, feelings, and behaviors. You'll learn specific techniques to challenge negative thinking patterns and develop healthier coping strategies. Homework assignments are often given between sessions."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How much does CBT cost?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Individual CBT sessions are $120 for 50 minutes. We also offer a 30-minute complimentary phone consultation to discuss your needs and determine if CBT is right for you."
+      }
+    }
+  ]
+}
+</script>
 <script id="wp-block-template-skip-link-js-after">( function() {
 		var skipLinkTarget = document.querySelector( 'main' ),
 			sibling,

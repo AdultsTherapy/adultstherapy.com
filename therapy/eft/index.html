@@ -28,7 +28,7 @@
 	    "@context": "https://schema.org",
 	    "@graph": [
 	        {
-	            "@type": "WebPage",
+	            "@type": "MedicalWebPage",
 	            "@id": "https://adultstherapy.com/therapy/eft/",
 	            "url": "https://adultstherapy.com/therapy/eft/",
 	            "name": "Emotional Freedom Technique (EFT) Therapy in Oregon",
@@ -48,6 +48,28 @@
 	                "@id": "https://adultstherapy.com/therapy/eft/#breadcrumb"
 	            },
 	            "inLanguage": "en-US",
+	            "about": [
+	                {
+	                    "@type": "MedicalCondition",
+	                    "name": "Trauma"
+	                },
+	                {
+	                    "@type": "MedicalCondition",
+	                    "name": "Anxiety"
+	                },
+	                {
+	                    "@type": "MedicalCondition",
+	                    "name": "PTSD"
+	                },
+	                {
+	                    "@type": "MedicalCondition",
+	                    "name": "Chronic Pain"
+	                }
+	            ],
+	            "audience": {
+	                "@type": "Audience",
+	                "audienceType": "Adults seeking energy psychology therapy"
+	            },
 	            "potentialAction": [
 	                {
 	                    "@type": "ReadAction",
@@ -720,6 +742,121 @@ if (window.location.hostname === 'preview.adultstherapy.com') {
 </div>
 </footer>
 </div>
+
+<!-- Enhanced Service Schema for EFT -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "MedicalProcedure",
+  "name": "Emotional Freedom Technique (EFT) Therapy",
+  "description": "Evidence-based energy psychology technique that combines acupressure with modern psychology to address trauma, emotional pain, physical pain, and addictions through gentle tapping on meridian points.",
+  "bodyLocation": "Meridian Points",
+  "preparation": "No special preparation required. Initial consultation to discuss goals and treatment plan.",
+  "followup": "Regular weekly sessions recommended, with self-tapping techniques taught for home use.",
+  "howPerformed": "Gentle tapping on specific meridian points while focusing on emotional issues, combined with cognitive restructuring and emotional processing.",
+  "indication": [
+    "Trauma",
+    "PTSD",
+    "Anxiety disorders",
+    "Depression",
+    "Chronic pain",
+    "Phobias",
+    "Addictions",
+    "Emotional distress",
+    "Stress-related conditions"
+  ],
+  "contraindication": "Generally safe for most people, but may not be suitable for severe psychotic disorders",
+  "expectedPrognosis": "Many clients experience rapid relief from symptoms, with significant improvement often seen within 1-6 sessions",
+  "provider": {
+    "@type": "Person",
+    "name": "Elaine Dinwiddie",
+    "jobTitle": "Licensed Professional Counselor",
+    "hasCredential": [
+      {
+        "@type": "EducationalOccupationalCredential",
+        "name": "Licensed Professional Counselor",
+        "recognizedBy": {
+          "@type": "Organization",
+          "name": "Oregon Board of Licensed Professional Counselors and Therapists"
+        }
+      },
+      {
+        "@type": "EducationalOccupationalCredential",
+        "name": "ACEP Member",
+        "recognizedBy": {
+          "@type": "Organization",
+          "name": "Association for Comprehensive Energy Psychology"
+        }
+      }
+    ]
+  },
+  "availableService": {
+    "@type": "MedicalService",
+    "name": "EFT Therapy Session",
+    "description": "50-minute individual EFT therapy session",
+    "price": "120.00",
+    "priceCurrency": "USD"
+  }
+}
+</script>
+
+<!-- FAQ Schema for EFT -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What is Emotional Freedom Technique (EFT)?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "EFT is an evidence-based energy psychology technique that combines acupressure with modern psychology. It involves gentle tapping on specific meridian points while focusing on emotional issues, helping to release emotional and physical pain, trauma, and negative patterns."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How does EFT work?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "EFT works by stimulating meridian points through gentle tapping while you focus on specific emotional issues. This combination helps to release emotional blockages, reduce stress hormones, and reprogram the brain's response to triggers. It's based on the principles of acupuncture but without needles."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What conditions can EFT help with?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "EFT is effective for trauma, PTSD, anxiety, depression, chronic pain, phobias, addictions, emotional distress, and stress-related conditions. It's particularly powerful for addressing deep-seated emotional issues and can provide rapid relief from symptoms."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How long does EFT treatment take?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Many clients experience significant relief within 1-6 sessions. EFT can provide immediate relief for some issues, while deeper trauma work may require more sessions. You'll also learn self-tapping techniques to use at home between sessions."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is EFT safe?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes, EFT is very safe. It's a gentle, non-invasive technique that doesn't involve any medications or physical manipulation. It's suitable for people of all ages and can be used alongside other therapies. There are no known side effects."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How much does EFT therapy cost?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Individual EFT sessions are $120 for 50 minutes. We offer a free 30-minute phone consultation to discuss your needs and determine if EFT is right for you."
+      }
+    }
+  ]
+}
+</script>
 <script id="wp-block-template-skip-link-js-after">( function() {
 		var skipLinkTarget = document.querySelector( 'main' ),
 			sibling,

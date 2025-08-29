@@ -29,10 +29,10 @@
 	    "@context": "https://schema.org",
 	    "@graph": [
 	        {
-	            "@type": "WebPage",
+	            "@type": "MedicalWebPage",
 	            "@id": "https://adultstherapy.com/education/",
 	            "url": "https://adultstherapy.com/education/",
-	            "name": "Education",
+	            "name": "Mental Health Education and Resources",
 	            "isPartOf": {
 	                "@id": "https://adultstherapy.com/#website"
 	            },
@@ -49,6 +49,24 @@
 	                "@id": "https://adultstherapy.com/education/#breadcrumb"
 	            },
 	            "inLanguage": "en-US",
+	            "about": [
+	                {
+	                    "@type": "MedicalCondition",
+	                    "name": "Mental Health"
+	                },
+	                {
+	                    "@type": "MedicalCondition",
+	                    "name": "Neuroscience"
+	                },
+	                {
+	                    "@type": "MedicalCondition",
+	                    "name": "Therapeutic Techniques"
+	                }
+	            ],
+	            "audience": {
+	                "@type": "Audience",
+	                "audienceType": "Adults seeking mental health education and resources"
+	            },
 	            "potentialAction": [
 	                {
 	                    "@type": "ReadAction",
@@ -518,6 +536,147 @@ header.wp-block-template-part {
 </footer>
 
 </div>
+
+<!-- Enhanced Article Schema for Education Page -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Mental Health Education and Resources",
+  "description": "Explore educational resources about mental health, neuroscience basics, and therapeutic techniques to better understand yourself and improve your emotional well-being.",
+  "image": "https://adultstherapy.com/wp-content/uploads/2022/10/Adults_and_Couples_Therapy_of_Oregon.png",
+  "author": {
+    "@type": "Person",
+    "name": "Elaine Dinwiddie",
+    "jobTitle": "Licensed Professional Counselor",
+    "url": "https://adultstherapy.com/about/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Adults and Couples Therapy of Oregon",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://adultstherapy.com/wp-content/uploads/2022/10/Adults_and_Couples_Therapy_of_Oregon.png"
+    }
+  },
+  "datePublished": "2022-12-11T00:18:56+00:00",
+  "dateModified": "2023-06-11T00:00:16+00:00",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://adultstherapy.com/education/"
+  },
+  "about": [
+    {
+      "@type": "MedicalCondition",
+      "name": "Mental Health"
+    },
+    {
+      "@type": "MedicalCondition",
+      "name": "Neuroscience"
+    },
+    {
+      "@type": "MedicalCondition",
+      "name": "Therapeutic Techniques"
+    }
+  ],
+  "audience": {
+    "@type": "Audience",
+    "audienceType": "Adults seeking mental health education and resources"
+  }
+}
+</script>
+
+<!-- Course Schema for Educational Resources -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Course",
+  "name": "Mental Health Education Resources",
+  "description": "Educational resources about mental health, neuroscience, and therapeutic techniques to improve understanding and emotional well-being.",
+  "provider": {
+    "@type": "Organization",
+    "name": "Adults and Couples Therapy of Oregon",
+    "sameAs": "https://adultstherapy.com/"
+  },
+  "courseMode": "online",
+  "educationalLevel": "Beginner",
+  "inLanguage": "en-US",
+  "hasCourseInstance": [
+    {
+      "@type": "CourseInstance",
+      "name": "Brain Model and Neuroscience Basics",
+      "description": "Understanding the brain model and how the nervous system affects mental health",
+      "courseMode": "online",
+      "educationalLevel": "Beginner"
+    },
+    {
+      "@type": "CourseInstance",
+      "name": "Sympathetic Nervous System Education",
+      "description": "Learn about the sympathetic nervous system and its role in stress and anxiety",
+      "courseMode": "online",
+      "educationalLevel": "Beginner"
+    }
+  ]
+}
+</script>
+
+<!-- FAQ Schema for Education Page -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What educational resources do you provide?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "We provide educational resources about mental health, neuroscience basics, brain models, the sympathetic nervous system, and therapeutic techniques. These resources help you better understand yourself and improve your emotional well-being."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Why is understanding neuroscience important for mental health?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Understanding neuroscience helps you recognize how your brain and nervous system respond to stress, anxiety, and other emotions. This knowledge empowers you to better manage your mental health and make informed decisions about your well-being."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Are these educational resources free?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes, our educational resources are freely available to help increase mental health awareness and understanding. We believe that education is a powerful tool for improving mental health outcomes."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How can I use these educational resources?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "You can use these resources to better understand your mental health, learn about therapeutic techniques, and gain insights into how your brain works. They're designed to complement therapy sessions and support your mental health journey."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Do you provide resources for specific mental health conditions?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Our educational resources cover general mental health topics, neuroscience basics, and therapeutic techniques. For specific conditions, we recommend consulting with a mental health professional who can provide personalized guidance and treatment."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How often do you update your educational resources?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "We regularly update our educational resources to reflect the latest research and best practices in mental health and therapy. We're committed to providing accurate, up-to-date information to support your mental health journey."
+      }
+    }
+  ]
+}
+</script>
 <script id="wp-block-template-skip-link-js-after">( function() {
 		var skipLinkTarget = document.querySelector( 'main' ),
 			sibling,

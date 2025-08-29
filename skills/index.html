@@ -28,10 +28,10 @@
 	    "@context": "https://schema.org",
 	    "@graph": [
 	        {
-	            "@type": "WebPage",
+	            "@type": "MedicalWebPage",
 	            "@id": "https://adultstherapy.com/skills/",
 	            "url": "https://adultstherapy.com/skills/",
-	            "name": "Skills",
+	            "name": "Therapeutic Skills and Coping Techniques",
 	            "isPartOf": {
 	                "@id": "https://adultstherapy.com/#website"
 	            },
@@ -48,6 +48,24 @@
 	                "@id": "https://adultstherapy.com/skills/#breadcrumb"
 	            },
 	            "inLanguage": "en-US",
+	            "about": [
+	                {
+	                    "@type": "MedicalCondition",
+	                    "name": "Stress Management"
+	                },
+	                {
+	                    "@type": "MedicalCondition",
+	                    "name": "Anxiety"
+	                },
+	                {
+	                    "@type": "MedicalCondition",
+	                    "name": "Emotional Regulation"
+	                }
+	            ],
+	            "audience": {
+	                "@type": "Audience",
+	                "audienceType": "Adults seeking therapeutic skills and coping techniques"
+	            },
 	            "potentialAction": [
 	                {
 	                    "@type": "ReadAction",
@@ -582,6 +600,173 @@ if (window.location.hostname === 'preview.adultstherapy.com') {
 <p><!-- /vcwb/dynamicElementComment:0bd29402 --><!--vcv no format--></p>
 </div></div>
 </main>
+
+<!-- Enhanced Article Schema for Skills Page -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Therapeutic Skills and Coping Techniques",
+  "description": "Learn essential therapeutic skills including deep breathing, mindfulness, and emotional regulation techniques to manage stress, anxiety, and improve your mental well-being.",
+  "image": "https://adultstherapy.com/wp-content/uploads/2022/10/Adults_and_Couples_Therapy_of_Oregon.png",
+  "author": {
+    "@type": "Person",
+    "name": "Elaine Dinwiddie",
+    "jobTitle": "Licensed Professional Counselor",
+    "url": "https://adultstherapy.com/about/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Adults and Couples Therapy of Oregon",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://adultstherapy.com/wp-content/uploads/2022/10/Adults_and_Couples_Therapy_of_Oregon.png"
+    }
+  },
+  "datePublished": "2022-12-11T00:17:15+00:00",
+  "dateModified": "2023-06-10T23:54:39+00:00",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://adultstherapy.com/skills/"
+  },
+  "about": [
+    {
+      "@type": "MedicalCondition",
+      "name": "Stress Management"
+    },
+    {
+      "@type": "MedicalCondition",
+      "name": "Anxiety"
+    },
+    {
+      "@type": "MedicalCondition",
+      "name": "Emotional Regulation"
+    }
+  ],
+  "audience": {
+    "@type": "Audience",
+    "audienceType": "Adults seeking therapeutic skills and coping techniques"
+  }
+}
+</script>
+
+<!-- HowTo Schema for Therapeutic Skills -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "HowTo",
+  "name": "Deep Breathing Exercise for Stress Relief",
+  "description": "Learn deep breathing techniques to manage stress, anxiety, and improve your mind-body connection.",
+  "image": "https://adultstherapy.com/wp-content/uploads/2022/10/Adults_and_Couples_Therapy_of_Oregon.png",
+  "totalTime": "PT5M",
+  "estimatedCost": {
+    "@type": "MonetaryAmount",
+    "currency": "USD",
+    "value": "0"
+  },
+  "supply": [
+    {
+      "@type": "HowToSupply",
+      "name": "Quiet space"
+    },
+    {
+      "@type": "HowToSupply", 
+      "name": "Comfortable seating"
+    }
+  ],
+  "tool": [
+    {
+      "@type": "HowToTool",
+      "name": "Your breath"
+    }
+  ],
+  "step": [
+    {
+      "@type": "HowToStep",
+      "name": "Find a comfortable position",
+      "text": "Sit or lie down in a comfortable position with your back straight and shoulders relaxed."
+    },
+    {
+      "@type": "HowToStep",
+      "name": "Place your hands",
+      "text": "Place one hand on your chest and the other on your abdomen to feel your breathing."
+    },
+    {
+      "@type": "HowToStep",
+      "name": "Breathe deeply",
+      "text": "Take a slow, deep breath in through your nose, filling your abdomen first, then your chest."
+    },
+    {
+      "@type": "HowToStep",
+      "name": "Exhale slowly",
+      "text": "Exhale slowly through your mouth, feeling your abdomen and chest relax."
+    },
+    {
+      "@type": "HowToStep",
+      "name": "Repeat",
+      "text": "Continue this pattern for 5-10 minutes, focusing on the rhythm of your breath."
+    }
+  ]
+}
+</script>
+
+<!-- FAQ Schema for Skills Page -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What therapeutic skills do you teach?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "We teach essential therapeutic skills including deep breathing exercises, mindfulness techniques, emotional regulation strategies, progressive muscle relaxation, and grounding techniques. These skills help manage stress, anxiety, and improve overall mental well-being."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How do deep breathing exercises help?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Deep breathing exercises help improve your mind-body connection by bringing awareness to the normally unconscious act of breathing. They assist in controlling symptoms of stress, anxiety, and anger, providing near-immediate relief from uncomfortable symptoms."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I learn these skills on my own?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "While you can practice these skills independently, learning them with a trained therapist ensures proper technique and personalized guidance. We can help you develop a practice that works best for your specific needs and challenges."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How long does it take to see benefits from these skills?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Many people experience immediate relief from deep breathing and grounding techniques. For lasting benefits, regular practice is recommended. Most clients notice significant improvements in stress management within 2-4 weeks of consistent practice."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Are these skills suitable for everyone?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes, these therapeutic skills are generally safe and suitable for most people. They can be adapted for different abilities and needs. If you have specific health concerns, we can modify techniques to ensure they're appropriate for your situation."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How do I get started learning these skills?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "You can start by scheduling a consultation with us. We'll assess your needs and teach you the most appropriate skills for your situation. We also provide guidance on how to practice these skills at home between sessions."
+      }
+    }
+  ]
+}
+</script>
 
 
 <footer class="wp-block-template-part">

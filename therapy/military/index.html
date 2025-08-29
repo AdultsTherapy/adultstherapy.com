@@ -30,7 +30,7 @@
 	    "@context": "https://schema.org",
 	    "@graph": [
 	        {
-	            "@type": "WebPage",
+	            "@type": "MedicalWebPage",
 	            "@id": "https://adultstherapy.com/therapy/military/",
 	            "url": "https://adultstherapy.com/therapy/military/",
 	            "name": "Military",
@@ -50,6 +50,24 @@
 	                "@id": "https://adultstherapy.com/therapy/military/#breadcrumb"
 	            },
 	            "inLanguage": "en-US",
+            "about": [
+                {
+                    "@type": "MedicalCondition",
+                    "name": "PTSD"
+                },
+                {
+                    "@type": "MedicalCondition",
+                    "name": "Military Trauma"
+                },
+                {
+                    "@type": "MedicalCondition",
+                    "name": "Combat Trauma"
+                }
+            ],
+            "audience": {
+                "@type": "Audience",
+                "audienceType": "Military personnel, veterans, and their families seeking trauma-informed care"
+            },
 	            "potentialAction": [
 	                {
 	                    "@type": "ReadAction",

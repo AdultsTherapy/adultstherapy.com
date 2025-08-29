@@ -32,7 +32,7 @@
 	            "@type": "WebPage",
 	            "@id": "https://adultstherapy.com/privacy/",
 	            "url": "https://adultstherapy.com/privacy/",
-	            "name": "Privacy | Adults and Couples Therapy of Oregon",
+	            "name": "Privacy Policy and Data Protection",
 	            "isPartOf": {
 	                "@id": "https://adultstherapy.com/#website"
 	            },
@@ -49,6 +49,24 @@
 	                "@id": "https://adultstherapy.com/privacy/#breadcrumb"
 	            },
 	            "inLanguage": "en-US",
+	            "about": [
+	                {
+	                    "@type": "Thing",
+	                    "name": "Privacy Policy"
+	                },
+	                {
+	                    "@type": "Thing",
+	                    "name": "Data Protection"
+	                },
+	                {
+	                    "@type": "Thing",
+	                    "name": "HIPAA Compliance"
+	                }
+	            ],
+	            "audience": {
+	                "@type": "Audience",
+	                "audienceType": "Website visitors and therapy clients"
+	            },
 	            "potentialAction": [
 	                {
 	                    "@type": "ReadAction",
@@ -453,6 +471,64 @@ header.wp-block-template-part {
 </div>
 </footer>
 </div>
+
+<!-- FAQ Schema for Privacy Page -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "How do you protect my privacy?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "We are committed to protecting your privacy and maintaining the confidentiality of your personal information. We follow HIPAA guidelines and use secure, encrypted systems for all communications and data storage. Your information is never shared without your explicit consent."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What information do you collect?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "We collect only the information necessary to provide therapy services, including contact information, health history, and session notes. We do not collect unnecessary personal information and never sell or share your data with third parties for marketing purposes."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Are therapy sessions confidential?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes, therapy sessions are confidential under HIPAA regulations. There are limited exceptions for safety concerns, such as if you or someone else is in immediate danger. We will discuss confidentiality in detail during your first session."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How do you handle telehealth privacy?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Our telehealth platform is HIPAA-compliant and uses end-to-end encryption. We recommend using a private, secure location for telehealth sessions and ensuring no one else can overhear your conversations."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I request my records?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes, you have the right to request copies of your therapy records. We will provide them within 30 days of your request, as required by HIPAA. There may be a small fee for copying and mailing records."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How long do you keep my information?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "We retain therapy records for at least 7 years as required by Oregon law and professional standards. After that time, records are securely destroyed. You can request deletion of your information at any time, subject to legal requirements."
+      }
+    }
+  ]
+}
+</script>
 <script id="wp-block-template-skip-link-js-after">( function() {
 		var skipLinkTarget = document.querySelector( 'main' ),
 			sibling,

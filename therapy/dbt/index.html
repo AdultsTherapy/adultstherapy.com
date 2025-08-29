@@ -28,7 +28,7 @@
 	    "@context": "https://schema.org",
 	    "@graph": [
 	        {
-	            "@type": "WebPage",
+	            "@type": "MedicalWebPage",
 	            "@id": "https://adultstherapy.com/therapy/dbt/",
 	            "url": "https://adultstherapy.com/therapy/dbt/",
 	            "name": "Dialectical Behavior Therapy | Evidence-Based Treatment in Oregon",
@@ -48,6 +48,24 @@
 	                "@id": "https://adultstherapy.com/therapy/dbt/#breadcrumb"
 	            },
 	            "inLanguage": "en-US",
+            "about": [
+                {
+                    "@type": "MedicalCondition",
+                    "name": "Emotional Dysregulation"
+                },
+                {
+                    "@type": "MedicalCondition",
+                    "name": "Borderline Personality Disorder"
+                },
+                {
+                    "@type": "MedicalCondition",
+                    "name": "Self-Harm"
+                }
+            ],
+            "audience": {
+                "@type": "Audience",
+                "audienceType": "Adults seeking skills-based therapy for emotional regulation"
+            },
 	            "potentialAction": [
 	                {
 	                    "@type": "ReadAction",
@@ -779,6 +797,102 @@ if (window.location.hostname === 'preview.adultstherapy.com') {
 </div>
 </footer>
 </div>
+
+
+<!-- Enhanced Service Schema for Dialectical Behavior Therapy (DBT) -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "MedicalProcedure",
+  "name": "Dialectical Behavior Therapy (DBT)",
+  "description": "Skills-based therapy that combines cognitive-behavioral techniques with mindfulness practices to help manage intense emotions, improve relationships, and develop healthy coping strategies.",
+  "bodyLocation": "Brain",
+  "preparation": "No special preparation required. Initial consultation to discuss goals and treatment plan.",
+  "followup": "Regular weekly sessions recommended, with homework assignments between sessions.",
+  "howPerformed": "Talk therapy with specialized techniques and interventions tailored to your specific needs.",
+  "indication": [
+    "Emotional Dysregulation",
+    "Borderline Personality Disorder",
+    "Self-Harm",
+    "DBT",
+    "Emotional Skills"
+  ],
+  "contraindication": "Not suitable for severe psychotic disorders without medication management",
+  "expectedPrognosis": "Significant improvement in symptoms within 12-20 sessions for most conditions",
+  "provider": {
+    "@type": "Person",
+    "name": "Elaine Dinwiddie",
+    "jobTitle": "Licensed Professional Counselor",
+    "hasCredential": [
+      {
+        "@type": "EducationalOccupationalCredential",
+        "name": "Licensed Professional Counselor",
+        "recognizedBy": {
+          "@type": "Organization",
+          "name": "Oregon Board of Licensed Professional Counselors and Therapists"
+        }
+      }
+    ]
+  },
+  "availableService": {
+    "@type": "MedicalService",
+    "name": "Dialectical Behavior Therapy (DBT) Session",
+    "description": "50-minute individual therapy session",
+    "price": "120.00",
+    "priceCurrency": "USD"
+  }
+}
+</script>
+
+<!-- FAQ Schema for Dialectical Behavior Therapy (DBT) -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What is Dialectical Behavior Therapy (DBT)?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "DBT is a skills-based therapy that combines cognitive-behavioral techniques with mindfulness practices. It helps you learn to manage intense emotions, improve relationships, tolerate distress, and develop healthy coping strategies."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What are the four modules of DBT?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "DBT consists of four skill modules: Mindfulness (being present and aware), Distress Tolerance (coping with difficult situations), Emotion Regulation (managing intense emotions), and Interpersonal Effectiveness (improving relationships and communication)."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Who can benefit from DBT?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "DBT is effective for people struggling with intense emotions, relationship difficulties, self-harm behaviors, and emotional dysregulation. It's particularly helpful for those with borderline personality disorder, but benefits many others as well."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How long does DBT treatment take?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "DBT typically involves 6-12 months of treatment, with weekly individual sessions and skills training. The exact duration depends on your specific needs and goals. Many people begin to see improvements within the first few months."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What happens during a DBT session?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Sessions focus on learning and practicing specific skills, reviewing homework assignments, and applying DBT techniques to real-life situations. You'll receive practical tools to use in your daily life."
+      }
+    }
+  ]
+}
+</script>
 <script id="wp-block-template-skip-link-js-after">( function() {
 		var skipLinkTarget = document.querySelector( 'main' ),
 			sibling,

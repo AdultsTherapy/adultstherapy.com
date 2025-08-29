@@ -29,7 +29,7 @@
 	    "@context": "https://schema.org",
 	    "@graph": [
 	        {
-	            "@type": "WebPage",
+	            "@type": "MedicalWebPage",
 	            "@id": "https://adultstherapy.com/therapy/gottman/",
 	            "url": "https://adultstherapy.com/therapy/gottman/",
 	            "name": "Gottman Method Couples Therapy | Evidence-Based Relationship Counseling",
@@ -49,6 +49,24 @@
 	                "@id": "https://adultstherapy.com/therapy/gottman/#breadcrumb"
 	            },
 	            "inLanguage": "en-US",
+            "about": [
+                {
+                    "@type": "MedicalCondition",
+                    "name": "Relationship Issues"
+                },
+                {
+                    "@type": "MedicalCondition",
+                    "name": "Couples Therapy"
+                },
+                {
+                    "@type": "MedicalCondition",
+                    "name": "Marriage Counseling"
+                }
+            ],
+            "audience": {
+                "@type": "Audience",
+                "audienceType": "Couples seeking evidence-based relationship therapy"
+            },
 	            "potentialAction": [
 	                {
 	                    "@type": "ReadAction",
@@ -976,6 +994,101 @@ if (window.location.hostname === 'preview.adultstherapy.com') {
 </div>
 </footer>
 </div>
+
+
+<!-- Enhanced Service Schema for Gottman Method Couples Therapy -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "MedicalProcedure",
+  "name": "Gottman Method Couples Therapy",
+  "description": "Evidence-based couples therapy approach developed by Drs. John and Julie Gottman, focusing on building strong relationships through research-based interventions.",
+  "bodyLocation": "Brain",
+  "preparation": "No special preparation required. Initial consultation to discuss goals and treatment plan.",
+  "followup": "Regular weekly sessions recommended, with homework assignments between sessions.",
+  "howPerformed": "Talk therapy with specialized techniques and interventions tailored to your specific needs.",
+  "indication": [
+    "Relationship Issues",
+    "Couples Therapy",
+    "Marriage Counseling",
+    "Communication Problems"
+  ],
+  "contraindication": "Not suitable for severe psychotic disorders without medication management",
+  "expectedPrognosis": "Significant improvement in symptoms within 12-20 sessions for most conditions",
+  "provider": {
+    "@type": "Person",
+    "name": "Elaine Dinwiddie",
+    "jobTitle": "Licensed Professional Counselor",
+    "hasCredential": [
+      {
+        "@type": "EducationalOccupationalCredential",
+        "name": "Licensed Professional Counselor",
+        "recognizedBy": {
+          "@type": "Organization",
+          "name": "Oregon Board of Licensed Professional Counselors and Therapists"
+        }
+      }
+    ]
+  },
+  "availableService": {
+    "@type": "MedicalService",
+    "name": "Gottman Method Couples Therapy Session",
+    "description": "50-minute individual therapy session",
+    "price": "120.00",
+    "priceCurrency": "USD"
+  }
+}
+</script>
+
+<!-- FAQ Schema for Gottman Method Couples Therapy -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What is the Gottman Method?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The Gottman Method is an evidence-based approach to couples therapy developed by Drs. John and Julie Gottman. It's based on over 40 years of research and focuses on building strong, healthy relationships through specific interventions and techniques."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How is Gottman Method different from other couples therapy?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The Gottman Method is unique because it's based on extensive research with thousands of couples. It uses specific assessment tools, interventions, and techniques that have been scientifically proven to improve relationship satisfaction and reduce divorce rates."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How long does Gottman Method therapy take?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Most couples see significant improvement within 12-20 sessions. The exact duration depends on the specific issues and goals of the couple. We start with a comprehensive assessment to create a personalized treatment plan."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What happens during a Gottman Method session?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Sessions typically last 80 minutes and involve both partners. We use research-based interventions to improve communication, build friendship, manage conflicts, and create shared meaning in your relationship."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How much do couples therapy sessions cost?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Couples therapy sessions are $160 for 80 minutes. We also offer a free 30-minute phone consultation to discuss your relationship goals and determine if the Gottman Method is right for you."
+      }
+    }
+  ]
+}
+</script>
 <script id="wp-block-template-skip-link-js-after">( function() {
 		var skipLinkTarget = document.querySelector( 'main' ),
 			sibling,

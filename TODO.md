@@ -22,7 +22,7 @@
 2. [x] Remove Bend, Oregon from service areas due to Pacific Source insurance denial
    1. [x] Update index.html - Remove Bend from Regional Centers list
    2. [x] Update about/index.html - Remove Bend from Central Oregon service area
-   3. [ ] Consider if other Central Oregon areas (Redmond, Sisters, La Pine) should also be removed if they primarily use Pacific Source
+   3. [ ] Consider if other Central Oregon areas (Redmond, Sisters, La Pine) should also be removed if they primarily use Pacific Source - SKIP FOR NOW
       - **DECISION NEEDED**: Research required to determine primary insurance providers in Redmond, Sisters, and La Pine
       - **Current Central Oregon areas listed**: Redmond, Sisters, and La Pine
       - **Recommendation**: Contact local healthcare providers or insurance brokers in these areas to determine:
@@ -242,8 +242,8 @@ Pages:
 ### Layout and Structure
 30. [ ] Add more whitespace between sections to improve readability - skip for now
 31. [ ] Implement consistent content width across all pages - skip for now
-32. [ ] Break up large text blocks into smaller, more digestible sections - skip for now
-33. [ ] Create more distinct visual hierarchy on all pages - skip for now
+32. [ ] Break up large text blocks into smaller, more digestible sections
+33. [ ] Create more distinct visual hierarchy on all pages - expand on this
 
 ### Navigation Enhancement
 34. [ ] Make dropdown menus more visually distinctive with subtle animations
@@ -312,17 +312,17 @@ https://stock.adobe.com/search/free
 **Note: Don't reuse images that have already been used elsewhere on the site**
 
 43. [x] Implement subtle background patterns in header/footer areas
-44. [ ] Add professional headshot with consistent styling across pages
+44. [ ] Add professional headshot with consistent styling across pages - SKIP FOR NOW
 45. [x] Create visual icons for different therapy modalities (use fontawesome.com)
 46. [x] Add visual dividers between content sections
     Pages:
     1. [x] index.html (Adults and Couples Therapy of Oregon)
     2. [x] about/index.html (About)
     3. [x] education/index.html (Education)
-    4. [ ] privacy/index.html (Privacy)
-    5. [ ] sitemap/index.html (Sitemap)
+    4. [ ] privacy/index.html (Privacy) - SKIP
+    5. [ ] sitemap/index.html (Sitemap) - SKIP
     6. [x] skills/index.html (Skills)
-    7. [ ] terms/index.html (Terms)
+    7. [ ] terms/index.html (Terms) - SKIP
     8. [x] therapy/index.html (Therapy)
     9. [x] therapy/cbt/index.html (Cognitive Behavioral Therapy)
     10. [x] therapy/dbt/index.html (Dialectical Behavior Therapy)
@@ -335,7 +335,7 @@ https://stock.adobe.com/search/free
 ### Page-Specific Design
 47. [x] Homepage: Create impactful hero section with background image
 48. [x] Homepage: Add visual cards for each therapy approach with icons
-49. [ ] Homepage: Implement testimonial carousel with subtle styling
+49. [ ] Homepage: Implement testimonial carousel with subtle styling - SKIP FOR NOW
 50. [ ] Therapy Pages: Create consistent visual templates for all modality pages
 51. [ ] Therapy Pages: Add relevant imagery for each approach
 52. [ ] About Page: Enhance professional photo presentation
@@ -376,3 +376,26 @@ https://stock.adobe.com/search/free
 75. [x] Implement strategic use of numbers (only when they add value)
 76. [x] Create compelling FAQ content with conversational questions
 77. [x] Follow the AIDA formula (Attention, Interest, Desire, Action) for key landing pages
+
+## Priority 7: Performance Optimization (Based on PageSpeed Insights Analysis)
+
+### Critical Performance Issues - Current Score: 73/100 Mobile
+78. [x] Add efficient cache lifetimes (.htaccess with 1-year cache for static assets) - POTENTIAL SAVINGS: 189 KiB
+79. [x] Fix render blocking requests (defer Font Awesome loading) - POTENTIAL SAVINGS: 1,530ms
+80. [x] Optimize image delivery (add fetchpriority="high" to hero image) - POTENTIAL SAVINGS: 21 KiB
+81. [x] Fix font display issues (defer Font Awesome with media="print" trick) - POTENTIAL SAVINGS: 120ms
+82. [x] Add resource preloading (DNS prefetch, preload critical CSS/JS)
+83. [x] Inline critical CSS to reduce render blocking
+84. [ ] Optimize Largest Contentful Paint (currently 5.2s - needs to be under 2.5s)
+85. [ ] Compress large images in wp-content/uploads/ directory
+86. [ ] Add lazy loading to below-the-fold images
+87. [ ] Implement modern image formats (WebP) where possible
+88. [ ] Minify CSS and JavaScript files
+89. [ ] Consider implementing a CDN for image delivery
+90. [ ] Add proper meta descriptions and optimize page titles for SEO (current SEO score: 83/100)
+
+### Server-Level Optimizations
+91. [x] Create .htaccess file with compression and caching rules
+92. [ ] Enable HTTP/2 if not already enabled
+93. [ ] Consider implementing service worker for offline functionality
+94. [ ] Add security headers for better security score

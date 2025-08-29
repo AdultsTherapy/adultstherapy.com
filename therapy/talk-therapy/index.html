@@ -29,7 +29,7 @@
 	    "@context": "https://schema.org",
 	    "@graph": [
 	        {
-	            "@type": "WebPage",
+	            "@type": "MedicalWebPage",
 	            "@id": "https://adultstherapy.com/therapy/talk-therapy/",
 	            "url": "https://adultstherapy.com/therapy/talk-therapy/",
 	            "name": "Talk Therapy | Evidence-Based Psychotherapy in Oregon",
@@ -49,6 +49,24 @@
 	                "@id": "https://adultstherapy.com/therapy/talk-therapy/#breadcrumb"
 	            },
 	            "inLanguage": "en-US",
+            "about": [
+                {
+                    "@type": "MedicalCondition",
+                    "name": "General Mental Health"
+                },
+                {
+                    "@type": "MedicalCondition",
+                    "name": "Life Transitions"
+                },
+                {
+                    "@type": "MedicalCondition",
+                    "name": "Personal Growth"
+                }
+            ],
+            "audience": {
+                "@type": "Audience",
+                "audienceType": "Adults seeking traditional psychotherapy and personal growth"
+            },
 	            "potentialAction": [
 	                {
 	                    "@type": "ReadAction",
@@ -729,6 +747,102 @@ if (window.location.hostname === 'preview.adultstherapy.com') {
 </div>
 </footer>
 </div>
+
+
+<!-- Enhanced Service Schema for Talk Therapy -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "MedicalProcedure",
+  "name": "Talk Therapy",
+  "description": "Traditional psychotherapy approach that provides a safe, supportive environment to explore thoughts, feelings, and experiences through open dialogue and therapeutic conversation.",
+  "bodyLocation": "Brain",
+  "preparation": "No special preparation required. Initial consultation to discuss goals and treatment plan.",
+  "followup": "Regular weekly sessions recommended, with homework assignments between sessions.",
+  "howPerformed": "Talk therapy with specialized techniques and interventions tailored to your specific needs.",
+  "indication": [
+    "General Mental Health",
+    "Life Transitions",
+    "Personal Growth",
+    "Talk Therapy",
+    "Psychotherapy"
+  ],
+  "contraindication": "Not suitable for severe psychotic disorders without medication management",
+  "expectedPrognosis": "Significant improvement in symptoms within 12-20 sessions for most conditions",
+  "provider": {
+    "@type": "Person",
+    "name": "Elaine Dinwiddie",
+    "jobTitle": "Licensed Professional Counselor",
+    "hasCredential": [
+      {
+        "@type": "EducationalOccupationalCredential",
+        "name": "Licensed Professional Counselor",
+        "recognizedBy": {
+          "@type": "Organization",
+          "name": "Oregon Board of Licensed Professional Counselors and Therapists"
+        }
+      }
+    ]
+  },
+  "availableService": {
+    "@type": "MedicalService",
+    "name": "Talk Therapy Session",
+    "description": "50-minute individual therapy session",
+    "price": "120.00",
+    "priceCurrency": "USD"
+  }
+}
+</script>
+
+<!-- FAQ Schema for Talk Therapy -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What is talk therapy?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Talk therapy is a traditional form of psychotherapy that provides a safe, supportive environment to explore your thoughts, feelings, and experiences. It helps you gain insight, develop coping skills, and work through life challenges."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What can I expect in talk therapy sessions?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Sessions typically last 50 minutes and involve open conversation about your concerns, goals, and experiences. The therapist provides support, guidance, and helps you develop new perspectives and coping strategies."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How long does talk therapy take?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The duration varies depending on your goals and needs. Some people benefit from short-term therapy (8-12 sessions), while others prefer longer-term work for deeper personal growth. We'll work together to determine what's right for you."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What issues can talk therapy help with?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Talk therapy can help with depression, anxiety, relationship issues, life transitions, grief, stress, personal growth, and many other concerns. It's a versatile approach that can be adapted to your specific needs."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How do I know if talk therapy is right for me?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Talk therapy is right for you if you're looking for a safe space to explore your thoughts and feelings, want to develop better coping skills, or are going through life challenges. We offer a free consultation to help you decide."
+      }
+    }
+  ]
+}
+</script>
 <script id="wp-block-template-skip-link-js-after">( function() {
 		var skipLinkTarget = document.querySelector( 'main' ),
 			sibling,

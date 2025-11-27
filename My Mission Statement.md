@@ -1,0 +1,5 @@
+My Mission Statement
+
+Interacting with adults and the elderly is a satisfying endeavor for me. I find gratification in working with these populations to assist them with behavioral and emotional problems, plan viable treatments, and conduct and interpret assessments. I am an inviting individual who enjoys listening to people tell their stories. As our journey on earth involves intrapersonal and interpersonal difficulties and unexpected life events, one needs a fellow traveler to assist them. I enjoy being that fellow traveler.
+
+I am an LPC who helps clients with anxiety, depression, PTSD, bipolar disorder, phobias, and so forth with evidence-based counseling techniques and therapies. I have a theoretical and therapeutic lens based on trauma-informed care. I am trained in EMDR Level 2, EFT Professional, Gottman Couples therapy, CBT, DBT, CPT, ET, Certified Clinical Trauma Professional (CCTP I), Grief Therapy, Somatic Therapy, Attachment Therapy, Military and Veterans Therapy, and Women’s Trauma Group

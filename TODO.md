@@ -1,6 +1,26 @@
 # TODO List for Adults and Couples Therapy of Oregon
 
-## Priority 0: Urgent Business Updates
+## Priority 0.1.1: Badge from Star Behavioral Health Providers
+
+a badge from star behavioral health providers stating train provider military focused care, you can put it on the website.
+Pages:
+1. [ ] index.html (Adults and Couples Therapy of Oregon)
+2. [ ] about/index.html (About)
+3. [ ] education/index.html (Education)
+4. [ ] privacy/index.html (Privacy)
+5. [ ] sitemap/index.html (Sitemap)
+6. [ ] skills/index.html (Skills)
+7. [ ] terms/index.html (Terms)
+8. [ ] therapy/index.html (Therapy)
+9. [ ] therapy/cbt/index.html (Cognitive Behavioral Therapy)
+10. [ ] therapy/dbt/index.html (Dialectical Behavior Therapy)
+11. [ ] therapy/gottman/index.html (Gottman's Couple Therapy)
+12. [ ] therapy/military/index.html (Military)
+13. [ ] therapy/mindfulness/index.html (Mindfulness)
+14. [ ] therapy/talk-therapy/index.html (Talk Therapy)
+15. [ ] therapy/eft/index.html (Emotional Freedom Technique)
+
+## Priority 0.1.2: Urgent Business Updates
 
 ### Insurance Information Update
 1. [x] Update insurance companies accepted across all pages

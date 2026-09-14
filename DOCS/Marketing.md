@@ -28,6 +28,7 @@ overwritten and will not survive review.
 | `WebSite` | every page | Site name, publisher, language |
 | `WebPage` / `MedicalWebPage` / `CollectionPage` / `ProfilePage` | per page | Canonical URL, name, description, `dateModified`, membership in the site |
 | `Person` | `/about/` only | Elaine Dinwiddie, LPC — job title, employer, and each credential as `EducationalOccupationalCredential` |
+| `Service` | the eight therapy pages | The approach as a service the practice offers — name, `serviceType`, provider, area served, and how to reach it |
 | `BreadcrumbList` | every page but `/` | The same trail the page renders, from `ROUTE_LABELS` |
 
 Therapy pages use `MedicalWebPage`; `/therapy/`, `/skills/`, `/education/`, and
@@ -48,7 +49,12 @@ hours         Tuesday–Friday, 11:00–18:00
 priceRange    $$
 payment       Cash, Credit Card, Debit Card, Insurance
 amenities     Wheelchair accessible, free parking, telehealth available
+areaServed    Oregon, Klamath Falls, and the nine towns the home page lists
 ```
+
+`areaServed` is the one that is also visible copy: the towns in `schemaGraph`
+are the towns under "Nearby Communities" on the home page. Change one and
+change the other, or the site claims a service area it does not show.
 
 **When any of these change in real life, change them in `schemaGraph` in the
 same commit as the page copy.** A hours change that lands in the footer but not

@@ -131,6 +131,7 @@ const PAGES = [
     description:
       "Specialized trauma therapy for veterans and military personnel in Oregon. Evidence-based PTSD treatment from a Star Behavioral Health trained provider.",
     heading: "Therapy for Military-Veterans: Combat Trauma & PTSD Treatment",
+    service: "Military and Veteran Trauma Therapy",
     social: "military",
     schema: "MedicalWebPage",
   },
@@ -889,7 +890,16 @@ const schemaGraph = (page) => {
       email: "elaine@adultstherapy.com",
       telephone: "+1-541-363-8817",
       medicalSpecialty: "Psychiatric",
-      areaServed: { "@type": "State", name: "Oregon" },
+      // The towns the home page lists as served, plus the state that covers the
+      // telehealth reach. Keep the two in step: this is a public claim about
+      // where the practice works.
+      areaServed: [
+        { "@type": "State", name: "Oregon" },
+        { "@type": "City", name: "Klamath Falls" },
+        ...["Altamont", "Chiloquin", "Merrill", "Bonanza", "Malin", "Sprague River", "Beatty", "Bly", "Rocky Point"].map(
+          (name) => ({ "@type": "City", name }),
+        ),
+      ],
       address: {
         "@type": "PostalAddress",
         addressLocality: "Klamath Falls",
@@ -945,6 +955,26 @@ const schemaGraph = (page) => {
       dateModified: MODIFIED,
     },
   ];
+
+  if (page.schema === "MedicalWebPage") {
+    graph.push({
+      "@type": "Service",
+      "@id": `${url}#service`,
+      // A few headings are headlines rather than the name of a service; those
+      // pages name the service explicitly.
+      name: (page.service || page.heading).replace(/&#8217;/g, "\u2019"),
+      serviceType: (page.service || page.heading).replace(/&#8217;/g, "\u2019"),
+      description: page.description,
+      provider: { "@id": `${ORIGIN}/#organization` },
+      areaServed: { "@type": "State", name: "Oregon" },
+      availableChannel: {
+        "@type": "ServiceChannel",
+        name: "Telehealth and in-person sessions",
+        servicePhone: "+1-541-363-8817",
+        serviceUrl: url,
+      },
+    });
+  }
 
   // The breadcrumb trail is rendered on every page, so the markup describes
   // something a visitor can actually see and click. It was dropped during

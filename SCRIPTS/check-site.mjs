@@ -30,6 +30,15 @@ const RETIRED_MARKUP =
   /wp-(?:content|includes|json|block|element|container|admin)|xmlrpc\.php|wlwmanifest|yoast|cdnjs\.cloudflare\.com|images\.unsplash\.com|preview\.adultstherapy\.com|vce-|visualcomposer/i;
 const CANONICAL_TELEPHONE = "tel:+15413638817";
 
+// A result listing truncates on pixel width, not characters, so these are the
+// character counts that keep every title and description inside it with a
+// little headroom. A title that outgrows this is not longer in the listing —
+// it is cut, and the cut falls wherever the width runs out.
+const MIN_TITLE = 30;
+const MAX_TITLE = 65;
+const MIN_DESCRIPTION = 70;
+const MAX_DESCRIPTION = 158;
+
 const unique = (items) => [...new Set(items)];
 const attribute = (tag, name) =>
   tag.match(new RegExp(`(?:^|\\s)${name}=["']([^"']*)["']`, "i"))?.[1] || "";
@@ -98,6 +107,10 @@ for (const file of pages) {
   if (!/^<!doctype html>/i.test(html.trimStart())) failures.push(`${name}: missing HTML doctype`);
   if (!/<html\b[^>]*\blang=["'][^"']+["']/i.test(html)) failures.push(`${name}: missing document language`);
   if (countMatches(html, /<title\b/gi) !== 1) failures.push(`${name}: expected one title`);
+  const title = text(html.match(/<title\b[^>]*>([\s\S]*?)<\/title>/i)?.[1] || "");
+  if (title && (title.length < MIN_TITLE || title.length > MAX_TITLE)) {
+    failures.push(`${name}: title is ${title.length} characters; keep it ${MIN_TITLE}-${MAX_TITLE}`);
+  }
   if (!tagWith(html, "meta", "name", "viewport")) failures.push(`${name}: missing viewport metadata`);
   if (!tagWith(html, "meta", "name", "robots")) failures.push(`${name}: missing explicit robots metadata`);
 
@@ -106,8 +119,13 @@ for (const file of pages) {
   if (!is404) {
     if (!descriptionTag) failures.push(`${name}: missing meta description`);
     const description = attribute(descriptionTag || "", "content");
-    if (description && (text(description).length < 30 || text(description).length > 200)) {
-      failures.push(`${name}: meta description must be 30-200 readable characters`);
+    if (
+      description &&
+      (text(description).length < MIN_DESCRIPTION || text(description).length > MAX_DESCRIPTION)
+    ) {
+      failures.push(
+        `${name}: description is ${text(description).length} characters; keep it ${MIN_DESCRIPTION}-${MAX_DESCRIPTION}`,
+      );
     }
     if (!canonicalTag) failures.push(`${name}: missing canonical URL`);
     const canonical = decode(attribute(canonicalTag || "", "href"));

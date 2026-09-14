@@ -49,7 +49,7 @@ for (const file of pages) {
   }
 
   const stylesheets = [...html.matchAll(/<link\b[^>]*rel=["'][^"']*stylesheet[^"']*["'][^>]*>/gi)];
-  if (stylesheets.length !== 2) failures.push(`${name}: expected exactly two shared stylesheet links`);
+  if (stylesheets.length !== 3) failures.push(`${name}: expected exactly three stylesheet links`);
 }
 
 if (totalHtmlBytes > MAX_TOTAL_HTML_BYTES) {

@@ -30,6 +30,12 @@ const RETIRED_MARKUP =
   /wp-(?:content|includes|json|block|element|container|admin)|xmlrpc\.php|wlwmanifest|yoast|cdnjs\.cloudflare\.com|images\.unsplash\.com|preview\.adultstherapy\.com|vce-|visualcomposer/i;
 const CANONICAL_TELEPHONE = "tel:+15413638817";
 
+// The one third-party origin the pages are allowed to reach at render time.
+// Everything else is still refused: see ALLOWED_EMBED_HOSTS and RETIRED_MARKUP.
+const GOOGLE_FONTS =
+  "https://fonts.googleapis.com/css2?family=Alike&family=Lexend:wght@400&display=swap";
+const ALLOWED_PRECONNECT = new Set(["https://fonts.googleapis.com", "https://fonts.gstatic.com"]);
+
 // A result listing truncates on pixel width, not characters, so these are the
 // character counts that keep every title and description inside it with a
 // little headroom. A title that outgrows this is not longer in the listing —
@@ -149,14 +155,25 @@ for (const file of pages) {
 
   const stylesheetLinks = tags(html, "link")
     .filter((tag) => /(?:^|\s)stylesheet(?:\s|$)/i.test(attribute(tag, "rel")))
-    .map((tag) => attribute(tag, "href"));
-  const expectedStyles = ["/assets/fontawesome.css", "/assets/site.css"];
+    .map((tag) => decode(attribute(tag, "href")));
+  const expectedStyles = [GOOGLE_FONTS, "/assets/fontawesome.css", "/assets/site.css"];
   if (
     stylesheetLinks.length !== expectedStyles.length ||
     expectedStyles.some((href) => !stylesheetLinks.includes(href))
   ) {
     failures.push(`${name}: stylesheets must be exactly ${expectedStyles.join(" and ")}`);
   }
+  for (const tag of tags(html, "link").filter((link) => /(?:^|\s)(?:preconnect|dns-prefetch|preload)(?:\s|$)/i.test(attribute(link, "rel")))) {
+    const href = attribute(tag, "href");
+    if (!ALLOWED_PRECONNECT.has(href)) failures.push(`${name}: unapproved preconnect ${href}`);
+  }
+  const missingPreconnect = [...ALLOWED_PRECONNECT].filter(
+    (origin) => !tags(html, "link").some((tag) => attribute(tag, "href") === origin),
+  );
+  if (missingPreconnect.length > 0) {
+    failures.push(`${name}: missing preconnect for ${missingPreconnect.join(", ")}`);
+  }
+
   const icon = tags(html, "link").find((tag) => /(?:^|\s)icon(?:\s|$)/i.test(attribute(tag, "rel")));
   if (attribute(icon || "", "href") !== "/assets/img/favicon.ico") {
     failures.push(`${name}: favicon must be /assets/img/favicon.ico`);
@@ -367,7 +384,7 @@ try {
     if (!events.has(event)) failures.push(`privacy/data-events.json: missing ${event}`);
   }
   const processors = new Set(manifest.processors?.map((processor) => processor.name));
-  for (const processor of ["GitHub Pages", "Google Analytics 4", "YouTube"]) {
+  for (const processor of ["GitHub Pages", "Google Analytics 4", "YouTube", "Google Fonts"]) {
     if (!processors.has(processor)) failures.push(`privacy/data-events.json: missing ${processor}`);
   }
 } catch {

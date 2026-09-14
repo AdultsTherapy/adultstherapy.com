@@ -26,7 +26,7 @@ Fix it before pushing — the build is the gate, not a formality.
 | generate | `npm run social` | Open Graph PNGs for every social variant, rendered from `SCRIPTS/generate-social-images.mjs` |
 | generate | `npm run sitemap` | `page-sitemap.xml`, `therapy-sitemap.xml`, and `sitemap_index.xml` from the pages that actually exist |
 | check | `npm run check:components` | The four shared blocks (masthead with its navigation, breadcrumbs, footer, bottom bar) are byte-identical on every route |
-| check | `npm run check:site` | Title and description presence and length, canonicals, JSON-LD, link targets, sitemap membership, no WordPress markup |
+| check | `npm run check:site` | Title and description presence and length, canonicals, JSON-LD, link targets, sitemap membership, the one allowed external origin, no WordPress markup |
 | check | `npm run check:accessibility` | One `h1`, skip link, image alt text and dimensions, ARIA state on the menu, heading order |
 | check | `npm run check:performance` | Page and asset byte budgets, no inline `<style>`, no inline scripts, no pre-consent analytics |
 | deploy | `npm run deploy:artifact` | Copies only allowlisted files into `_site/` and re-verifies every link inside the artifact |
@@ -144,6 +144,27 @@ something it generates for every page — the head metadata in `PAGES`, the
 JSON-LD in `schemaGraph`, or the internal linking in `MODALITY_ROUTES` and
 `relatedFor`. For those, regenerate from the reconstructed export as above,
 then `npm run sync:components` and `npm run build`.
+
+## The one external origin
+
+Pages reach exactly one host other than this domain: `fonts.googleapis.com`,
+for the Alike and Lexend typefaces, with `fonts.gstatic.com` serving the WOFF2
+files themselves. `check:site` enforces both ends of that — the stylesheet list
+must be exactly the Google Fonts URL plus the two local stylesheets, and the
+only `preconnect` hints allowed are those two origins, both of which must be
+present. Anything else fails the build.
+
+Font Awesome stays local on purpose. Its CDN serves the identical
+`fa-solid-900.woff2` this repository already has, byte for byte, behind a
+`all.min.css` of 73,890 bytes against the 2,309-byte subset in
+`assets/fontawesome.css` — so moving it out would cost about 72 KB per page and
+a second origin, and save nothing.
+
+Because a font host receives a request from every visitor on every page load,
+before any consent choice, Google Fonts is listed as a processor in
+`privacy/data-events.json`, and `check:site` fails if it is removed from there.
+If the fonts ever come back in-house, that entry and the preconnect allowlist
+come out in the same commit.
 
 ## The other scripts
 

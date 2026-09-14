@@ -44,6 +44,11 @@
       "name": "YouTube",
       "role": "Video playback on education pages, loaded only when a visitor presses the load button.",
       "data": "Playback requests to youtube-nocookie.com after the visitor opts in."
+    },
+    {
+      "name": "Google Fonts",
+      "role": "Serves the two typefaces the site is set in, on every page load.",
+      "data": "The request itself: IP address, user agent, and referring page, received by Google before any consent choice is made."
     }
   ],
   "neverCollected": [

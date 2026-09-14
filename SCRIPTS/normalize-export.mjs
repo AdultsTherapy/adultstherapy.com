@@ -27,6 +27,14 @@ const OUTPUT = flag("--out", ROOT);
 const IMAGES = resolve(OUTPUT, "assets/img");
 const MODIFIED = "2026-09-14";
 
+// Alike and Lexend come from Google's CDN, which serves WOFF2 split by
+// unicode-range: an English visitor fetches the Latin subsets only, 39 KB
+// against the 146 KB of unhinted TTF this site used to carry. The preconnects
+// are what make that a win — without them the fonts wait on a DNS lookup and a
+// TLS handshake to an origin the browser has not met.
+const GOOGLE_FONTS =
+  "https://fonts.googleapis.com/css2?family=Alike&family=Lexend:wght@400&display=swap";
+
 /* -------------------------------------------------------------------------
  * Page inventory: route, source file, and the metadata the shell needs.
  * ---------------------------------------------------------------------- */
@@ -1051,6 +1059,9 @@ const head = (page) => {
   <meta name="twitter:image" content="${image}">
   <meta name="twitter:image:alt" content="${alt}">
   <link rel="icon" href="/assets/img/favicon.ico" sizes="any">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="${GOOGLE_FONTS.replaceAll("&", "&amp;")}">
   <link rel="stylesheet" href="/assets/fontawesome.css">
   <link rel="stylesheet" href="/assets/site.css">
   <script type="application/ld+json" data-practice-schema>${JSON.stringify(schemaGraph(page))}</script>

@@ -70,6 +70,8 @@ export const RETIRED_PATHS = Object.freeze([
   "wp-json",
   "script.js",
   "style.css",
+  "assets/fonts/alike-400.ttf",
+  "assets/fonts/lexend-400.ttf",
   "sitemap.xml",
   "assets/SBHP-Web-Badge-Provider.png",
   "assets/eft-tapping.jpg",

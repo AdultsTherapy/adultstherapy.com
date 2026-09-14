@@ -70,8 +70,13 @@ This is a therapy practice, so the site is deliberately quiet:
   collected, because there is nothing to type.
 - YouTube embeds do not load until the visitor presses a button, so no request
   reaches Google before then.
-- No third-party CDN, font host, or image host: every asset is served from this
-  domain.
+- One third-party origin, and only one: the two typefaces come from Google
+  Fonts, so Google receives a request — IP address, user agent, referring page
+  — on every page load, before any consent choice. Every other asset is served
+  from this domain: no image host, no script CDN, no tag manager. The trade is
+  weight, 39 KB of WOFF2 against 146 KB of TTF served locally; if that trade
+  stops being worth it, the fonts go back into `assets/fonts/` and
+  `check:site`'s preconnect allowlist empties out.
 
 `privacy/data-events.json` is the machine-readable manifest of every event and
 processor, and `check:site` fails if it drifts from that list.

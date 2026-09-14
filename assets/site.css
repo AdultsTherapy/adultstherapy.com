@@ -7,22 +7,6 @@
    The WordPress payload is gone; the way the site looks is unchanged.
    ========================================================================== */
 
-@font-face {
-  font-family: "Alike";
-  font-style: normal;
-  font-weight: 400;
-  font-display: swap;
-  src: url("fonts/alike-400.ttf") format("truetype");
-}
-
-@font-face {
-  font-family: "Lexend";
-  font-style: normal;
-  font-weight: 400;
-  font-display: swap;
-  src: url("fonts/lexend-400.ttf") format("truetype");
-}
-
 :root {
   --primary-purple: #7e679b;
   --primary-blue: #99b4df;

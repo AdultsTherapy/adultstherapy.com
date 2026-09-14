@@ -28,6 +28,7 @@ overwritten and will not survive review.
 | `WebSite` | every page | Site name, publisher, language |
 | `WebPage` / `MedicalWebPage` / `CollectionPage` / `ProfilePage` | per page | Canonical URL, name, description, `dateModified`, membership in the site |
 | `Person` | `/about/` only | Elaine Dinwiddie, LPC — job title, employer, and each credential as `EducationalOccupationalCredential` |
+| `BreadcrumbList` | every page but `/` | The same trail the page renders, from `ROUTE_LABELS` |
 
 Therapy pages use `MedicalWebPage`; `/therapy/`, `/skills/`, `/education/`, and
 `/sitemap/` use `CollectionPage`; `/about/` uses `ProfilePage`; everything else
@@ -94,8 +95,17 @@ The 2025 schema pass is why this site has real `Organization` detail, per-page
 typing, and credential markup at all. Carried forward: medical business
 classification, per-modality `knowsAbout`, the full credential list, address and
 hours, service area, and page-level typing. Dropped alongside the two items
-above: `BreadcrumbList` (no breadcrumb trail is rendered), `SearchAction` (there
-is no site search), and duplicated `ImageObject` nodes.
+above: `SearchAction` (there is no site search) and duplicated `ImageObject`
+nodes.
+
+`BreadcrumbList` was dropped too, because at the time no breadcrumb trail was
+rendered. A trail is now rendered on every page, so the markup describes
+something a visitor can see and click, and it is emitted again — built from the
+same `ROUTE_LABELS` the visible trail uses, so the two cannot disagree. The home
+page carries none: a one-item trail tells a search engine nothing.
+
+If the visible breadcrumbs are ever removed, remove this markup in the same
+commit.
 
 ## Verifying a change
 

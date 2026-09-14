@@ -15,7 +15,7 @@
 import { existsSync, mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import { dirname, resolve } from "node:path";
 import { ORIGIN, ROOT } from "./static-site.mjs";
-import { bottombar, breadcrumbs, footer, masthead } from "./page-shell.mjs";
+import { NAV_ITEMS, ROUTE_LABELS, bottombar, breadcrumbs, footer, masthead } from "./page-shell.mjs";
 
 const flag = (name, fallback) => {
   const index = process.argv.indexOf(name);
@@ -36,9 +36,9 @@ const PAGES = [
     file: "index.html",
     route: "/",
     bodyClass: "home",
-    title: "Adults and Couples Therapy of Oregon: Evidence-Based",
+    title: "Therapy for Adults & Couples in Klamath Falls, Oregon",
     description:
-      "Evidence-based therapy in Oregon for anxiety, depression, trauma, and relationship challenges. Trauma-informed, resilience-oriented care with Elaine Dinwiddie, LPC.",
+      "Evidence-based therapy in Klamath Falls and across Oregon for anxiety, depression, trauma, and relationships, with Elaine Dinwiddie, LPC.",
     heading: "Helping those who wish to be free of depression and anxiety",
     dropHeading: "Adults and Couples Therapy of Oregon",
     social: "practice",
@@ -47,7 +47,7 @@ const PAGES = [
   {
     file: "therapy/index.html",
     route: "/therapy/",
-    title: "Evidence-Based Therapy Approaches for Adults & Couples | Oregon",
+    title: "Therapy Approaches for Adults & Couples in Oregon",
     description:
       "The therapy approaches practised in Oregon: talk therapy, CBT, DBT, the Gottman Method, mindfulness, EFT, EMDR, and military-focused trauma care.",
     heading: "Therapy I practice",
@@ -67,7 +67,7 @@ const PAGES = [
   {
     file: "therapy/cbt/index.html",
     route: "/therapy/cbt/",
-    title: "Cognitive Behavioral Therapy (CBT) in Oregon | Effective CBT Techniques",
+    title: "Cognitive Behavioral Therapy (CBT) in Oregon | CBT for Anxiety",
     description:
       "Expert cognitive behavioral therapy in Oregon helps transform negative thought patterns into positive ones. Evidence-based CBT for anxiety and depression.",
     heading: "Cognitive Behavioral Therapy (CBT)",
@@ -77,7 +77,7 @@ const PAGES = [
   {
     file: "therapy/dbt/index.html",
     route: "/therapy/dbt/",
-    title: "Dialectical Behavior Therapy (DBT) in Oregon | DBT Skills Training",
+    title: "Dialectical Behavior Therapy (DBT) in Oregon | DBT Skills",
     description:
       "Master emotional regulation with DBT therapy in Oregon. Learn mindfulness, distress tolerance, and interpersonal effectiveness skills for lasting change.",
     heading: "Dialectical Behavior Therapy (DBT)",
@@ -87,7 +87,7 @@ const PAGES = [
   {
     file: "therapy/gottman/index.html",
     route: "/therapy/gottman/",
-    title: "Gottman Method Couples Therapy | Evidence-Based Relationship Counseling",
+    title: "Gottman Method Couples Therapy in Oregon | Level 2 Trained",
     description:
       "Gottman Method Couples Therapy uses research-based interventions to help couples rebuild friendship, manage conflict, and create shared meaning.",
     heading: "Gottman Method Couples Therapy",
@@ -100,14 +100,14 @@ const PAGES = [
     title: "Mindfulness Therapy Oregon | Present-Focused Anxiety Relief",
     description:
       "Mindfulness therapy in Oregon teaches practical present-focused techniques that reduce anxiety and stress and steady emotional regulation.",
-    heading: "Mindfulness",
+    heading: "Mindfulness Therapy",
     social: "therapy",
     schema: "MedicalWebPage",
   },
   {
     file: "therapy/eft/index.html",
     route: "/therapy/eft/",
-    title: "Emotional Freedom Technique (EFT) Therapy in Oregon | Evidence-Based Energy Psychology",
+    title: "EFT Tapping Therapy in Oregon | Emotional Freedom Technique",
     description:
       "Certified EFT therapy in Oregon for trauma, anxiety, pain, and addictions. Learn how Emotional Freedom Technique tapping supports nervous-system healing.",
     heading: "Emotional Freedom Technique (EFT) Therapy",
@@ -117,7 +117,7 @@ const PAGES = [
   {
     file: "therapy/emdr/index.html",
     route: "/therapy/emdr/",
-    title: "EMDR Therapy in Oregon | Evidence-Based Trauma Treatment for PTSD",
+    title: "EMDR Therapy in Oregon | Trauma and PTSD Treatment",
     description:
       "EMDR therapy in Oregon for trauma recovery and PTSD treatment. Learn how Eye Movement Desensitization and Reprocessing resolves stuck traumatic memory.",
     heading: "EMDR Therapy",
@@ -127,7 +127,7 @@ const PAGES = [
   {
     file: "therapy/military/index.html",
     route: "/therapy/military/",
-    title: "Military & Veteran Therapy Services | Trauma-Informed Care Oregon",
+    title: "Therapy for Veterans & Military in Oregon | PTSD Care",
     description:
       "Specialized trauma therapy for veterans and military personnel in Oregon. Evidence-based PTSD treatment from a Star Behavioral Health trained provider.",
     heading: "Therapy for Military-Veterans: Combat Trauma & PTSD Treatment",
@@ -150,7 +150,7 @@ const PAGES = [
     title: "Mental Health Education & Resources | Adults Therapy Oregon",
     description:
       "Educational resources on the nervous system, the brain model, and therapeutic technique, written to make what happens in therapy understandable.",
-    heading: "Educational Resources of Information",
+    heading: "Mental Health Education Resources",
     social: "education",
     schema: "CollectionPage",
   },
@@ -160,14 +160,14 @@ const PAGES = [
     title: "About Elaine Dinwiddie | Licensed Gottman Therapist in Oregon",
     description:
       "Elaine Dinwiddie, LPC, is an Oregon therapist trained in the Gottman Method, EMDR, EFT, and trauma-informed care for adults and couples.",
-    heading: "Learn more about me",
+    heading: "About Elaine Dinwiddie, LPC",
     social: "about",
     schema: "ProfilePage",
   },
   {
     file: "terms/index.html",
     route: "/terms/",
-    title: "Terms and Conditions of Use for Adults and Couples Therapy of Oregon Website",
+    title: "Terms and Conditions | Adults and Couples Therapy of Oregon",
     description:
       "The terms and conditions that govern use of the Adults and Couples Therapy of Oregon website, including licence, disclaimer, and governing law.",
     heading: "Web Site Terms and Conditions of Use",
@@ -667,7 +667,7 @@ const transform = (node, context) => {
 
 const BLOCK = new Set([
   "p", "h1", "h2", "h3", "h4", "h5", "h6", "ul", "ol", "li", "blockquote",
-  "figure", "figcaption", "section", "article", "div", "table", "thead",
+  "figure", "figcaption", "section", "article", "nav", "div", "table", "thead",
   "tbody", "tr", "th", "td", "hr", "iframe", "button", "img", "dl", "dt", "dd",
 ]);
 
@@ -776,11 +776,98 @@ const levelHeadings = (nodes) => {
   return walk(nodes);
 };
 
+/**
+ * The hub page describes every modality and then, in the export, left the
+ * reader with nowhere to go: each approach has its own page, and not one of
+ * those headings linked to it. Keyed on the heading the export already wrote,
+ * so the copy stays hers and only the destination is added.
+ */
+const MODALITY_ROUTES = new Map([
+  ["talk therapy", "/therapy/talk-therapy/"],
+  ["cognitive behavioral therapy (cbt)", "/therapy/cbt/"],
+  ["dialectical behavior therapy (dbt)", "/therapy/dbt/"],
+  ["gottman's couple therapy", "/therapy/gottman/"],
+  ["mindfulness", "/therapy/mindfulness/"],
+  ["emotional freedom technique (eft)", "/therapy/eft/"],
+  ["emdr therapy", "/therapy/emdr/"],
+]);
+
+/* readableText() collapses every entity to a placeholder, which is fine for
+   emptiness checks and useless for matching a heading that contains one. */
+const headingKey = (node) =>
+  elementText(node)
+    .replace(/&(?:#8217|#039|rsquo|apos);/gi, "'")
+    .replace(/&(?:nbsp|#160);/gi, " ")
+    .replace(/\s+/g, " ")
+    .trim()
+    .toLowerCase();
+
+const linkModalityHeadings = (nodes, route) => {
+  if (route !== "/therapy/") return nodes;
+  const walk = (list) =>
+    list.map((node) => {
+      if (node.type !== "element") return node;
+      if (!/^h[23]$/.test(node.name)) return { ...node, children: walk(node.children || []) };
+      const target = MODALITY_ROUTES.get(headingKey(node));
+      if (!target) return node;
+      const icons = node.children.filter((child) => child.type === "element" && child.name === "i");
+      const rest = node.children.filter((child) => !icons.includes(child));
+      return { ...node, children: [...icons, make("a", { href: target }, rest)] };
+    });
+  return walk(nodes);
+};
+
+/**
+ * Each therapy page was a leaf: it described one approach and offered no way
+ * to reach the other seven except back through the menu. The list is built
+ * from the navigation inventory rather than written per page, so a new
+ * approach appears on its siblings the moment it is added there.
+ */
+const APPROACHES = () => NAV_ITEMS.find((item) => item.href === "/therapy/").children;
+
+const relatedFor = (route) => {
+  if (route.startsWith("/therapy/") && route !== "/therapy/") {
+    return { title: "Other therapy approaches", items: APPROACHES() };
+  }
+  if (route === "/skills/" || route === "/education/") {
+    return { title: "Therapy approaches", items: APPROACHES() };
+  }
+  if (route === "/about/" || route === "/therapy/") {
+    return {
+      title: "Explore the practice",
+      items: [
+        { href: "/therapy/", label: "Therapy I practice" },
+        { href: "/skills/", label: "Therapy skills" },
+        { href: "/education/", label: "Education" },
+        { href: "/about/", label: "About Elaine Dinwiddie" },
+      ],
+    };
+  }
+  return null;
+};
+
+const relatedApproaches = (route) => {
+  const related = relatedFor(route);
+  const items = related?.items.filter((item) => item.href !== route) || [];
+  if (items.length === 0) return [];
+  return [
+    make("nav", { class: "related", "aria-labelledby": "related-approaches" }, [
+      make("h2", { id: "related-approaches" }, [{ type: "text", value: related.title }]),
+      make("ul", {}, items.map((item) =>
+        make("li", {}, [make("a", { href: item.href }, [{ type: "text", value: item.label }])]),
+      )),
+    ]),
+  ];
+};
+
 const normalize = (page) => {
   const html = page.file ? readFileSync(resolve(SOURCE, page.file), "utf8") : page.markup;
   const tree = parse(page.file ? contentOf(html) : html);
   const context = { buttonDepth: 0, hasEmbed: false };
-  const nodes = singleHeading(transformChildren(tree, context), page);
+  const nodes = [
+    ...linkModalityHeadings(singleHeading(transformChildren(tree, context), page), page.route),
+    ...relatedApproaches(page.route),
+  ];
   return { nodes, context };
 };
 
@@ -853,10 +940,32 @@ const schemaGraph = (page) => {
       description: page.description,
       isPartOf: { "@id": `${ORIGIN}/#website` },
       about: { "@id": `${ORIGIN}/#organization` },
+      ...(page.route === "/" ? {} : { breadcrumb: { "@id": `${url}#breadcrumbs` } }),
       inLanguage: "en-US",
       dateModified: MODIFIED,
     },
   ];
+
+  // The breadcrumb trail is rendered on every page, so the markup describes
+  // something a visitor can actually see and click. It was dropped during
+  // normalization only because no trail existed then.
+  if (page.route !== "/" && ROUTE_LABELS[page.route]) {
+    const trail = [{ href: "/", label: "Home" }];
+    if (page.route.startsWith("/therapy/") && page.route !== "/therapy/") {
+      trail.push({ href: "/therapy/", label: ROUTE_LABELS["/therapy/"] });
+    }
+    trail.push({ href: page.route, label: ROUTE_LABELS[page.route] });
+    graph.push({
+      "@type": "BreadcrumbList",
+      "@id": `${url}#breadcrumbs`,
+      itemListElement: trail.map((step, index) => ({
+        "@type": "ListItem",
+        position: index + 1,
+        name: step.label.replace(/&#8217;/g, "\u2019"),
+        item: `${ORIGIN}${step.href}`,
+      })),
+    });
+  }
 
   if (page.route === "/about/") {
     graph.push({

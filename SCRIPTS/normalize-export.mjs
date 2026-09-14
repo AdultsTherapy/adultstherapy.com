@@ -207,6 +207,37 @@ const PAGES = [
     schema: "CollectionPage",
   },
   {
+    // Every fact here is already published elsewhere on the site — the footer,
+    // the schema graph, or the therapy pages. This page gathers them into the
+    // one place a visitor looks for them, and gives the practice a page to
+    // point a Google Business Profile at.
+    target: "contact/index.html",
+    route: "/contact/",
+    title: "Contact Elaine Dinwiddie, LPC | Klamath Falls, Oregon",
+    description:
+      "Reach Adults and Couples Therapy of Oregon by phone or email, see hours and session lengths, and check which insurance is accepted.",
+    heading: "Contact the practice",
+    social: "practice",
+    schema: "ContactPage",
+    markup: `<p>The quickest way to reach Elaine is by phone. A complimentary 15-minute phone consultation is the usual first step: it is a chance to describe what brings you in and to decide together whether this practice is the right fit, with no obligation either way.</p>
+      <p class="actions"><a class="btn" href="tel:+15413638817">541-363-8817</a> <a class="btn" href="mailto:elaine@adultstherapy.com">elaine@adultstherapy.com</a></p>
+      <h2>Hours</h2>
+      <p>Tuesday through Friday, 11:00&nbsp;a.m. to 6:00&nbsp;p.m. Pacific. Calls outside those hours are returned on the next working day.</p>
+      <h2>Sessions</h2>
+      <ul>
+        <li>Individual therapy for adults runs 50 minutes.</li>
+        <li>Relationship and couples counseling runs 60 minutes.</li>
+        <li>Sessions are available in person in Klamath Falls and by telehealth throughout Oregon.</li>
+      </ul>
+      <h2>Insurance</h2>
+      <p>Cascade Health Alliance (CHA), Oregon Health Plan (OHP), Atrio, Aetna, Moda, Providence, Regence, Cigna, TriWest, and Evernorth are accepted. If your plan is not listed, ask during the consultation call.</p>
+      <h2>Where the practice works</h2>
+      <p>The office is in Klamath Falls, and telehealth reaches Altamont, Chiloquin, Merrill, Bonanza, Malin, Sprague River, Beatty, Bly, and Rocky Point, as well as the rest of Oregon.</p>
+      <h2>Before you call</h2>
+      <p>You do not need a diagnosis, a referral, or an explanation prepared in advance. If you are not sure which approach fits, the <a href="/therapy/">therapy approaches</a> page describes each one, and the consultation call is there to work that out together.</p>
+      <p><strong>If you are in immediate danger or thinking about harming yourself, do not wait for a callback.</strong> Call or text 988 for the Suicide and Crisis Lifeline, or call 911.</p>`,
+  },
+  {
     target: "404.html",
     route: "/404.html",
     title: "Page not found | Adults and Couples Therapy of Oregon",
@@ -574,6 +605,9 @@ const transform = (node, context) => {
     const isButton =
       classes.has("wp-block-button__link") ||
       classes.has("wp-element-button") ||
+      // A page written as markup here says so directly rather than through a
+      // WordPress class it never had.
+      classes.has("btn") ||
       styledAsButton ||
       context.buttonDepth > 0;
     return [

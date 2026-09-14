@@ -33,6 +33,7 @@ export const NAV_ITEMS = Object.freeze([
   { href: "/skills/", label: "Skills" },
   { href: "/education/", label: "Education" },
   { href: "/about/", label: "About" },
+  { href: "/contact/", label: "Contact" },
 ]);
 
 export const LEGAL_ITEMS = Object.freeze([
@@ -56,6 +57,7 @@ export const ROUTE_LABELS = Object.freeze({
   "/skills/": "Skills",
   "/education/": "Education",
   "/about/": "About",
+  "/contact/": "Contact",
   "/terms/": "Terms",
   "/privacy/": "Privacy",
   "/sitemap/": "Sitemap",

@@ -8,10 +8,11 @@ import { relative, resolve, sep } from "node:path";
 export const ROOT = resolve(process.env.SITE_ROOT || resolve(import.meta.dirname, ".."));
 export const OUTPUT = resolve(ROOT, "_site");
 export const ORIGIN = "https://adultstherapy.com";
-export const EXPECTED_SHARED_PAGE_COUNT = 17;
+export const EXPECTED_SHARED_PAGE_COUNT = 18;
 
 export const ROUTE_ROOTS = Object.freeze([
   "about",
+  "contact",
   "education",
   "privacy",
   "sitemap",

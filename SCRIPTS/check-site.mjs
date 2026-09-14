@@ -163,9 +163,19 @@ for (const file of pages) {
   ) {
     failures.push(`${name}: stylesheets must be exactly ${expectedStyles.join(" and ")}`);
   }
-  for (const tag of tags(html, "link").filter((link) => /(?:^|\s)(?:preconnect|dns-prefetch|preload)(?:\s|$)/i.test(attribute(link, "rel")))) {
+  for (const tag of tags(html, "link").filter((link) => /(?:^|\s)(?:preconnect|dns-prefetch)(?:\s|$)/i.test(attribute(link, "rel")))) {
     const href = attribute(tag, "href");
     if (!ALLOWED_PRECONNECT.has(href)) failures.push(`${name}: unapproved preconnect ${href}`);
+  }
+  // A preload is a request the browser makes before it knows why, so it is
+  // worth only for the element that decides Largest Contentful Paint, and only
+  // from this origin.
+  for (const tag of tags(html, "link").filter((link) => /(?:^|\s)preload(?:\s|$)/i.test(attribute(link, "rel")))) {
+    const href = attribute(tag, "href");
+    if (!href.startsWith("/") || href.startsWith("//")) failures.push(`${name}: preload must be same-origin, found ${href}`);
+    if (!attribute(tag, "as")) failures.push(`${name}: preload ${href} needs an "as" type`);
+    const target = localFileFor(href);
+    if (target && !existsSync(target)) failures.push(`${name}: preload target ${href} does not exist`);
   }
   const missingPreconnect = [...ALLOWED_PRECONNECT].filter(
     (origin) => !tags(html, "link").some((tag) => attribute(tag, "href") === origin),

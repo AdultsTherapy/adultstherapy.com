@@ -49,6 +49,7 @@ const PAGES = [
       "Evidence-based therapy in Klamath Falls and across Oregon for anxiety, depression, trauma, and relationships, with Elaine Dinwiddie, LPC.",
     heading: "Helping those who wish to be free of depression and anxiety",
     dropHeading: "Adults and Couples Therapy of Oregon",
+    preloadImage: "/assets/img/photo-1461468611824-46457c0e11fd.jpg",
     social: "practice",
     schema: "WebPage",
   },
@@ -1059,7 +1060,7 @@ const head = (page) => {
   <meta name="twitter:image" content="${image}">
   <meta name="twitter:image:alt" content="${alt}">
   <link rel="icon" href="/assets/img/favicon.ico" sizes="any">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
+${page.preloadImage ? `  <link rel="preload" as="image" href="${page.preloadImage}" fetchpriority="high">\n` : ""}  <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="${GOOGLE_FONTS.replaceAll("&", "&amp;")}">
   <link rel="stylesheet" href="/assets/fontawesome.css">

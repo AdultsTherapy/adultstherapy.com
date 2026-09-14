@@ -45,6 +45,24 @@ Fix it before pushing — the build is the gate, not a formality.
 Both pin every action to a commit SHA. Update the SHA deliberately; do not
 float to a tag.
 
+**The workflow only publishes if Pages is set to publish from a workflow.** The
+repository setting is `build_type`, and until September 2026 it was `legacy` —
+GitHub's own branch builder was serving the repository root and the verified
+artifact was being discarded. The live site was handing out `package.json`,
+`README.md`, `DOCS/*.md` and every file in `SCRIPTS/`, all of them crawlable,
+and none of the allowlisting in `build-deploy.mjs` reached a visitor. Nothing
+in this repository can detect that, because the discrepancy is on GitHub's
+side. Check it if pages appear or disappear unexpectedly:
+
+```bash
+gh api repos/AdultsTherapy/adultstherapy.com/pages --jq '{build_type, https_enforced}'
+# expected: {"build_type":"workflow","https_enforced":true}
+```
+
+`https_enforced` was false for the same period, so `http://adultstherapy.com/`
+served the site rather than redirecting — the same content on two protocols,
+for a practice handling health enquiries.
+
 ## Changing a page
 
 A page has three parts, and only one of them is edited in the page:

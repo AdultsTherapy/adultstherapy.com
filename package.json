@@ -1,0 +1,25 @@
+{
+  "name": "adultstherapy-com-static",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=24 <25"
+  },
+  "scripts": {
+    "build": "npm run generate && npm run check && npm run deploy:artifact",
+    "generate": "npm run social && npm run sitemap",
+    "social": "node SCRIPTS/generate-social-images.mjs",
+    "sitemap": "node SCRIPTS/generate-sitemaps.mjs",
+    "favicon": "node SCRIPTS/build-favicon.mjs",
+    "images": "node SCRIPTS/fetch-remote-images.mjs",
+    "normalize:export": "node SCRIPTS/normalize-export.mjs",
+    "sync:components": "node SCRIPTS/sync-shared-page-components.mjs",
+    "check": "npm run check:components && npm run check:site && npm run check:accessibility && npm run check:performance",
+    "check:components": "node SCRIPTS/sync-shared-page-components.mjs --check",
+    "check:site": "node SCRIPTS/check-site.mjs",
+    "check:accessibility": "node SCRIPTS/check-accessibility.mjs",
+    "check:performance": "node SCRIPTS/check-performance.mjs",
+    "deploy:artifact": "node SCRIPTS/build-deploy.mjs",
+    "preview": "node SCRIPTS/preview-server.cjs . 8766"
+  }
+}

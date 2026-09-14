@@ -1,0 +1,65 @@
+/*!
+ * Font Awesome Free 6.7.2 — solid face only, self-hosted.
+ * Font: SIL OFL 1.1. Icon classes below are limited to the glyphs this site uses.
+ * https://fontawesome.com
+ */
+
+@font-face {
+  font-family: "Font Awesome 6 Free";
+  font-style: normal;
+  font-weight: 900;
+  font-display: block;
+  src: url("fonts/fa-solid-900.woff2") format("woff2");
+}
+
+.fas {
+  display: inline-block;
+  font-family: "Font Awesome 6 Free";
+  font-style: normal;
+  font-variant: normal;
+  font-weight: 900;
+  line-height: 1;
+  text-rendering: auto;
+  -webkit-font-smoothing: antialiased;
+}
+
+.fa-arrow-down::before { content: "\f063"; }
+.fa-arrow-right::before { content: "\f061"; }
+.fa-arrow-up::before { content: "\f062"; }
+.fa-award::before { content: "\f559"; }
+.fa-balance-scale::before { content: "\f24e"; }
+.fa-bolt::before { content: "\f0e7"; }
+.fa-brain::before { content: "\f5dc"; }
+.fa-calendar-alt::before { content: "\f073"; }
+.fa-clipboard-check::before { content: "\f46c"; }
+.fa-clipboard-list::before { content: "\f46d"; }
+.fa-cogs::before { content: "\f085"; }
+.fa-comment-dots::before { content: "\f4ad"; }
+.fa-comments::before { content: "\f086"; }
+.fa-compass::before { content: "\f14e"; }
+.fa-eye::before { content: "\f06e"; }
+.fa-first-aid::before { content: "\f479"; }
+.fa-flag::before { content: "\f024"; }
+.fa-flask::before { content: "\f0c3"; }
+.fa-graduation-cap::before { content: "\f19d"; }
+.fa-hands::before { content: "\f2a7"; }
+.fa-hands-helping::before { content: "\f4c4"; }
+.fa-handshake::before { content: "\f2b5"; }
+.fa-heart::before { content: "\f004"; }
+.fa-leaf::before { content: "\f06c"; }
+.fa-lightbulb::before { content: "\f0eb"; }
+.fa-map-marker-alt::before { content: "\f3c5"; }
+.fa-microscope::before { content: "\f610"; }
+.fa-mountain::before { content: "\f6fc"; }
+.fa-play-circle::before { content: "\f144"; }
+.fa-question-circle::before { content: "\f059"; }
+.fa-rainbow::before { content: "\f75b"; }
+.fa-road::before { content: "\f018"; }
+.fa-rocket::before { content: "\f135"; }
+.fa-seedling::before { content: "\f4d8"; }
+.fa-shield-alt::before { content: "\f3ed"; }
+.fa-spa::before { content: "\f5bb"; }
+.fa-star::before { content: "\f005"; }
+.fa-times-circle::before { content: "\f057"; }
+.fa-toolbox::before { content: "\f552"; }
+.fa-user-md::before { content: "\f0f0"; }

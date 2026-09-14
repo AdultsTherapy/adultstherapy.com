@@ -1,130 +1,85 @@
 # Adults and Couples Therapy of Oregon
 
-This repository contains the website for Adults and Couples Therapy of Oregon, a therapy practice specializing in trauma-informed, resilience-oriented approaches for treating depression, anxiety, and relationship issues.
+The website for Adults and Couples Therapy of Oregon — a trauma-informed,
+resilience-oriented practice treating depression, anxiety, and relationship
+issues, run by Elaine Dinwiddie, LPC (Oregon licence C5403).
 
-## Website Overview
+Live at **[adultstherapy.com](https://adultstherapy.com)**.
 
-### Content Focus
-- Specializes in treating depression, anxiety, trauma, and relationship issues
-- Emphasizes trauma-informed, resilience-oriented therapy approaches
-- Offers multiple therapy modalities: Talk Therapy, CBT, DBT, Gottman Couples Therapy, Mindfulness
-- Includes specialized resources for military clients
+## What this is
 
-### Practitioner Credentials
-- Gottman Couples Therapy Level 2 Practitioner
-- EMDR Level 2 certified
-- Certified Clinical Trauma Professional (CCTP I)
-- Licensed in Oregon (LPC #C5403)
-- Memberships in multiple professional organizations:
-  - American Counseling Association (ACA)
-  - Association for Comprehensive Energy Psychology (ACEP)
-
-## Site Structure
-
-### Main Sections
-- **Home**: Overview of practice and services
-- **Therapy**: Details of therapy approaches
-  - Talk Therapy
-  - Cognitive Behavioral Therapy (CBT)
-  - Dialectical Behavior Therapy (DBT)
-  - Gottman's Couple Therapy
-  - Mindfulness
-  - Military
-- **Skills**: Resources for skill development
-- **Education**: Educational materials
-- **About**: Information about the therapist
-- **Utility Pages**: Terms, Privacy, Sitemap
-
-### File Organization
-The site follows a WordPress-derived structure with static HTML exports:
+A normalized static site: 17 hand-editable HTML pages sharing one template, one
+stylesheet, and one script, deployed to GitHub Pages by GitHub Actions. There is
+no build framework and no dependency tree — every script in `SCRIPTS/` uses only
+the Node standard library.
 
 ```
-/
-├── .git/
-├── wp-includes/
-├── therapy/           # Therapy section with specialized pages
-│   ├── cbt/
-│   ├── dbt/
-│   ├── gottman/
-│   ├── mindfulness/
-│   ├── talk-therapy/
-│   └── military/
-├── education/
-├── about/
-├── terms/
-├── privacy/
-├── skills/
-├── sitemap/
-├── wp-content/        # WordPress content
-│   ├── plugins/       # Simple Sitemap plugin
-│   ├── themes/        # Custom child theme
-│   │   └── adultstherapycomchild/
-│   │       └── assets/
-│   │           └── fonts/
-│   └── uploads/       # Media files organized by year
-│       ├── 2022/
-│       ├── 2023/
-│       └── 2025/
-├── sitemap files      # XML sitemaps and related files
-└── index.html         # Main site homepage
+index.html          404.html            Home and not-found
+therapy/            Talk therapy, CBT, DBT, Gottman, mindfulness, EFT, EMDR, military
+skills/             Practical techniques to use between sessions
+education/          The nervous system and the brain, explained
+about/              Elaine's training, credentials, and approach
+terms/  privacy/  sitemap/              Practice information
+assets/             site.css, site.js, fontawesome.css, fonts, images, social cards
+SCRIPTS/            Generators and checks — the whole toolchain
+DOCS/               Deployment workflow, structured data, task list
 ```
 
-## Technical Implementation
+## Working on it
 
-### Platform Details
-- Based on WordPress with static HTML export
-- Custom child theme (adultstherapycomchild)
-- Block Editor (Gutenberg) content structure
-- Responsive design for mobile compatibility
-
-### Technology Features
-- Custom fonts (Alike and Lexend)
-- SEO implementation with Yoast
-- Accessibility features included
-- Google Analytics integration
-- XML sitemap generation
-
-### Preview Domain Link Handling
-The site includes a JavaScript solution to handle links between the preview and production domains:
-
-```javascript
-if (window.location.hostname === 'preview.adultstherapy.com') {
-  document.addEventListener('click', function(e) {
-    const link = e.target.closest('a');
-    if (link && link.href.includes('adultstherapy.com')) {
-      e.preventDefault();
-      window.location.href = link.href.replace('adultstherapy.com', 'preview.adultstherapy.com');
-    }
-  });
-}
+```bash
+npm run preview     # http://127.0.0.1:8766
+npm run build       # generate, check, and build the deploy artifact
 ```
 
-This script is added to all pages to ensure that when viewing the site on the preview domain, users stay on the preview domain when clicking internal links rather than being redirected to the production site.
+`npm run build` is the gate. It generates the social cards and sitemaps, runs
+four checks, and assembles `_site/`. If it passes locally it passes in CI; if it
+fails, the site does not deploy.
 
-### Design Elements
-- Color scheme: Purple (#7e679b) and blue (#99b4df)
-- Centered content with clear visual hierarchy
-- Clean navigation with dropdown menus
-- Professional, calming aesthetic appropriate for a mental health practice
+| Check | Enforces |
+| --- | --- |
+| `check:components` | The shared chrome is identical on every route |
+| `check:site` | Titles, canonicals, JSON-LD, link targets, sitemap membership, no WordPress markup |
+| `check:accessibility` | One `h1`, skip link, alt text, image dimensions, heading order, menu ARIA |
+| `check:performance` | Page, asset, and image byte budgets; no inline styles or scripts; no analytics before consent |
 
-## Observations & Recommendations
+**Editing page content:** edit the route's `index.html`, inside `<main>`.
 
-### Strengths
-- Well-structured content hierarchy with logical navigation
-- Clean design appropriate for a therapy practice
-- Good SEO practices with proper meta tags and structured data
-- Mobile-responsive elements throughout
+**Editing the header, navigation, or footer:** edit `SCRIPTS/page-shell.mjs` and
+run `npm run sync:components`. Never edit between the `<!-- shared-*:start -->`
+markers in a page — the next sync overwrites it, and `check:components` fails
+the build if a page has drifted.
 
-### Potential Improvements
-- .DS_Store files (macOS system files) should be excluded from the repository
-- Consider implementing a proper build process if this is a statically-generated site
-- Some directories have limited content (like the plugins directory)
-- Consider adding more dynamic features or interactive elements
+See [DOCS/DEPLOYMENT_WORKFLOW.md](DOCS/DEPLOYMENT_WORKFLOW.md) for the full
+workflow and [DOCS/SCHEMA_IMPROVEMENTS.md](DOCS/SCHEMA_IMPROVEMENTS.md) for what
+the site's structured data claims and how to change it.
 
-## Maintenance
+## Deploying
 
-This site appears to be maintained as a static HTML export from WordPress. To update:
+Commit to `main` and push. `.github/workflows/deploy-pages.yml` builds, checks,
+and publishes. Nothing else is needed — no second repository, no rsync, no
+manual promotion.
 
-1. Make changes in the WordPress admin
-2. Export the updated site
-3. Push changes to this repository 
+## Privacy posture
+
+This is a therapy practice, so the site is deliberately quiet:
+
+- No analytics load until a visitor explicitly allows them, and Global Privacy
+  Control or Do Not Track keeps them off entirely.
+- No forms, no chat widget, no intake fields — nothing a visitor types is
+  collected, because there is nothing to type.
+- YouTube embeds do not load until the visitor presses a button, so no request
+  reaches Google before then.
+- No third-party CDN, font host, or image host: every asset is served from this
+  domain.
+
+`privacy/data-events.json` is the machine-readable manifest of every event and
+processor, and `check:site` fails if it drifts from that list.
+
+## Credentials
+
+Gottman Couples Therapy Level 2 Practitioner · EMDR Level 2 · Certified Clinical
+Trauma Professional (CCTP I) · Professionally Trained Emotional Freedom
+Therapist · Star Behavioral Health Providers trained provider for
+military-focused care · Member, American Counseling Association (ACA) and the
+Association for Comprehensive Energy Psychology (ACEP).

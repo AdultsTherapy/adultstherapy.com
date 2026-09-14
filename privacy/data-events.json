@@ -1,0 +1,54 @@
+{
+  "site": "adultstherapy.com",
+  "updated": "2026-09-14",
+  "summary": "This static site collects nothing on its own. Analytics load only after an explicit choice, and no page contains a form, a chat widget, or any intake field.",
+  "events": [
+    {
+      "name": "page_view",
+      "trigger": "A page loads while analytics consent is granted.",
+      "data": "Page path, referrer, coarse region, device class."
+    },
+    {
+      "name": "email_click",
+      "trigger": "A visitor activates a mailto: link.",
+      "data": "The path the link was activated from."
+    },
+    {
+      "name": "phone_click",
+      "trigger": "A visitor activates a tel: link.",
+      "data": "The path the link was activated from."
+    },
+    {
+      "name": "privacy_preference",
+      "trigger": "A visitor allows or declines analytics.",
+      "data": "The chosen preference, stored in this browser only."
+    },
+    {
+      "name": "external_embed_load",
+      "trigger": "A visitor presses the button that loads a video embed.",
+      "data": "The path the embed was loaded from."
+    }
+  ],
+  "processors": [
+    {
+      "name": "GitHub Pages",
+      "role": "Static hosting and TLS termination.",
+      "data": "Standard web server request logs, held by GitHub."
+    },
+    {
+      "name": "Google Analytics 4",
+      "role": "Aggregate traffic measurement, loaded only after consent.",
+      "data": "Page views and the link events above, with IP anonymization and no advertising signals."
+    },
+    {
+      "name": "YouTube",
+      "role": "Video playback on education pages, loaded only when a visitor presses the load button.",
+      "data": "Playback requests to youtube-nocookie.com after the visitor opts in."
+    }
+  ],
+  "neverCollected": [
+    "Health information, intake details, or anything a visitor types",
+    "Session recordings, heat maps, or scroll tracking",
+    "Advertising identifiers or cross-site profiles"
+  ]
+}

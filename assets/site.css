@@ -1,0 +1,1092 @@
+/* ==========================================================================
+   Adults and Couples Therapy of Oregon — shared stylesheet.
+
+   This is a port of the site's existing design, not a redesign. Values come
+   from the WordPress export's own style.css, its theme presets, and the design
+   classes the site already used (hero-section, therapy-card, section-divider).
+   The WordPress payload is gone; the way the site looks is unchanged.
+   ========================================================================== */
+
+@font-face {
+  font-family: "Alike";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("fonts/alike-400.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Lexend";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("fonts/lexend-400.ttf") format("truetype");
+}
+
+:root {
+  --primary-purple: #7e679b;
+  --primary-blue: #99b4df;
+  --accent-teal: #66afa5;
+  --text-dark: #6c6c72;
+  --text-muted: #666;
+  --bg-light: #f8f9fa;
+  --link-hover: #4d8fcc;
+  --content-size: 840px;
+  --wide-size: 1000px;
+  --transition-speed: 0.3s;
+  --serif: "Alike", Georgia, "Times New Roman", serif;
+  --sans: "Lexend", -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
+}
+
+*,
+*::before,
+*::after { box-sizing: border-box; }
+
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  color: var(--text-dark);
+  background: #fff;
+  font-family: var(--sans);
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--serif);
+  font-style: normal;
+  font-weight: 400;
+  line-height: 1.3;
+  margin: 0 0 1rem;
+}
+
+h1 { font-size: 32px; }
+h2 { font-size: 27px; }
+h3 { font-size: 20px; }
+h4 { font-size: 17px; }
+h5 { font-size: 15px; }
+
+/* The export's own font-size and alignment presets. */
+.text-large { font-size: 36px; }
+.text-medium { font-size: 20px; }
+.text-center { text-align: center; }
+.text-left { text-align: left; }
+.text-right { text-align: right; }
+
+p { margin: 0 0 1.2rem; }
+
+a:not(.btn) {
+  color: var(--text-dark);
+  text-decoration: none;
+}
+
+a:not(.btn):hover { color: var(--link-hover); }
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+ul, ol { margin: 0 0 1.5rem; padding-left: 1.5rem; }
+li { margin-bottom: 0.25rem; }
+
+hr {
+  border: 0;
+  border-top: 1px solid rgb(0 0 0 / 15%);
+  margin: 2rem 0;
+}
+
+blockquote {
+  margin: 1.5rem 0;
+  padding-left: 1.25rem;
+  border-left: 4px solid var(--primary-blue);
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 1.5rem;
+}
+
+th, td {
+  border: 1px solid #e4e2ea;
+  padding: 0.6rem 0.75rem;
+  text-align: left;
+}
+
+figure { margin: 2rem 0; }
+
+figcaption {
+  margin-top: 0.5rem;
+  font-family: var(--serif);
+  font-size: 16px;
+}
+
+:focus-visible {
+  outline: 3px solid var(--accent-teal);
+  outline-offset: 2px;
+}
+
+.wrap {
+  width: min(calc(100% - 2rem), var(--content-size));
+  margin-inline: auto;
+}
+
+.skip-link {
+  position: absolute;
+  top: -3rem;
+  left: 1rem;
+  z-index: 100;
+  padding: 0.6rem 1rem;
+  background: var(--primary-purple);
+  color: #fff;
+  text-decoration: none;
+  transition: top 0.2s ease;
+}
+
+.skip-link:focus { top: 0; }
+
+/* ---------- Buttons ---------------------------------------------------- */
+
+.btn {
+  display: inline-block;
+  background-color: var(--accent-teal);
+  border: 0;
+  border-radius: 9999px;
+  color: #000;
+  cursor: pointer;
+  font-family: var(--serif);
+  font-size: inherit;
+  line-height: inherit;
+  padding: calc(0.667em + 2px) calc(1.333em + 2px);
+  text-decoration: none;
+  transition: all var(--transition-speed) ease;
+}
+
+.btn:hover {
+  color: #000;
+  filter: brightness(0.95);
+}
+
+/* Contact buttons are their own treatment wherever they appear, hero included. */
+.btn[href^="tel:"],
+.btn[href^="mailto:"] {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: linear-gradient(135deg, var(--accent-teal), #5a9a8f);
+  border: 0;
+  border-radius: 50px;
+  color: #fff;
+  font-weight: 600;
+  padding: 12px 24px;
+  box-shadow: 0 4px 12px rgb(102 175 165 / 30%);
+}
+
+.btn[href^="tel:"]:hover,
+.btn[href^="mailto:"]:hover {
+  background: linear-gradient(135deg, #5a9a8f, var(--accent-teal));
+  box-shadow: 0 6px 20px rgb(102 175 165 / 40%);
+  color: #fff;
+  filter: none;
+  transform: translateY(-2px);
+}
+
+.btn[href^="tel:"]::before {
+  content: "\1F4DE";
+  font-size: 1.1em;
+}
+
+.btn[href^="mailto:"]::before {
+  content: "\2709\FE0F";
+  font-size: 1.1em;
+}
+
+/* ---------- Masthead: purple band, black type, centred nav -------------- */
+
+.masthead {
+  background-color: var(--primary-purple);
+  padding: 1.5rem 1.5rem 1.25rem;
+  text-align: center;
+}
+
+.masthead__title {
+  margin: 0 0 1.4rem;
+  font-family: var(--serif);
+  font-size: 42px;
+  line-height: 1.2;
+}
+
+.masthead__title a { color: #000; }
+.masthead__title a:hover { color: #000; }
+
+.masthead__tagline {
+  margin: 0 0 1.3rem;
+  color: #000;
+  font-family: var(--serif);
+  font-size: 16px;
+}
+
+.masthead__credentials {
+  margin: 0;
+  color: #fff;
+  font-family: var(--serif);
+  font-size: 13.28px;
+}
+
+.masthead__credentials span { color: #000; }
+
+.masthead__rule {
+  margin: 1.05rem 0 1.5rem;
+  border-top: 1px solid rgb(0 0 0 / 35%);
+}
+
+/* ---------- Navigation -------------------------------------------------- */
+
+.nav { background-color: var(--primary-purple); }
+
+.nav__inner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.nav__toggle {
+  display: none;
+  width: 2.75rem;
+  height: 2.75rem;
+  padding: 0;
+  border: 1px solid rgb(0 0 0 / 45%);
+  border-radius: 0.25rem;
+  background: transparent;
+  cursor: pointer;
+}
+
+.nav__toggle-icon,
+.nav__toggle-icon::before,
+.nav__toggle-icon::after {
+  display: block;
+  width: 1.25rem;
+  height: 2px;
+  background: #000;
+  content: "";
+}
+
+.nav__toggle-icon {
+  position: relative;
+  margin: 0 auto;
+}
+
+.nav__toggle-icon::before,
+.nav__toggle-icon::after {
+  position: absolute;
+  left: 0;
+}
+
+.nav__toggle-icon::before { top: -0.42rem; }
+.nav__toggle-icon::after { top: 0.42rem; }
+
+.nav__menu {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0 2.5rem;
+  justify-content: center;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.nav__menu > li { position: relative; margin: 0; }
+
+.nav__menu a {
+  display: block;
+  padding: 0.25rem 0;
+  color: #000;
+  font-size: 16px;
+  text-decoration: none;
+}
+
+.nav__menu a:hover { color: #fff; }
+
+/* Live marks the current section white, matching the legal bar. */
+.nav__menu a[aria-current] {
+  color: #fff;
+  font-weight: bold;
+}
+
+.nav__menu .has-sub > a::after {
+  content: "\203a";
+  display: inline-block;
+  margin-left: 0.5rem;
+  transform: rotate(90deg);
+}
+
+.nav__menu .sub {
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  z-index: 999;
+  display: none;
+  min-width: 250px;
+  margin: 5px 0 0;
+  padding: 0;
+  list-style: none;
+  background-color: #fff;
+  border-radius: 4px;
+  box-shadow: 0 4px 6px rgb(0 0 0 / 10%);
+  overflow: hidden;
+  transform: translateX(-50%);
+  text-align: left;
+}
+
+.nav__menu .has-sub:hover > .sub,
+.nav__menu .has-sub:focus-within > .sub { display: block; }
+
+/* The dropdown sits 5px below its trigger, and that band belongs to neither:
+   crossing it drops :hover and the menu closes before the pointer arrives.
+   An invisible bridge, as wide as the dropdown, keeps the trigger hovered.
+   It lives on the item rather than on .sub, which clips to its own box. */
+.nav__menu .has-sub:hover::after,
+.nav__menu .has-sub:focus-within::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  z-index: 998;
+  width: 250px;
+  height: 5px;
+  transform: translateX(-50%);
+}
+
+.nav__menu .sub li { margin: 0; border-bottom: 1px solid rgb(0 0 0 / 5%); }
+.nav__menu .sub li:last-child { border-bottom: 0; }
+
+.nav__menu .sub a {
+  padding: 0.75rem 1rem;
+  color: var(--text-dark);
+  transition: background-color var(--transition-speed) ease;
+}
+
+.nav__menu .sub a:hover,
+.nav__menu .sub a[aria-current] {
+  color: var(--text-dark);
+  background-color: rgb(126 103 155 / 10%);
+}
+
+/* ---------- Breadcrumb strip -------------------------------------------- */
+
+.breadcrumbs {
+  margin: 0;
+  padding: 0.5rem 1rem;
+  background-color: var(--bg-light);
+  color: #495057;
+  font-size: 16px;
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+}
+
+.breadcrumbs li { margin: 0; }
+
+.breadcrumbs a { color: var(--primary-purple); }
+
+.breadcrumbs li + li::before {
+  content: ">";
+  margin-right: 0.35rem;
+  color: rgb(73 80 87 / 60%);
+}
+
+/* ---------- Hero -------------------------------------------------------- */
+
+.hero-section {
+  position: relative;
+  min-height: 60vh;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: #fff;
+  overflow: hidden;
+}
+
+.hero-section::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgb(0 0 0 / 40%);
+  z-index: 1;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 1;
+  box-sizing: content-box;
+  max-width: 800px;
+  padding: 2rem;
+}
+
+.hero-title {
+  color: #fff;
+  font-size: 3rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+  text-shadow: 2px 2px 4px rgb(0 0 0 / 30%);
+}
+
+.hero-subtitle {
+  font-size: 1.3rem;
+  margin-bottom: 2rem;
+  text-shadow: 1px 1px 2px rgb(0 0 0 / 30%);
+  line-height: 1.4;
+}
+
+.hero-cta-buttons {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-bottom: 1.5rem;
+}
+
+.hero-cta-buttons .btn {
+  border: 2px solid #fff;
+  backdrop-filter: blur(10px);
+}
+
+/* Contact buttons keep their own gradient and white text here, as on live. */
+.hero-cta-buttons .btn:not([href^="tel:"]):not([href^="mailto:"]):hover {
+  background-color: #fff;
+  color: var(--primary-purple);
+  filter: none;
+  transform: translateY(-2px);
+}
+
+.hero-quick-nav {
+  display: flex;
+  justify-content: center;
+  margin: 1rem 0 0;
+}
+
+.hero-quick-nav .btn {
+  background-color: rgb(126 103 155 / 80%);
+  border: 1px solid rgb(255 255 255 / 30%);
+  padding: 0.8rem 1.5rem;
+  font-size: 1rem;
+  color: #000;
+}
+
+.hero-quick-nav .btn:hover {
+  background-color: var(--primary-purple);
+  filter: none;
+  transform: translateY(-1px);
+}
+
+/* ---------- Section rhythm ---------------------------------------------- */
+
+main { display: block; }
+
+.section {
+  padding: 4rem 2rem;
+}
+
+.section--alt { background-color: var(--bg-light); }
+
+.section--accent {
+  background-color: var(--primary-purple);
+  color: #fff;
+  text-align: center;
+}
+
+.section--accent h1,
+.section--accent h2,
+.section--accent h3 { color: #fff; }
+
+.section--accent a:not(.btn) { color: #fff; }
+
+.section__inner {
+  width: min(100%, var(--content-size));
+  margin-inline: auto;
+}
+
+.panel {
+  margin-top: 2rem;
+  padding: 1.5rem;
+  border-radius: 12px;
+  background-color: rgb(255 255 255 / 10%);
+}
+
+/* Measured against the live pages: the header block itself contributes no
+   spacing, and the rule beneath the heading does all the separating. */
+.section-header-with-divider {
+  text-align: center;
+}
+
+.section-header-with-divider h2 { margin-bottom: 1rem; }
+.section-header-with-divider .section-divider { margin-top: 0.5rem; }
+
+.section-divider {
+  width: 60px;
+  height: 3px;
+  background: linear-gradient(90deg, var(--primary-purple), var(--primary-blue));
+  margin: 0 auto 2rem;
+  border-radius: 2px;
+  display: block;
+}
+
+.section-divider-decorative {
+  text-align: center;
+  margin: 2.5rem 0;
+  position: relative;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Inside a banded section the band's own padding already sets the air, and
+   the ornament is drawn in the band's colour, so its margins would read as
+   nothing but empty space above the heading. */
+.section .section-divider-decorative { margin-block: 0; }
+
+.section-divider-decorative::before,
+.section-divider-decorative::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  width: 40%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgb(126 103 155 / 30%), transparent);
+}
+
+.section-divider-decorative::before { left: 0; }
+.section-divider-decorative::after { right: 0; }
+
+.section-divider-decorative i {
+  background: transparent;
+  padding: 0 1rem;
+  color: var(--primary-purple);
+  font-size: 1.2rem;
+  z-index: 1;
+  position: relative;
+}
+
+/* Headings the export coloured purple inline keep that accent. */
+.accent { color: var(--primary-purple); }
+
+/* A heading raised a level for the document outline keeps its original size. */
+.as-h2 { font-size: 27px; }
+.as-h3 { font-size: 20px; }
+.as-h4 { font-size: 17px; }
+.as-h5 { font-size: 15px; }
+.as-h6 { font-size: 14px; }
+
+.therapy-card h3,
+.section-header-with-divider h2,
+.section-header-with-divider h3 { color: var(--text-dark); }
+
+/* That rule ties with `.section--accent h2` and, coming later, would win —
+   painting the heading near-invisible on the purple band. Live marks these
+   headings white explicitly, so say it here with the specificity to hold. */
+.section--accent .section-header-with-divider h2,
+.section--accent .section-header-with-divider h3 { color: #fff; }
+
+/* The export decides its own widths: a constrained group is the 840px column,
+   everything else runs to the page edge as it does on the live site. */
+main { padding-inline: clamp(1rem, 3.6vw, 55px); }
+
+.constrained {
+  width: min(100%, var(--content-size));
+  margin-inline: auto;
+}
+
+main > .hero-section,
+main > .therapy-cards-section,
+main > .section,
+main > .feature {
+  margin-inline: calc(-1 * clamp(1rem, 3.6vw, 55px));
+}
+
+main > img,
+main > figure,
+main > .feature-image {
+  width: min(calc(100% - 4rem), 1100px);
+  margin-inline: auto;
+}
+
+main img { display: block; }
+
+/* A block image narrower than its figure would otherwise hug the left edge of
+   a box laid out for full-width photographs. Wider ones fill it, so this is a
+   no-op for them. */
+main figure img { margin-inline: auto; }
+
+main > img,
+main > figure > img {
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgb(0 0 0 / 10%);
+}
+
+/* Banner images letterbox to a fixed ratio rather than a fixed pixel height:
+   a 350px slit cut out of a full-width render magnifies the middle of the
+   photograph and decapitates whatever the subject is. The export's own
+   stylesheet asked for this ratio; its inline height overrode it. */
+.feature-image {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  object-position: center;
+  border-radius: 8px;
+  margin: 20px 0;
+}
+
+@media (max-width: 768px) {
+  .feature-image { aspect-ratio: 4 / 3; }
+}
+
+main > :first-child { margin-top: 2rem; }
+main > :last-child { margin-bottom: 3rem; }
+
+/* ---------- Therapy cards ------------------------------------------------ */
+
+.therapy-cards-section {
+  padding: 4rem 2rem;
+  background-color: var(--bg-light);
+}
+
+.therapy-cards-section > * {
+  width: min(100%, var(--content-size));
+  margin-inline: auto;
+}
+
+.therapy-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+.therapy-card {
+  background: #fff;
+  border-radius: 12px;
+  padding: 2rem;
+  box-shadow: 0 4px 6px rgb(0 0 0 / 10%);
+  transition: transform var(--transition-speed) ease, box-shadow var(--transition-speed) ease;
+  text-align: center;
+}
+
+.therapy-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 15px rgb(0 0 0 / 20%);
+}
+
+.therapy-card-icon {
+  font-size: 3rem;
+  color: var(--primary-purple);
+  margin-bottom: 1rem;
+  line-height: 1;
+}
+
+/* Decorative icons. The export set heading icons inline as
+   color:#7e679b; margin-right:12px; font-size:0.9em — kept here. */
+.fas { margin-right: 0.35em; }
+
+.therapy-card-icon .fas,
+.section-divider-decorative .fas { margin-right: 0; }
+
+h1 > .fas,
+h2 > .fas,
+h3 > .fas,
+h4 > .fas {
+  color: var(--primary-purple);
+  margin-right: 12px;
+  font-size: 0.9em;
+}
+
+.therapy-card h3 { margin-bottom: 1rem; }
+
+.therapy-card p {
+  margin-bottom: 1.5rem;
+  color: var(--text-muted);
+}
+
+.therapy-cards-cta {
+  text-align: center;
+  margin-top: 3rem;
+}
+
+/* ---------- Content column ----------------------------------------------- */
+
+.content {
+  width: min(calc(100% - 2rem), var(--content-size));
+  margin-inline: auto;
+  padding: 3rem 0;
+}
+
+.columns {
+  display: grid;
+  gap: 2rem;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  align-items: start;
+  margin: 2rem 0;
+}
+
+.column > :first-child { margin-top: 0; }
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: center;
+  margin: 1.5rem 0;
+}
+
+.feature {
+  position: relative;
+  margin: 2rem 0;
+  padding: 4rem 2rem;
+  background-size: cover;
+  background-position: center;
+  color: #fff;
+  text-align: center;
+}
+
+.feature::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgb(0 0 0 / 40%);
+}
+
+.feature > * { position: relative; z-index: 1; }
+
+.feature h1,
+.feature h2,
+.feature h3 { color: #fff; }
+
+.divider {
+  height: 8rem;
+  margin: 2rem 0;
+  background-position: center;
+  background-size: cover;
+}
+
+/* ---------- Consent-gated embeds ----------------------------------------- */
+
+.external-embed {
+  position: relative;
+  margin: 2rem auto;
+  max-width: 560px;
+  padding: 1.25rem;
+  border: 1px dashed var(--primary-blue);
+  border-radius: 12px;
+  background: var(--bg-light);
+  text-align: center;
+}
+
+.external-embed iframe {
+  display: none;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  height: auto;
+  border: 0;
+  border-radius: 8px;
+}
+
+.external-embed--loaded {
+  padding: 0;
+  border: 0;
+  background: none;
+}
+
+.external-embed--loaded iframe { display: block; }
+
+.external-embed button { font-family: var(--serif); }
+
+/* ---------- Floating buttons ---------------------------------------------- */
+
+/* Qualified with the element so these outrank `a:not(.btn)`, which is more
+   specific than a bare class and would otherwise paint the icon grey. */
+a.floating-contact,
+a.floating-top {
+  position: fixed;
+  right: 30px;
+  z-index: 70;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--primary-purple), #6a5a8a);
+  box-shadow: 0 4px 12px rgb(126 103 155 / 30%);
+  color: #fff;
+  font-size: 24px;
+  transition: transform var(--transition-speed) ease;
+}
+
+.floating-contact { bottom: 30px; }
+
+/* Stacked directly above the call button, one button-height plus a gap. */
+.floating-top { bottom: 100px; }
+
+a.floating-contact:hover,
+a.floating-top:hover {
+  box-shadow: 0 6px 20px rgb(126 103 155 / 40%);
+  color: #fff;
+  transform: scale(1.1);
+}
+
+/* The glyph is the whole button, so it carries no trailing gap. */
+.floating-top .fas { margin-right: 0; }
+
+/* ---------- Privacy controls ---------------------------------------------- */
+
+.privacy-consent {
+  position: fixed;
+  right: 1rem;
+  bottom: 1rem;
+  left: 1rem;
+  z-index: 90;
+  display: flex;
+  max-height: 40vh;
+  overflow-y: auto;
+  flex-wrap: wrap;
+  gap: 1rem;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 48rem;
+  margin-inline: auto;
+  padding: 1rem 1.25rem;
+  border-radius: 12px;
+  background: #fff;
+  box-shadow: 0 0.5rem 1.5rem rgb(0 0 0 / 25%);
+}
+
+.privacy-consent h2 {
+  margin: 0 0 0.35rem;
+  font-size: 20px;
+}
+
+.privacy-consent p {
+  margin: 0;
+  font-size: 14px;
+}
+
+.privacy-consent__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.privacy-consent button,
+.privacy-preferences-button {
+  padding: 0.55rem 1.1rem;
+  border: 1px solid var(--primary-purple);
+  border-radius: 9999px;
+  background: #fff;
+  color: var(--text-dark);
+  font-family: var(--serif);
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.privacy-consent__allow {
+  background: var(--accent-teal);
+  color: #000;
+}
+
+.privacy-preferences-button {
+  position: fixed;
+  left: 1rem;
+  bottom: 1rem;
+  z-index: 70;
+  box-shadow: 0 2px 6px rgb(0 0 0 / 20%);
+}
+
+/* ---------- Footer --------------------------------------------------------- */
+
+.footer { background: #fff; }
+
+.footer__contact {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: center;
+  padding: 2.5rem 2rem;
+}
+
+.footer__memberships {
+  background-color: var(--primary-blue);
+  padding: 1.5rem 24px 0;
+  color: #000;
+}
+
+.footer__memberships ul {
+  margin: 0 auto;
+  padding: 0;
+  list-style: none;
+}
+
+.footer__memberships li {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 1rem;
+  align-items: center;
+  margin: 0;
+  padding: 1.5rem 0;
+  border-bottom: 1px solid #000;
+}
+
+/* Live splits each row in half: text centred on the left, logo centred right. */
+.footer__memberships li > :first-child { text-align: center; }
+
+.footer__memberships li:last-child { border-bottom: 0; }
+
+.footer__memberships a:not(.btn),
+.footer__memberships span { color: #000; }
+
+.footer__memberships a:not(.btn) { max-width: 60ch; margin-inline: auto; }
+
+.footer__memberships img {
+  height: auto;
+  max-width: 100%;
+  margin-inline: auto;
+}
+
+.bottombar {
+  padding: 1.5rem 24px 2.5rem;
+  background-color: var(--primary-blue);
+  border-top: 1px solid #000;
+  color: #000;
+  font-size: 16px;
+  text-align: center;
+}
+
+.bottombar a { color: #000; }
+
+/* Live marks the current page white and underlines on hover, keeping the colour. */
+.bottombar a[aria-current] { color: #fff; }
+
+.bottombar a:hover { color: inherit; }
+
+/* The export animates a 2px purple bar in from the left, over 0.3s. */
+.bottombar__links a {
+  position: relative;
+  display: inline-block;
+}
+
+.bottombar__links a::after {
+  content: "";
+  position: absolute;
+  bottom: -3px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background-color: var(--primary-purple);
+  transition: width var(--transition-speed) ease;
+}
+
+.bottombar__links a:hover::after { width: 100%; }
+
+.bottombar a[aria-current]:hover { color: #fff; }
+
+.bottombar__links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem 2rem;
+  justify-content: center;
+  margin: 0 0 1.25rem;
+  padding: 0;
+  list-style: none;
+}
+
+.bottombar__links li { margin: 0; }
+.bottombar__legal { margin: 0; }
+
+/* ---------- Narrow screens -------------------------------------------------- */
+
+@media (max-width: 960px) {
+  .nav__inner { justify-content: flex-end; padding-inline: 1rem; }
+  .nav__toggle { display: block; }
+
+  .nav__menu {
+    display: none;
+    flex-basis: 100%;
+    flex-direction: column;
+    gap: 0;
+    padding-top: 0.75rem;
+  }
+
+  .nav__menu.open { display: flex; }
+
+  .nav__menu a { padding: 0.5rem 0; }
+
+  .nav__menu .sub {
+    position: static;
+    display: block;
+    min-width: 0;
+    margin: 0 0 0 1rem;
+    background: transparent;
+    box-shadow: none;
+    transform: none;
+  }
+
+  /* The stacked menu has no gap to bridge, and the bridge would cover its
+     first submenu link. */
+  .nav__menu .has-sub:hover::after,
+  .nav__menu .has-sub:focus-within::after { content: none; }
+
+  .nav__menu .sub li { border-bottom: 0; }
+  .nav__menu .sub a { padding: 0.35rem 0; color: #000; }
+  .nav__menu .sub a:hover,
+  .nav__menu .sub a[aria-current] { background: transparent; color: #fff; }
+}
+
+@media (max-width: 768px) {
+  .hero-section { min-height: 50vh; }
+  .hero-title { font-size: 2.2rem; }
+  .hero-subtitle { font-size: 1.1rem; }
+
+  .hero-cta-buttons {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .hero-cta-buttons .btn { min-width: 250px; }
+
+  .masthead__title { font-size: 32px; }
+  h2 { font-size: 28px; }
+  .section,
+  .therapy-cards-section { padding: 2.5rem 1rem; }
+}
+
+@media (max-width: 480px) {
+  .hero-title { font-size: 1.8rem; }
+  .hero-subtitle { font-size: 1rem; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  .therapy-card:hover,
+  .hero-cta-buttons .btn:hover,
+  .floating-contact:hover,
+  .floating-top:hover { transform: none; }
+}

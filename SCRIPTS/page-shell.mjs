@@ -302,6 +302,41 @@ export const INSURANCE_BY_ROUTE = Object.freeze({
 });
 
 /**
+ * What the telehealth reach actually means, in the practice's own words.
+ *
+ * "There is no office to travel to" was buried as the last clause of a
+ * paragraph on /contact/, under a heading that labelled it rather than said it.
+ * For a reader in Sprague River or Bly that sentence is the whole point of this
+ * practice: no drive, no day off work, no distance that rules you out. It leads
+ * now, and the towns follow as evidence rather than as the message.
+ *
+ * Two presentations, one wording: a band on the home page where it is
+ * positioning, and the original prose on /contact/ where it is one practical
+ * fact among several. Nothing here is claimed beyond what the site already
+ * said — in particular not that these towns lack therapists of their own,
+ * which would need a source.
+ */
+const TOWNS = "Altamont, Chiloquin, Merrill, Bonanza, Malin, Sprague River, Beatty, Bly, and Rocky Point included";
+const REACH_LEDE = "There is no office to travel to.";
+const REACH_BODY =
+  "Every session is held by secure video, so where you live does not decide whether you can be seen. " +
+  `The practice is based in Klamath Falls and reaches anyone in Oregon &#8212; ${TOWNS}.`;
+
+export const reachBlock = (route) => {
+  if (route === "/contact/") {
+    return `      <!-- reach:start -->
+      <p>The practice is based in Klamath Falls and works entirely by telehealth, so it reaches anyone in Oregon &#8212; ${TOWNS}. ${REACH_LEDE}</p>
+      <!-- reach:end -->`;
+  }
+  return `    <!-- reach:start -->
+    <section class="reach" aria-label="Where the practice works">
+      <p class="reach__lede">${REACH_LEDE}</p>
+      <p class="reach__body">${REACH_BODY}</p>
+    </section>
+    <!-- reach:end -->`;
+};
+
+/**
  * The crisis block. It was written twice: as a designed component on the home
  * page and as a bold sentence in the flow of /contact/, which meant the most
  * consequential content on the site had two treatments and two wordings. One

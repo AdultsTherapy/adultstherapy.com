@@ -7,7 +7,7 @@
  */
 
 import { readFileSync, writeFileSync } from "node:fs";
-import { SHARED_BLOCKS, crisisBlock, insuranceCover, relatedNav, siteIndex } from "./page-shell.mjs";
+import { SHARED_BLOCKS, crisisBlock, insuranceCover, reachBlock, relatedNav, siteIndex } from "./page-shell.mjs";
 import { publicPageFiles, relativePath, routeForFile } from "./static-site.mjs";
 
 const blockPattern = (marker) =>
@@ -34,6 +34,11 @@ const withRelatedNav = (name, html, route) => {
   return html.replace(blockPattern("related-nav"), block);
 };
 
+const withReach = (html, route) => {
+  const pattern = blockPattern("reach");
+  return pattern.test(html) ? html.replace(blockPattern("reach"), reachBlock(route)) : html;
+};
+
 const withCrisisBlock = (html) => {
   const pattern = blockPattern("crisis-support");
   return pattern.test(html) ? html.replace(blockPattern("crisis-support"), crisisBlock()) : html;
@@ -55,7 +60,7 @@ for (const file of publicPageFiles()) {
   const route = routeForFile(file);
   const before = readFileSync(file, "utf8");
   const shell = withSiteIndex(withSharedBlocks(name, before, route), route);
-  const after = withCrisisBlock(withRelatedNav(name, withInsuranceCover(name, shell, route), route));
+  const after = withReach(withCrisisBlock(withRelatedNav(name, withInsuranceCover(name, shell, route), route)), route);
   if (after === before) continue;
   changed.push(name);
   if (!checkOnly) writeFileSync(file, after);

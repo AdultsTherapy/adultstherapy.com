@@ -729,6 +729,34 @@ main > :last-child { margin-bottom: 3rem; }
 
 .related li { margin: 0; }
 
+/* ---------- Reach --------------------------------------------------------- */
+
+/* Sits between the photograph and the grey card band, so the page goes photo,
+   white, grey rather than photo straight into grey. One sentence at display
+   size doing the work, with the geography underneath it at reading size: the
+   meaning leads, the evidence follows. No border, no panel, no icon — it is a
+   statement, not a component. */
+.reach {
+  padding: 3.5rem 1.5rem;
+  text-align: center;
+}
+
+.reach__lede {
+  max-width: 24ch;
+  margin: 0 auto 0.9rem;
+  font-family: var(--serif);
+  font-size: clamp(1.75rem, 3.4vw, 2.5rem);
+  line-height: 1.2;
+  color: var(--primary-purple);
+}
+
+.reach__body {
+  max-width: 54ch;
+  margin: 0 auto;
+  font-size: 1.05rem;
+  line-height: 1.7;
+}
+
 /* ---------- Insurance cover ---------------------------------------------- */
 
 /* "Does my insurance work here" is the question that decides whether most of

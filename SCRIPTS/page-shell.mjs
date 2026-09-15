@@ -241,6 +241,56 @@ const PLANS = Object.freeze([
   "Evernorth",
 ]);
 
+/**
+ * The "Other therapy approaches" and "Explore the practice" navs at the foot of
+ * twelve pages. Each was a hand-kept copy of the same list with the current
+ * page removed by hand, so adding a ninth modality meant editing ten files and
+ * getting all ten right. Both are derivable: a therapy page lists its siblings,
+ * the two reading pages list all eight, and the practice pages list the other
+ * three. The approaches come from NAV_ITEMS, which already had them.
+ */
+const APPROACHES = NAV_ITEMS.find((item) => item.href === "/therapy/").children;
+
+const PRACTICE_PAGES = Object.freeze([
+  { href: "/therapy/", label: "Therapy I practice" },
+  { href: "/skills/", label: "Therapy skills" },
+  { href: "/education/", label: "Education" },
+  { href: "/about/", label: "About Elaine Dinwiddie" },
+]);
+
+const ALL_APPROACH_ROUTES = new Set(["/education/", "/skills/"]);
+const PRACTICE_ROUTES = new Set(["/about/", "/therapy/"]);
+
+export const relatedNav = (route) => {
+  let heading;
+  let items;
+
+  if (APPROACHES.some((approach) => approach.href === route)) {
+    heading = "Other therapy approaches";
+    items = APPROACHES.filter((approach) => approach.href !== route);
+  } else if (ALL_APPROACH_ROUTES.has(route)) {
+    // Not "Other" here: /skills/ and /education/ are not approaches, so there is
+    // nothing for these to be other than. The list is the full eight.
+    heading = "Therapy approaches";
+    items = APPROACHES;
+  } else if (PRACTICE_ROUTES.has(route)) {
+    heading = "Explore the practice";
+    items = PRACTICE_PAGES.filter((page) => page.href !== route);
+  } else {
+    return null;
+  }
+
+  const list = items.map(({ href, label }) => `          <li><a href="${href}">${label}</a></li>`).join("\n");
+  return `      <!-- related-nav:start -->
+      <nav class="related" aria-labelledby="related-approaches">
+        <h2 id="related-approaches">${heading}</h2>
+        <ul>
+${list}
+        </ul>
+      </nav>
+      <!-- related-nav:end -->`;
+};
+
 export const INSURANCE_BY_ROUTE = Object.freeze({
   "/": PLANS,
   "/about/": PLANS,

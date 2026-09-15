@@ -7,7 +7,7 @@
  */
 
 import { readFileSync, writeFileSync } from "node:fs";
-import { SHARED_BLOCKS, insuranceCover, siteIndex } from "./page-shell.mjs";
+import { SHARED_BLOCKS, insuranceCover, relatedNav, siteIndex } from "./page-shell.mjs";
 import { publicPageFiles, relativePath, routeForFile } from "./static-site.mjs";
 
 const blockPattern = (marker) =>
@@ -23,9 +23,17 @@ const withSharedBlocks = (name, html, route) =>
 const withSiteIndex = (html, route) =>
   route === "/sitemap/" ? html.replace(blockPattern("site-index"), siteIndex()) : html;
 
-// Route-conditional like the site index: only the pages that quote the plans
-// carry the marker, and a page carrying it must have an entry in
-// INSURANCE_BY_ROUTE, or the block would silently empty itself.
+// Route-conditional like the site index: only the pages that carry the marker
+// get the block, and a page carrying one must resolve to content, or the block
+// would silently empty itself.
+const withRelatedNav = (name, html, route) => {
+  const pattern = blockPattern("related-nav");
+  if (!pattern.test(html)) return html;
+  const block = relatedNav(route);
+  if (!block) throw new Error(`${name}: has a related-nav block but no related links for ${route}`);
+  return html.replace(blockPattern("related-nav"), block);
+};
+
 const withInsuranceCover = (name, html, route) => {
   const pattern = blockPattern("insurance-cover");
   if (!pattern.test(html)) return html;
@@ -41,7 +49,8 @@ for (const file of publicPageFiles()) {
   const name = relativePath(file);
   const route = routeForFile(file);
   const before = readFileSync(file, "utf8");
-  const after = withInsuranceCover(name, withSiteIndex(withSharedBlocks(name, before, route), route), route);
+  const shell = withSiteIndex(withSharedBlocks(name, before, route), route);
+  const after = withRelatedNav(name, withInsuranceCover(name, shell, route), route);
   if (after === before) continue;
   changed.push(name);
   if (!checkOnly) writeFileSync(file, after);

@@ -228,12 +228,12 @@ const PAGES = [
       <ul>
         <li>Individual therapy for adults runs 50 minutes.</li>
         <li>Relationship and couples counseling runs 60 minutes.</li>
-        <li>Sessions are available in person in Klamath Falls and by telehealth throughout Oregon.</li>
+        <li>Sessions are held by secure video, wherever you are in Oregon.</li>
       </ul>
       <h2>Insurance</h2>
       <p>Cascade Health Alliance (CHA), Oregon Health Plan (OHP), Atrio, Aetna, Moda, Providence, Regence, Cigna, TriWest, and Evernorth are accepted. If your plan is not listed, ask during the consultation call.</p>
       <h2>Where the practice works</h2>
-      <p>The office is in Klamath Falls, and telehealth reaches Altamont, Chiloquin, Merrill, Bonanza, Malin, Sprague River, Beatty, Bly, and Rocky Point, as well as the rest of Oregon.</p>
+      <p>The practice is based in Klamath Falls and works entirely by telehealth, so it reaches anyone in Oregon &#8212; Altamont, Chiloquin, Merrill, Bonanza, Malin, Sprague River, Beatty, Bly, and Rocky Point included. There is no office to travel to.</p>
       <h2>Before you call</h2>
       <p>You do not need a diagnosis, a referral, or an explanation prepared in advance. If you are not sure which approach fits, the <a href="/therapy/">therapy approaches</a> page describes each one, and the consultation call is there to work that out together.</p>
       <p><strong>If you are in immediate danger or thinking about harming yourself, do not wait for a callback.</strong> Call or text 988 for the Suicide and Crisis Lifeline, or call 911.</p>`,
@@ -982,8 +982,6 @@ const schemaGraph = (page) => {
       priceRange: "$$",
       paymentAccepted: ["Cash", "Credit Card", "Debit Card", "Insurance"],
       amenityFeature: [
-        { "@type": "LocationFeatureSpecification", name: "Wheelchair Accessible", value: true },
-        { "@type": "LocationFeatureSpecification", name: "Free Parking", value: true },
         { "@type": "LocationFeatureSpecification", name: "Telehealth Available", value: true },
       ],
       founder: { "@id": `${ORIGIN}/about/#practitioner` },
@@ -1046,7 +1044,7 @@ const schemaGraph = (page) => {
       areaServed: { "@type": "State", name: "Oregon" },
       availableChannel: {
         "@type": "ServiceChannel",
-        name: "Telehealth and in-person sessions",
+        name: "Telehealth sessions throughout Oregon",
         servicePhone: "+1-541-363-8817",
         serviceUrl: url,
       },

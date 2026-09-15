@@ -49,13 +49,21 @@ address       Klamath Falls, OR 97601, US
 hours         Tuesday–Friday, 11:00–18:00
 priceRange    $$
 payment       Cash, Credit Card, Debit Card, Insurance
-amenities     Wheelchair accessible, free parking, telehealth available
+amenities     Telehealth available
+delivery      Telehealth only — there is no office and no in-person session
 areaServed    Oregon, Klamath Falls, and the nine towns the home page lists
 ```
 
 `areaServed` is the one that is also visible copy: the towns in `schemaGraph`
 are the towns under "Nearby Communities" on the home page. Change one and
 change the other, or the site claims a service area it does not show.
+
+**The practice is telehealth only.** The address is where it is based, not
+somewhere a client goes. The schema used to claim wheelchair access and free
+parking, which described premises that do not exist — an accessibility claim is
+the worst kind to get wrong, because someone who needs it plans around it. If
+in-person work ever starts, the amenities, the `/contact/` copy and the Google
+Business Profile all change together.
 
 **When any of these change in real life, change them in `schemaGraph` in the
 same commit as the page copy.** A hours change that lands in the footer but not

@@ -17,7 +17,7 @@
 export const FAQ = Object.freeze({
   "/": [
     { q: "What types of therapy do you offer?", a: "We offer evidence-based therapies including Cognitive Behavioral Therapy (CBT), EMDR for trauma, Gottman Method for couples, Dialectical Behavior Therapy (DBT), mindfulness-based therapy, and Emotional Freedom Technique (EFT). We specialize in treating depression, anxiety, trauma, and relationship issues." },
-    { q: "How much do therapy sessions cost?", a: "Individual therapy sessions are $120 for 50 minutes, and couples therapy sessions are $160 for 60 minutes. We offer a free 15-minute phone consultation to discuss your needs and determine if we&#8217;re a good fit." },
+    { q: "How much do therapy sessions cost?", a: "Individual therapy sessions start at $150 for 50 minutes, and couples therapy sessions are $160 for 60 minutes. We offer a free 15-minute phone consultation to discuss your needs and determine if we&#8217;re a good fit." },
     { q: "Do you accept insurance?", a: "Yes, we accept most major insurance plans. We also accept cash, credit cards, and debit cards. Please contact us to verify your specific insurance coverage." },
     { q: "Do you offer telehealth sessions?", a: "Yes, we offer secure telehealth sessions for clients who prefer virtual therapy or are unable to attend in-person sessions. Our telehealth platform is HIPAA-compliant and easy to use." },
     { q: "How do I schedule an appointment?", a: "You can schedule an appointment by calling us at (541) 363-8817 or emailing elaine@adultstherapy.com. We&#8217;ll start with a free 15-minute consultation to discuss your needs and answer any questions you may have." },
@@ -67,7 +67,7 @@ export const FAQ = Object.freeze({
     { q: "How long does CBT treatment take?", a: "CBT is typically a short-term treatment, with most people seeing significant improvement in 12-20 weekly sessions. The exact duration depends on the individual and their specific concerns." },
     { q: "What conditions can CBT help with?", a: "CBT is effective for depression, anxiety disorders, panic attacks, phobias, obsessive-compulsive disorder, PTSD, eating disorders, and substance abuse. It&#8217;s one of the most researched and evidence-based forms of therapy." },
     { q: "What happens during a CBT session?", a: "Sessions typically last 50 minutes and involve discussing your thoughts, feelings, and behaviors. You&#8217;ll learn specific techniques to challenge negative thinking patterns and develop healthier coping strategies. Homework assignments are often given between sessions." },
-    { q: "How much does CBT cost?", a: "Individual CBT sessions are $120 for 50 minutes. We also offer a 15-minute complimentary phone consultation to discuss your needs and determine if CBT is right for you." },
+    { q: "How much does CBT cost?", a: "Individual CBT sessions start at $150 for 50 minutes. We also offer a 15-minute complimentary phone consultation to discuss your needs and determine if CBT is right for you." },
   ],
   "/therapy/dbt/": [
     { q: "What is Dialectical Behavior Therapy (DBT)?", a: "DBT is a skills-based therapy that combines cognitive-behavioral techniques with mindfulness practices. It helps you learn to manage intense emotions, improve relationships, tolerate distress, and develop healthy coping strategies." },
@@ -82,7 +82,7 @@ export const FAQ = Object.freeze({
     { q: "What conditions can EFT help with?", a: "EFT is effective for trauma, PTSD, anxiety, depression, chronic pain, phobias, addictions, emotional distress, and stress-related conditions. It&#8217;s particularly powerful for addressing deep-seated emotional issues and can provide rapid relief from symptoms." },
     { q: "How long does EFT treatment take?", a: "Many clients experience significant relief within 1-6 sessions. EFT can provide immediate relief for some issues, while deeper trauma work may require more sessions. You&#8217;ll also learn self-tapping techniques to use at home between sessions." },
     { q: "Is EFT safe?", a: "Yes, EFT is very safe. It&#8217;s a gentle, non-invasive technique that doesn&#8217;t involve any medications or physical manipulation. It&#8217;s suitable for people of all ages and can be used alongside other therapies. There are no known side effects." },
-    { q: "How much does EFT therapy cost?", a: "Individual EFT sessions are $120 for 50 minutes. We offer a free 15-minute phone consultation to discuss your needs and determine if EFT is right for you." },
+    { q: "How much does EFT therapy cost?", a: "Individual EFT sessions start at $150 for 50 minutes. We offer a free 15-minute phone consultation to discuss your needs and determine if EFT is right for you." },
   ],
   "/therapy/emdr/": [
     { q: "What is EMDR therapy?", a: "EMDR (Eye Movement Desensitization and Reprocessing) is an evidence-based psychotherapy treatment that uses bilateral stimulation, typically guided eye movements, to help individuals process traumatic memories and reduce the emotional impact of trauma." },
@@ -90,7 +90,7 @@ export const FAQ = Object.freeze({
     { q: "What conditions can EMDR treat?", a: "EMDR is particularly effective for PTSD, trauma, anxiety disorders, depression related to trauma, phobias, panic disorder, and various trauma-related conditions. It&#8217;s recognized by the American Psychological Association and World Health Organization as a treatment for PTSD." },
     { q: "How long does EMDR treatment take?", a: "Most clients experience significant improvement within 6-12 EMDR sessions. The exact number depends on the complexity of the trauma and individual response to treatment. Sessions are typically 50 minutes each." },
     { q: "Is EMDR safe?", a: "Yes, EMDR is very safe when conducted by a trained professional. It&#8217;s a non-invasive treatment that doesn&#8217;t require medication or detailed verbal recounting of traumatic events. The process is closely monitored and can be stopped at any time." },
-    { q: "How much does EMDR therapy cost?", a: "Individual EMDR sessions are $120 for 50 minutes. We offer a free 15-minute phone consultation to discuss your needs and determine if EMDR is appropriate for you." },
+    { q: "How much does EMDR therapy cost?", a: "Individual EMDR sessions start at $150 for 50 minutes. We offer a free 15-minute phone consultation to discuss your needs and determine if EMDR is appropriate for you." },
   ],
   "/therapy/gottman/": [
     { q: "What is the Gottman Method?", a: "The Gottman Method is an evidence-based approach to couples therapy developed by Drs. John and Julie Gottman. It&#8217;s based on over 40 years of research and focuses on building strong, healthy relationships through specific interventions and techniques." },

@@ -217,3 +217,53 @@ export const SHARED_BLOCKS = Object.freeze([
   { marker: "shared-footer", render: footer },
   { marker: "shared-bottombar", render: bottombar },
 ]);
+
+/**
+ * Which plans each page says are accepted.
+ *
+ * This was the same ten names pasted into five pages as prose, which is how the
+ * site ended up with two different answers to the most consequential question a
+ * visitor asks. /therapy/gottman/ names a shorter set, and that is preserved
+ * rather than flattened: couples work is frequently covered by fewer plans, so
+ * the difference may be correct and is Elaine's to confirm, not a formatting
+ * detail to tidy away.
+ */
+const STANDARD_PLANS = Object.freeze([
+  "Cascade Health Alliance (CHA)",
+  "Oregon Health Plan (OHP)",
+  "Atrio",
+  "Aetna",
+  "Moda",
+  "Providence",
+  "Regence",
+  "Cigna",
+  "TriWest",
+  "Evernorth",
+]);
+
+const COUPLES_PLANS = Object.freeze(["Cigna", "Moda", "Cascade Health Alliance (CHA)", "TriWest", "Atrio"]);
+
+export const INSURANCE_BY_ROUTE = Object.freeze({
+  "/": STANDARD_PLANS,
+  "/about/": STANDARD_PLANS,
+  "/contact/": STANDARD_PLANS,
+  "/therapy/eft/": STANDARD_PLANS,
+  "/therapy/emdr/": STANDARD_PLANS,
+  "/therapy/talk-therapy/": STANDARD_PLANS,
+  "/therapy/gottman/": COUPLES_PLANS,
+});
+
+export const insuranceCover = (route) => {
+  const plans = INSURANCE_BY_ROUTE[route];
+  if (!plans) return null;
+  const items = plans.map((plan) => `              <li>${plan}</li>`).join("\n");
+  return `          <!-- insurance-cover:start -->
+          <div class="cover">
+            <h3 class="cover__title">Insurance accepted</h3>
+            <ul class="cover__list">
+${items}
+            </ul>
+            <p class="cover__note">If your plan is not listed, ask during the consultation call.</p>
+          </div>
+          <!-- insurance-cover:end -->`;
+};

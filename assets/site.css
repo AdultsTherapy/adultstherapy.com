@@ -525,11 +525,37 @@ main { display: block; }
   margin-inline: auto;
 }
 
-.panel {
-  margin-top: 2rem;
-  padding: 1.5rem;
-  border-radius: 12px;
-  background-color: rgb(255 255 255 / 10%);
+/* Replaced .panel, which was a rounded box of white at 10% sitting on the
+   purple band — a container with almost no contrast against its own background,
+   doing no work. Its contents were a middle-dot meta string that also disagreed
+   with the masthead: this said Gottman Level 2 and 15+ years, the masthead says
+   EMDR Level 2, CCTP I and EFT. Two credential lists on one page. The
+   certifications stay in the masthead, which carries them on every route; what
+   is here is what the masthead does not say, as labelled facts rather than a
+   dotted run-on. */
+.credentials__title {
+  margin: 2.25rem 0 0;
+  padding-top: 1.75rem;
+  border-top: 1px solid rgb(255 255 255 / 35%);
+  text-align: center;
+}
+
+.credentials {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+  gap: 0.75rem 2rem;
+  max-width: 54rem;
+  margin: 1.1rem auto 0;
+  padding: 0;
+  list-style: none;
+  text-align: center;
+}
+
+.credentials li {
+  margin: 0;
+  font-family: var(--serif);
+  font-size: 1.1rem;
+  line-height: 1.35;
 }
 
 /* Measured against the live pages: the header block itself contributes no

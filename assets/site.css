@@ -48,7 +48,13 @@ h1, h2, h3, h4, h5, h6 {
   margin: 0 0 1rem;
 }
 
-h1 { font-size: 32px; }
+/* h1 was 32px against an h2 of 27px, a five-pixel gap that read as no hierarchy
+   at all — on the modality pages the page title and the section headings under
+   it looked like the same rank. The h1 carries the step; h2 stays where it was.
+   .text-large is an export preset that lands on both h1s and h2s, so it is
+   pinned on h1 to keep those two pages in line with the other fifteen. */
+h1 { font-size: 40px; }
+h1.text-large { font-size: 40px; }
 h2 { font-size: 27px; }
 h3 { font-size: 20px; }
 h4 { font-size: 17px; }
@@ -587,6 +593,18 @@ main { display: block; }
 main { padding-inline: clamp(1rem, 3.6vw, 55px); }
 
 .constrained {
+  width: min(100%, var(--content-size));
+  margin-inline: auto;
+}
+
+/* The detail pages put their flow content straight into <main>, which has
+   padding but no measure, so body text ran the full viewport — about 140
+   characters a line at 1280px, roughly twice a comfortable measure, on a site
+   read by people who are anxious or exhausted. The design already wanted 840px:
+   .constrained, .faq and .related all use it, and these pages were simply never
+   wrapped. Full-bleed blocks are listed below and keep their negative margins. */
+main > :is(p, ul, ol, dl, h1, h2, h3, h4, h5, h6, figure, img, blockquote, hr,
+  .section-header-with-divider, .section-divider-decorative) {
   width: min(100%, var(--content-size));
   margin-inline: auto;
 }

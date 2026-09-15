@@ -29,7 +29,7 @@ overwritten and will not survive review.
 | `WebPage` / `MedicalWebPage` / `CollectionPage` / `ProfilePage` | per page | Canonical URL, name, description, `dateModified`, membership in the site |
 | `Person` | `/about/` only | Elaine Dinwiddie, LPC — job title, employer, and each credential as `EducationalOccupationalCredential` |
 | `Service` | the eight therapy pages | The approach as a service the practice offers — name, `serviceType`, provider, area served, and how to reach it |
-| `FAQPage` | 10 routes | The "Common questions" block as rendered, from `SCRIPTS/faq.mjs` |
+| `FAQPage` | 12 routes | The "Common questions" block as rendered, from `SCRIPTS/faq.mjs` |
 | `BreadcrumbList` | every page but `/` | The same trail the page renders, from `ROUTE_LABELS` |
 
 Therapy pages use `MedicalWebPage`; `/therapy/`, `/skills/`, `/education/`, and
@@ -63,10 +63,9 @@ in the schema puts the wrong hours in Google's knowledge panel.
 
 ## What this site deliberately does not emit
 
-Both were present in the WordPress export and were removed during
-normalization. `FAQPage` has since come back for the pairs that could be shown
-honestly; `AggregateRating` has not, and should not without the condition
-below.
+`AggregateRating` and `FAQPage` were both present in the export and both removed
+during normalization. `FAQPage` has since come back, in full and visibly.
+`AggregateRating` has not, and should not without the condition below.
 
 ### `AggregateRating`
 
@@ -86,32 +85,36 @@ professional-conduct exposure, not just an SEO one.
 they are marked up on, sourced from a platform whose terms permit re-marking
 them. Then mark up what is visible — nothing more.
 
-### `FAQPage` — restored for 42 of the 67 pairs
+### `FAQPage` — restored
 
-The export carried 67 `Question`/`Answer` pairs across 12 pages and **zero** of
-them appeared in the visible page content, which is hidden content and earns no
-credit. The condition for restoring them was to put the text on the page first
-and then mark up what a visitor can read.
+The export carried 67 `Question`/`Answer` pairs across twelve pages and **zero**
+of them appeared in the visible page content, which is hidden content and earns
+no credit. The condition for restoring them was to put the text on the page
+first and then mark up what a visitor can read.
 
-That is now done for 42 pairs across 10 routes. They live in `SCRIPTS/faq.mjs`;
-`faqSection()` renders them as a "Common questions" block and `schemaGraph()`
-marks up the same source, and `check:site` fails the build if the rendered text
-and the markup ever differ.
+All 67 are now visible. They live in `SCRIPTS/faq.mjs`; `faqSection()` renders
+them as a "Common questions" block and `schemaGraph()` marks up the same source.
+`check:site` fails the build on any divergence — markup with no visible block, a
+visible block with no markup, or marked-up text the page does not show.
 
-**25 pairs are still held back**, and each needs the practice to confirm it is
-true before it goes on the site:
+These are the practice's own claims, written by the practice: session fees,
+insurers accepted, records handling, HIPAA, and how long a course of treatment
+usually runs. **They are now public, which means they have to stay true.** When
+a fee changes, an insurer is added or dropped, or a policy shifts, edit
+`SCRIPTS/faq.mjs` and rebuild — the page copy and the structured data both
+follow from that one file.
 
-| Held | Why |
-| --- | --- |
-| 5 session-price answers | They state $120 for 50 minutes. Nothing on this site publishes a price, and a stale rate is worse than none. |
-| 6 privacy and records answers | HIPAA compliance, encryption, Oregon retention law, records requests. Professional and legal assertions, not marketing copy. One of them describes collecting health history and session notes, which the privacy page contradicts. |
-| 5 terms-of-service answers | "These terms are legally binding agreements." Legal claims. |
-| 4 duration and outcome answers | "Most clients improve within 6-12 sessions", "12-20 sessions", "8-12 sessions". Efficacy claims about named treatments. |
-| 3 insurance answers | Insurer lists go stale, and the therapy pages already carry a current one. |
-| 2 telehealth answers | They assert a HIPAA-compliant platform. |
+Two of them are worth knowing about specifically:
 
-They are recoverable from the export at commit `f9426b9`. To restore one, add it
-to `SCRIPTS/faq.mjs` and rebuild — the rendering and the markup both follow.
+- A session fee of **$120 for 50 minutes** is now published on `/`, `/therapy/cbt/`,
+  `/therapy/eft/`, `/therapy/emdr/` and `/therapy/gottman/`. The `Organization`
+  node still says `priceRange: "$$"`, which is consistent but vaguer; if a
+  Google Business Profile publishes a price, it should agree with this number.
+- The `/privacy/` answers describe records the **practice** keeps — health
+  history, session notes, seven-year retention. The rest of that page describes
+  what the **website** collects, which is nothing. Both are true and they are
+  about different things; if a reader could confuse them, the fix is a sentence
+  of framing on the page, not removing either.
 
 ## What was kept from the earlier schema work
 

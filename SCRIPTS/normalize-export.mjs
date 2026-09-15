@@ -16,6 +16,7 @@ import { existsSync, mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import { dirname, resolve } from "node:path";
 import { ORIGIN, ROOT } from "./static-site.mjs";
 import { NAV_ITEMS, ROUTE_LABELS, bottombar, breadcrumbs, footer, masthead } from "./page-shell.mjs";
+import { FAQ } from "./faq.mjs";
 
 const flag = (name, fallback) => {
   const index = process.argv.indexOf(name);
@@ -890,6 +891,24 @@ const relatedFor = (route) => {
   return null;
 };
 
+/**
+ * The questions render as visible content, and schemaGraph marks up the same
+ * source. Google credits an FAQ only when a visitor can read it on the page.
+ */
+const faqSection = (route) => {
+  const entries = FAQ[route];
+  if (!entries || entries.length === 0) return [];
+  return [
+    make("section", { class: "faq", "aria-labelledby": "common-questions" }, [
+      make("h2", { id: "common-questions" }, [{ type: "text", value: "Common questions" }]),
+      ...entries.flatMap(({ q, a }) => [
+        make("h3", {}, [{ type: "text", value: q }]),
+        make("p", {}, [{ type: "text", value: a }]),
+      ]),
+    ]),
+  ];
+};
+
 const relatedApproaches = (route) => {
   const related = relatedFor(route);
   const items = related?.items.filter((item) => item.href !== route) || [];
@@ -910,6 +929,7 @@ const normalize = (page) => {
   const context = { buttonDepth: 0, hasEmbed: false };
   const nodes = [
     ...linkModalityHeadings(singleHeading(transformChildren(tree, context), page), page.route),
+    ...faqSection(page.route),
     ...relatedApproaches(page.route),
   ];
   return { nodes, context };
@@ -998,6 +1018,20 @@ const schemaGraph = (page) => {
       dateModified: MODIFIED,
     },
   ];
+
+  const questions = FAQ[page.route];
+  if (questions && questions.length > 0) {
+    const strip = (value) => value.replace(/&#8217;/g, "\u2019").replace(/&amp;/g, "&");
+    graph.push({
+      "@type": "FAQPage",
+      "@id": `${url}#faq`,
+      mainEntity: questions.map(({ q, a }) => ({
+        "@type": "Question",
+        name: strip(q),
+        acceptedAnswer: { "@type": "Answer", text: strip(a) },
+      })),
+    });
+  }
 
   if (page.schema === "MedicalWebPage") {
     graph.push({

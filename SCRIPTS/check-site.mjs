@@ -292,6 +292,36 @@ for (const file of pages) {
           .flat()
           .some((type) => ["WebPage", "CollectionPage", "ProfilePage", "MedicalWebPage"].includes(type)),
       );
+      // Hidden FAQ markup earns nothing and risks a manual action, so the
+      // marked-up text has to be the text on the page: same questions, same
+      // answers, same order.
+      const faqSection = html.match(/<section class="faq"[\s\S]*?<\/section>/)?.[0];
+      const faqNode = graph.find((node) => node?.["@type"] === "FAQPage");
+      if (faqSection && !faqNode) failures.push(`${name}: visible questions with no FAQPage markup`);
+      if (faqNode && !faqSection) failures.push(`${name}: FAQPage markup with no visible questions`);
+      if (faqSection && faqNode) {
+        // The page holds entities, the JSON holds the characters they stand
+        // for. Compare what a reader sees, not how it happens to be encoded.
+        const readable = (value) =>
+          text(value)
+            .replace(/&#8217;|&rsquo;/g, "\u2019")
+            .replace(/&#8220;/g, "\u201c")
+            .replace(/&#8221;/g, "\u201d")
+            .replace(/&amp;/g, "&");
+        const visible = [...faqSection.matchAll(/<h3>([\s\S]*?)<\/h3>\s*<p>([\s\S]*?)<\/p>/g)].map(
+          (pair) => [readable(pair[1]), readable(pair[2])],
+        );
+        const marked = (faqNode.mainEntity || []).map((entry) => [
+          readable(entry.name || ""),
+          readable(entry.acceptedAnswer?.text || ""),
+        ]);
+        if (visible.length !== marked.length) {
+          failures.push(`${name}: ${marked.length} questions marked up but ${visible.length} rendered`);
+        } else if (marked.some((pair, index) => pair[0] !== visible[index][0] || pair[1] !== visible[index][1])) {
+          failures.push(`${name}: FAQ markup carries text the page does not show`);
+        }
+      }
+
       const date = page?.dateModified || page?.datePublished;
       if (typeof date === "string" && /^\d{4}-\d{2}-\d{2}/.test(date)) {
         declaredDates.set(`${ORIGIN}${route}`, date.slice(0, 10));

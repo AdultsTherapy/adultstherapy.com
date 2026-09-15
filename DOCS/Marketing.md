@@ -29,6 +29,7 @@ overwritten and will not survive review.
 | `WebPage` / `MedicalWebPage` / `CollectionPage` / `ProfilePage` | per page | Canonical URL, name, description, `dateModified`, membership in the site |
 | `Person` | `/about/` only | Elaine Dinwiddie, LPC — job title, employer, and each credential as `EducationalOccupationalCredential` |
 | `Service` | the eight therapy pages | The approach as a service the practice offers — name, `serviceType`, provider, area served, and how to reach it |
+| `FAQPage` | 10 routes | The "Common questions" block as rendered, from `SCRIPTS/faq.mjs` |
 | `BreadcrumbList` | every page but `/` | The same trail the page renders, from `ROUTE_LABELS` |
 
 Therapy pages use `MedicalWebPage`; `/therapy/`, `/skills/`, `/education/`, and
@@ -60,10 +61,12 @@ change the other, or the site claims a service area it does not show.
 same commit as the page copy.** A hours change that lands in the footer but not
 in the schema puts the wrong hours in Google's knowledge panel.
 
-## Two things this site deliberately does not emit
+## What this site deliberately does not emit
 
 Both were present in the WordPress export and were removed during
-normalization. Do not add them back without the conditions below.
+normalization. `FAQPage` has since come back for the pairs that could be shown
+honestly; `AggregateRating` has not, and should not without the condition
+below.
 
 ### `AggregateRating`
 
@@ -83,26 +86,40 @@ professional-conduct exposure, not just an SEO one.
 they are marked up on, sourced from a platform whose terms permit re-marking
 them. Then mark up what is visible — nothing more.
 
-### `FAQPage`
+### `FAQPage` — restored for 42 of the 67 pairs
 
-The export carried 67 `Question`/`Answer` pairs across 12 pages. **Zero** of
-them appeared anywhere in the visible page content. Google requires FAQ content
-to be present and visible on the page it is marked up on; invisible FAQ markup
-is hidden content.
+The export carried 67 `Question`/`Answer` pairs across 12 pages and **zero** of
+them appeared in the visible page content, which is hidden content and earns no
+credit. The condition for restoring them was to put the text on the page first
+and then mark up what a visitor can read.
 
-**Condition to add it back:** write the questions and answers into the page copy
-first, where a visitor reads them. Then mark up that visible text. FAQ answers
-are also genuinely useful content for this practice — the loss here is the
-markup, not the idea.
+That is now done for 42 pairs across 10 routes. They live in `SCRIPTS/faq.mjs`;
+`faqSection()` renders them as a "Common questions" block and `schemaGraph()`
+marks up the same source, and `check:site` fails the build if the rendered text
+and the markup ever differ.
+
+**25 pairs are still held back**, and each needs the practice to confirm it is
+true before it goes on the site:
+
+| Held | Why |
+| --- | --- |
+| 5 session-price answers | They state $120 for 50 minutes. Nothing on this site publishes a price, and a stale rate is worse than none. |
+| 6 privacy and records answers | HIPAA compliance, encryption, Oregon retention law, records requests. Professional and legal assertions, not marketing copy. One of them describes collecting health history and session notes, which the privacy page contradicts. |
+| 5 terms-of-service answers | "These terms are legally binding agreements." Legal claims. |
+| 4 duration and outcome answers | "Most clients improve within 6-12 sessions", "12-20 sessions", "8-12 sessions". Efficacy claims about named treatments. |
+| 3 insurance answers | Insurer lists go stale, and the therapy pages already carry a current one. |
+| 2 telehealth answers | They assert a HIPAA-compliant platform. |
+
+They are recoverable from the export at commit `f9426b9`. To restore one, add it
+to `SCRIPTS/faq.mjs` and rebuild — the rendering and the markup both follow.
 
 ## What was kept from the earlier schema work
 
 The 2025 schema pass is why this site has real `Organization` detail, per-page
 typing, and credential markup at all. Carried forward: medical business
 classification, per-modality `knowsAbout`, the full credential list, address and
-hours, service area, and page-level typing. Dropped alongside the two items
-above: `SearchAction` (there is no site search) and duplicated `ImageObject`
-nodes.
+hours, service area, and page-level typing. Also dropped: `SearchAction`
+(there is no site search) and duplicated `ImageObject` nodes.
 
 `BreadcrumbList` was dropped too, because at the time no breadcrumb trail was
 rendered. A trail is now rendered on every page, so the markup describes

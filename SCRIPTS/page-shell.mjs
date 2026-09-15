@@ -221,14 +221,14 @@ export const SHARED_BLOCKS = Object.freeze([
 /**
  * Which plans each page says are accepted.
  *
- * This was the same ten names pasted into five pages as prose, which is how the
- * site ended up with two different answers to the most consequential question a
- * visitor asks. /therapy/gottman/ names a shorter set, and that is preserved
- * rather than flattened: couples work is frequently covered by fewer plans, so
- * the difference may be correct and is Elaine's to confirm, not a formatting
- * detail to tidy away.
+ * This was the same names pasted into page after page as prose, which is how
+ * the site ended up with two different answers to the most consequential
+ * question a visitor asks: most pages listed ten plans, /therapy/gottman/ and
+ * part of /about/ listed five. Sean confirmed the shorter set was stale rather
+ * than a real difference for couples work, so every route now takes the same
+ * list and there is one place to change it.
  */
-const STANDARD_PLANS = Object.freeze([
+const PLANS = Object.freeze([
   "Cascade Health Alliance (CHA)",
   "Oregon Health Plan (OHP)",
   "Atrio",
@@ -241,16 +241,14 @@ const STANDARD_PLANS = Object.freeze([
   "Evernorth",
 ]);
 
-const COUPLES_PLANS = Object.freeze(["Cigna", "Moda", "Cascade Health Alliance (CHA)", "TriWest", "Atrio"]);
-
 export const INSURANCE_BY_ROUTE = Object.freeze({
-  "/": STANDARD_PLANS,
-  "/about/": STANDARD_PLANS,
-  "/contact/": STANDARD_PLANS,
-  "/therapy/eft/": STANDARD_PLANS,
-  "/therapy/emdr/": STANDARD_PLANS,
-  "/therapy/talk-therapy/": STANDARD_PLANS,
-  "/therapy/gottman/": COUPLES_PLANS,
+  "/": PLANS,
+  "/about/": PLANS,
+  "/contact/": PLANS,
+  "/therapy/eft/": PLANS,
+  "/therapy/emdr/": PLANS,
+  "/therapy/talk-therapy/": PLANS,
+  "/therapy/gottman/": PLANS,
 });
 
 export const insuranceCover = (route) => {

@@ -213,9 +213,14 @@ for (const file of pages) {
   if (/\b(?:href|src|action|poster|data-external-src)=["']https?:\/\/(?:www\.)?adultstherapy\.com/i.test(body)) {
     failures.push(`${name}: same-origin body URLs must be root-relative`);
   }
-  for (const match of html.matchAll(/href=["'](tel:[^"']+)["']/gi)) {
-    if (match[1] !== CANONICAL_TELEPHONE) {
-      failures.push(`${name}: telephone link must be ${CANONICAL_TELEPHONE}, found ${match[1]}`);
+  // 988 is the Suicide & Crisis Lifeline, the one number on this site that is
+  // deliberately not the practice's. Everything else must be the canonical one,
+  // because a mistyped phone number on a therapy site is a person who does not
+  // get through.
+  const CRISIS_LINE = new Set(["tel:988", "sms:988"]);
+  for (const match of html.matchAll(/href=["']((?:tel|sms):[^"']+)["']/gi)) {
+    if (match[1] !== CANONICAL_TELEPHONE && !CRISIS_LINE.has(match[1])) {
+      failures.push(`${name}: telephone link must be ${CANONICAL_TELEPHONE} or the 988 crisis line, found ${match[1]}`);
     }
   }
 

@@ -710,6 +710,51 @@ main > :last-child { margin-bottom: 3rem; }
 
 .related li { margin: 0; }
 
+/* ---------- Insurance cover ---------------------------------------------- */
+
+/* "Does my insurance work here" is the question that decides whether most of
+   this audience calls at all, and ten insurers were set as a comma run-on at
+   the tail of a line joined by middle dots. Someone on OHP was made to read a
+   sentence to learn what they came to scan for. A list of insurers is a list;
+   this just stops withholding the structure the content already has.
+   Names sit on rules rather than in pills, because pills would rebuild the
+   card kit that came out of this stylesheet in bc5d5d0. */
+.cover {
+  width: min(100%, 44rem);
+  margin: 2rem auto 0;
+  text-align: left;
+}
+
+.cover__title {
+  margin: 0 0 0.75rem;
+  font-size: 18px;
+  color: inherit;
+}
+
+.cover__list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(13rem, 1fr));
+  gap: 0 2rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.cover__list li {
+  padding: 0.45rem 0;
+  border-top: 1px solid currentcolor;
+  font-size: 16px;
+}
+
+.cover__note {
+  margin: 1rem 0 0;
+  font-size: 15px;
+}
+
+/* The band this sits in paints its own text white; the rules have to follow it
+   rather than stay at the default ink. */
+.section--accent .cover__list li { border-top-color: rgb(255 255 255 / 45%); }
+
 /* ---------- Crisis support ----------------------------------------------- */
 
 /* The one piece of this page that is not about booking Elaine. It was a clause

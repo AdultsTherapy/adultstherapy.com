@@ -196,18 +196,32 @@ for (const file of pages) {
   if (countMatches(html, /<main\b/gi) !== 1) failures.push(`${name}: expected one main landmark`);
   if (countMatches(html, /<h1\b/gi) !== 1) failures.push(`${name}: expected one h1`);
 
-  // Every therapy page centres its h1 except one, and /therapy/mindfulness/ had
+  // Every therapy page centers its h1 except one, and /therapy/mindfulness/ had
   // been the exception for long enough that it just read as a broken page next
   // to its eight siblings. The utility pages (about, contact, privacy, terms,
   // sitemap, education) left-align theirs deliberately and are not covered.
   if (name.startsWith("therapy/") && !/<h1[^>]*\bclass="[^"]*\btext-center\b/.test(html)) {
-    failures.push(`${name}: therapy pages centre their h1`);
+    failures.push(`${name}: therapy pages center their h1`);
   }
   for (const marker of ["masthead", "nav", "breadcrumbs", "footer", "bottombar"]) {
     if (!new RegExp(`class=["'][^"']*\\b${marker}\\b`, "i").test(html)) {
       failures.push(`${name}: missing shared ${marker} shell`);
     }
   }
+  // This is an Oregon practice writing for Oregon readers, and British
+  // spellings kept creeping in during editing — "the therapy approaches
+  // practised in Oregon" shipped in the meta description Google displays for
+  // /therapy/, and a rewrite turned the site's own "feeling center of the
+  // brain" into "centre". Narrow on purpose: every pattern below requires an
+  // ending that cannot be reached by a US word, so "realistic", "practitioner"
+  // and "concentrate" are all safe. "analyses" is deliberately absent: it is
+  // the correct US plural of "analysis", as in the meta-analyses /cbt/ cites.
+  const BRITISH_SPELLINGS =
+    /\b(?:practis(?:e|ed|es|ing)|centre|colour(?:s|ed|ful)?|organis(?:e|ed|es|ing|ation)|recognis(?:e|ed|es|ing)|realis(?:e|ed|es|ing)|behaviour(?:s|al)?|licence|defence|analys(?:e|ed|ing)|favourite|honour(?:s|ed)?)\b/gi;
+  for (const match of unique([...html.matchAll(BRITISH_SPELLINGS)].map((m) => m[0].toLowerCase()))) {
+    failures.push(`${name}: British spelling "${match}" on a US practice's site`);
+  }
+
   if (RETIRED_MARKUP.test(html)) failures.push(`${name}: contains retired WordPress/plugin markup or assets`);
   const body = html.match(/<body\b[^>]*>([\s\S]*?)<\/body>/i)?.[1] || "";
   if (/\b(?:href|src|action|poster|data-external-src)=["']https?:\/\/(?:www\.)?adultstherapy\.com/i.test(body)) {

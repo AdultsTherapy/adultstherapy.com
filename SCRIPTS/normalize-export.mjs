@@ -59,7 +59,7 @@ const PAGES = [
     route: "/therapy/",
     title: "Therapy Approaches for Adults & Couples in Oregon",
     description:
-      "The therapy approaches practised in Oregon: talk therapy, CBT, DBT, the Gottman Method, mindfulness, EFT, EMDR, and military-focused trauma care.",
+      "The therapy approaches practiced in Oregon: talk therapy, CBT, DBT, the Gottman Method, mindfulness, EFT, EMDR, and military-focused trauma care.",
     heading: "Therapy I practice",
     social: "therapy",
     schema: "CollectionPage",
@@ -180,7 +180,7 @@ const PAGES = [
     route: "/terms/",
     title: "Terms and Conditions | Adults and Couples Therapy of Oregon",
     description:
-      "The terms and conditions that govern use of the Adults and Couples Therapy of Oregon website, including licence, disclaimer, and governing law.",
+      "The terms and conditions that govern use of the Adults and Couples Therapy of Oregon website, including license, disclaimer, and governing law.",
     heading: "Web Site Terms and Conditions of Use",
     dropHeading: "Web Site Terms and Conditions of Use",
     social: "practice",

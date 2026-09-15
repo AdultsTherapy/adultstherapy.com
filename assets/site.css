@@ -446,10 +446,30 @@ figcaption {
   margin-bottom: 1.5rem;
 }
 
+/* The hero offered three actions at equal weight in two different colours, so
+   nothing said which one to take. The practice's own contact page says the
+   quickest way to reach Elaine is by phone, so the phone is the one filled
+   button; email is the same shape, outlined, for people who would rather write
+   than talk; and browsing the approaches is a link, because it is reading, not
+   contacting. */
 .hero-cta-buttons .btn {
   border: 2px solid #fff;
   backdrop-filter: blur(10px);
 }
+
+.hero-cta-buttons .btn--secondary,
+.hero-cta-buttons .btn--secondary:hover {
+  background: transparent;
+  color: #fff;
+  box-shadow: none;
+}
+
+.hero-cta-buttons .btn--secondary:hover,
+.hero-cta-buttons .btn--secondary:focus-visible {
+  background: #fff;
+  color: var(--primary-purple);
+}
+
 
 /* Contact buttons keep their own gradient and white text here, as on live. */
 .hero-cta-buttons .btn:not([href^="tel:"]):not([href^="mailto:"]):hover {
@@ -459,25 +479,24 @@ figcaption {
   transform: translateY(-2px);
 }
 
+/* Browsing the approaches is reading, not contacting, so it is a link rather
+   than a third button competing with the two that reach a person. The .btn
+   rules that used to sit here went with it. */
 .hero-quick-nav {
   display: flex;
   justify-content: center;
   margin: 1rem 0 0;
+  font-size: 1.05rem;
 }
 
-.hero-quick-nav .btn {
-  background-color: rgb(126 103 155 / 80%);
-  border: 1px solid rgb(255 255 255 / 30%);
-  padding: 0.8rem 1.5rem;
-  font-size: 1rem;
-  color: #000;
+.hero-quick-nav a {
+  color: #fff;
+  text-decoration: underline;
+  text-underline-offset: 0.25em;
 }
 
-.hero-quick-nav .btn:hover {
-  background-color: var(--primary-purple);
-  filter: none;
-  transform: translateY(-1px);
-}
+.hero-quick-nav a:hover,
+.hero-quick-nav a:focus-visible { text-decoration-thickness: 2px; }
 
 /* ---------- Section rhythm ---------------------------------------------- */
 

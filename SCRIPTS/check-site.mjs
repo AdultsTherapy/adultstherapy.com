@@ -222,6 +222,18 @@ for (const file of pages) {
     failures.push(`${name}: British spelling "${match}" on a US practice's site`);
   }
 
+  // The first image inside <main> is the likely Largest Contentful Paint
+  // element, and loading="lazy" tells the browser to defer exactly the thing
+  // LCP is measured on. Every page here had it. A page that preloads an image
+  // instead — the home page, whose hero is a CSS background — is exempt,
+  // because its LCP candidate is already prioritised and a second eager image
+  // would only compete for bandwidth.
+  const preloadsImage = /<link[^>]+rel=["']preload["'][^>]*as=["']image["']/i.test(html);
+  const firstInMain = html.match(/<main\b[^>]*>([\s\S]*?)<\/main>/i)?.[1]?.match(/<img\b[^>]*>/i)?.[0];
+  if (!preloadsImage && firstInMain && /loading=["']lazy["']/i.test(firstInMain)) {
+    failures.push(`${name}: first in-content image is lazy; it is the likely LCP element`);
+  }
+
   if (RETIRED_MARKUP.test(html)) failures.push(`${name}: contains retired WordPress/plugin markup or assets`);
   const body = html.match(/<body\b[^>]*>([\s\S]*?)<\/body>/i)?.[1] || "";
   if (/\b(?:href|src|action|poster|data-external-src)=["']https?:\/\/(?:www\.)?adultstherapy\.com/i.test(body)) {

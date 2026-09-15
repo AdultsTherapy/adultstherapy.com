@@ -55,8 +55,17 @@ areaServed    Oregon, Klamath Falls, and the nine towns the home page lists
 ```
 
 `areaServed` is the one that is also visible copy: the towns in `schemaGraph`
-are the towns under "Nearby Communities" on the home page. Change one and
-change the other, or the site claims a service area it does not show.
+are the towns in the reach block. That block is rendered from `reachBlock` in
+`SCRIPTS/page-shell.mjs` and appears twice — as a band under the home page hero
+where it is positioning, and as prose on `/contact/` where it is one practical
+fact among several. Both presentations share one wording, so the towns can only
+be changed in one place. Change that and `schemaGraph` together, or the site
+claims a service area it does not show.
+
+It leads on what the reach means rather than on the geography: "There is no
+office to travel to", then the towns as evidence. That order is deliberate — a
+list of place names that leads reads as keyword stuffing, and the sentence is
+the reason a reader in Bly or Sprague River can use this practice at all.
 
 **The practice is telehealth only.** The address is where it is based, not
 somewhere a client goes. The schema used to claim wheelchair access and free
@@ -112,12 +121,26 @@ a fee changes, an insurer is added or dropped, or a policy shifts, edit
 `SCRIPTS/faq.mjs` and rebuild — the page copy and the structured data both
 follow from that one file.
 
-Two of them are worth knowing about specifically:
+Three of them are worth knowing about specifically:
 
-- A session fee of **$120 for 50 minutes** is now published on `/`, `/therapy/cbt/`,
-  `/therapy/eft/`, `/therapy/emdr/` and `/therapy/gottman/`. The `Organization`
-  node still says `priceRange: "$$"`, which is consistent but vaguer; if a
-  Google Business Profile publishes a price, it should agree with this number.
+- **The accepted insurance list is not in the FAQ alone.** The visible list on
+  seven pages comes from `INSURANCE_BY_ROUTE` in `SCRIPTS/page-shell.mjs` and
+  renders through the `insurance-cover` marker, so one edit lands everywhere and
+  `sync:components --check` sees drift. Two FAQ answers also name the plans, and
+  those are in `SCRIPTS/faq.mjs`. **Changing the plans means both files.** The
+  site previously carried two different answers — ten plans in most places, five
+  on `/therapy/gottman/` and in part of `/about/`, so `/about/` contradicted
+  itself — and the five turned out to be stale rather than a real difference for
+  couples work.
+
+- Sessions **start at $150 for 50 minutes**, published on `/`, `/therapy/cbt/`,
+  `/therapy/eft/` and `/therapy/emdr/`; couples are **$160 for 60 minutes** on
+  `/` and `/therapy/gottman/`. Written as a floor because that is how Elaine put
+  it. The `Organization` node still says `priceRange: "$$"`, which is consistent
+  but vaguer; if a Google Business Profile publishes a price, it should agree
+  with these. **The $160 has not been confirmed since the individual rate moved
+  from $120 to $150** — it is above the floor, so it is not contradictory, but
+  nobody has said it is current.
 - The `/privacy/` answers describe records the **practice** keeps — health
   history, session notes, seven-year retention. The rest of that page describes
   what the **website** collects, which is nothing. Both are true and they are
@@ -143,13 +166,19 @@ commit.
 
 ## Titles, descriptions, and headings
 
-These come from `PAGES` at the top of `SCRIPTS/normalize-export.mjs` — one entry
-per route, carrying `title`, `description`, `heading` (the `h1`), `social`, and
-`schema`. The same rule as the JSON-LD applies and for the same reason:
+`PAGES` at the top of `SCRIPTS/normalize-export.mjs` holds one entry per route —
+`title`, `description`, `heading` (the `h1`), `social`, `schema` — but that file
+is the migration tool, not part of the build. `npm run build` never runs it, so
+**edit the title, description or `h1` in the page itself.** Keep the `PAGES`
+entry in step in the same commit if you are changing something the normalizer
+would need to reproduce; it is the record of intent, not the source the build
+reads. See "The normalizer, and why you probably should not run it" in
+DOCS/Engineering.md before running it against this tree.
 
-**Editing a `<title>`, a `<meta name="description">`, or an `<h1>` inside a page
-will be overwritten the next time the normalizer runs.** Change the `PAGES`
-entry, run `npm run build`, and commit the regenerated page.
+A description quoted in more than one place — the `<meta>`, `og:description`,
+`twitter:description` and the JSON-LD `description` — has to change in all of
+them together. `check:site` compares them, so a partial edit fails the build
+rather than shipping.
 
 `check:site` holds them to lengths that survive a search result:
 
@@ -160,6 +189,15 @@ entry, run `npm run build`, and commit the regenerated page.
 
 Four titles ran past this before the limits existed — one at 86 characters — so
 the check is there to stop the drift returning, not as a style preference.
+
+`check:site` also holds three things that a search result or a ranking depends
+on, each added after the fault had already shipped:
+
+| Check | The fault it stops |
+| --- | --- |
+| A description ending in an ellipsis | WordPress auto-excerpts cut mid-sentence. Thirty-nine pages shipped one, so the snippet Google printed was a fragment that restated the title and stopped. |
+| British spellings | "The therapy approaches practised in Oregon" was the displayed description for `/therapy/`. This is an Oregon practice writing for Oregon readers. The pattern is narrow: `analyses` is deliberately absent, being the correct US plural. |
+| A lazy first in-content image | That image is the likely Largest Contentful Paint element, so `loading="lazy"` defers the thing the score measures. Pages that preload an image instead are exempt, which is why `/` passes. |
 
 ## What links to what
 

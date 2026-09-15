@@ -70,12 +70,16 @@ A page has three parts, and only one of them is edited in the page:
 | Part | Where it lives |
 | --- | --- |
 | Body copy inside `<main>` | The route's `index.html` at the repository root — `about/index.html`, `therapy/cbt/index.html`, and so on. Edit it here. |
-| `<title>`, meta description, the `h1` | The route's entry in `PAGES` in `SCRIPTS/normalize-export.mjs`. See DOCS/Marketing.md. |
-| The four marked shared blocks | `SCRIPTS/page-shell.mjs`, installed by `npm run sync:components`. |
+| `<title>`, meta description, the `h1` | Also the page itself. `PAGES` in `SCRIPTS/normalize-export.mjs` records the same values, but the build never runs the normalizer, so the page is what ships. See DOCS/Marketing.md. |
+| The marked shared blocks | `SCRIPTS/page-shell.mjs`, installed by `npm run sync:components`. |
 
-Editing the head metadata or the `h1` inside a page looks like it works and is
-the wrong place — it is regenerated from `PAGES`, and `check:site` will not
-catch the divergence because it only reads what is in the file.
+A description is quoted four times in a page — `<meta name="description">`,
+`og:description`, `twitter:description`, and the JSON-LD `description`. Change
+all four together; `check:site` compares them and fails a partial edit.
+
+Anything between `:start` and `:end` markers is output, not source. Editing it
+in the page looks like it works until the next `sync:components` overwrites it,
+and `check:components` fails the build before that can ship.
 
 ## Changing the shared chrome
 
@@ -87,6 +91,23 @@ Every page carries four marked blocks:
 <!-- shared-footer:start -->       …  <!-- shared-footer:end -->
 <!-- shared-bottombar:start -->    …  <!-- shared-bottombar:end -->
 ```
+
+Four more are route-conditional: only the pages that carry the marker get the
+block, and a page carrying one must resolve to content or the sync throws rather
+than silently emptying it.
+
+| Marker | Pages | Rendered by |
+| --- | --- | --- |
+| `insurance-cover` | 7 | `insuranceCover(route)` — plans from `INSURANCE_BY_ROUTE`. The title is suppressed on `/contact/`, which heads the list itself. |
+| `related-nav` | 12 | `relatedNav(route)` — a therapy page lists its siblings, `/skills/` and `/education/` list all eight, `/about/` and `/therapy/` list the other practice pages. Derived from `NAV_ITEMS`. |
+| `crisis-support` | 2 | `crisisBlock()` — one wording for 988 and 911 across `/` and `/contact/`. |
+| `reach` | 2 | `reachBlock(route)` — a band on `/`, prose on `/contact/`, one wording. |
+| `site-index` | 1 | `siteIndex()` on `/sitemap/`. |
+
+Each of these existed as hand-kept copies first, which is how the site ended up
+with two different insurance answers and a `/about/` page that contradicted
+itself. If you find yourself pasting the same block into a third page, it
+belongs here instead.
 
 The primary navigation lives inside `shared-masthead`; there is no separate
 nav block. Do **not** edit between the markers. Edit `SCRIPTS/page-shell.mjs`, then:

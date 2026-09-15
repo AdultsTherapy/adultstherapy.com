@@ -719,9 +719,12 @@ main > :last-child { margin-bottom: 3rem; }
    this just stops withholding the structure the content already has.
    Names sit on rules rather than in pills, because pills would rebuild the
    card kit that came out of this stylesheet in bc5d5d0. */
+/* Full width of whatever column it sits in, not a centred 44rem island. On a
+   prose page the island indented the whole block away from the left margin
+   every other paragraph aligns to, which read as an accident. */
 .cover {
-  width: min(100%, 44rem);
-  margin: 2rem auto 0;
+  width: 100%;
+  margin: 2rem 0 0;
   text-align: left;
 }
 

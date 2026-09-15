@@ -301,14 +301,41 @@ export const INSURANCE_BY_ROUTE = Object.freeze({
   "/therapy/gottman/": PLANS,
 });
 
+/**
+ * The crisis block. It was written twice: as a designed component on the home
+ * page and as a bold sentence in the flow of /contact/, which meant the most
+ * consequential content on the site had two treatments and two wordings. One
+ * version now, carrying both numbers — 988 for the lifeline, 911 for immediate
+ * physical danger, which only the contact page had said.
+ *
+ * Deliberately not a card and deliberately not red: the reader is alarmed
+ * enough, and this should read as permanent infrastructure rather than alarm.
+ */
+export const crisisBlock = () => `      <!-- crisis-support:start -->
+      <aside class="crisis" aria-label="Crisis support">
+        <p class="crisis__lede">If you cannot wait, you do not have to.</p>
+        <p>The <strong>988 Suicide &amp; Crisis Lifeline</strong> is answered 24 hours a day by someone trained to help, whether or not you are in danger right now. You do not need to be a client of mine, or of anyone. If someone is in immediate physical danger, call 911.</p>
+        <p class="crisis__actions"><a href="tel:988">Call 988</a> <a href="sms:988">Text 988</a></p>
+      </aside>
+      <!-- crisis-support:end -->`;
+
+/**
+ * /contact/ already introduces the list with its own "Insurance" heading, so
+ * the block's title would be the same word twice in a row. Everywhere else the
+ * block arrives with no heading above it and has to name itself.
+ */
+const ROUTES_HEADING_INSURANCE_THEMSELVES = new Set(["/contact/"]);
+
 export const insuranceCover = (route) => {
   const plans = INSURANCE_BY_ROUTE[route];
   if (!plans) return null;
   const items = plans.map((plan) => `              <li>${plan}</li>`).join("\n");
+  const title = ROUTES_HEADING_INSURANCE_THEMSELVES.has(route)
+    ? ""
+    : `            <h3 class="cover__title">Insurance accepted</h3>\n`;
   return `          <!-- insurance-cover:start -->
           <div class="cover">
-            <h3 class="cover__title">Insurance accepted</h3>
-            <ul class="cover__list">
+${title}            <ul class="cover__list">
 ${items}
             </ul>
             <p class="cover__note">If your plan is not listed, ask during the consultation call.</p>

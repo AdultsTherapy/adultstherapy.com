@@ -195,6 +195,14 @@ for (const file of pages) {
 
   if (countMatches(html, /<main\b/gi) !== 1) failures.push(`${name}: expected one main landmark`);
   if (countMatches(html, /<h1\b/gi) !== 1) failures.push(`${name}: expected one h1`);
+
+  // Every therapy page centres its h1 except one, and /therapy/mindfulness/ had
+  // been the exception for long enough that it just read as a broken page next
+  // to its eight siblings. The utility pages (about, contact, privacy, terms,
+  // sitemap, education) left-align theirs deliberately and are not covered.
+  if (name.startsWith("therapy/") && !/<h1[^>]*\bclass="[^"]*\btext-center\b/.test(html)) {
+    failures.push(`${name}: therapy pages centre their h1`);
+  }
   for (const marker of ["masthead", "nav", "breadcrumbs", "footer", "bottombar"]) {
     if (!new RegExp(`class=["'][^"']*\\b${marker}\\b`, "i").test(html)) {
       failures.push(`${name}: missing shared ${marker} shell`);

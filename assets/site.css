@@ -603,7 +603,7 @@ main { padding-inline: clamp(1rem, 3.6vw, 55px); }
    read by people who are anxious or exhausted. The design already wanted 840px:
    .constrained, .faq and .related all use it, and these pages were simply never
    wrapped. Full-bleed blocks are listed below and keep their negative margins. */
-main > :is(p, ul, ol, dl, h1, h2, h3, h4, h5, h6, figure, img, blockquote, hr,
+main > :is(p, ul, ol, dl, h1, h2, h3, h4, h5, h6, blockquote, hr,
   .section-header-with-divider, .section-divider-decorative) {
   width: min(100%, var(--content-size));
   margin-inline: auto;
@@ -616,10 +616,15 @@ main > .feature {
   margin-inline: calc(-1 * clamp(1rem, 3.6vw, 55px));
 }
 
+/* Images share the text measure. 1100px was right while the body copy ran the
+   full viewport — the photographs were narrower than the prose and sat inside
+   it. Constraining the text to 840px inverted that, leaving every image
+   overhanging the column by 130px a side, which reads as a mistake rather than
+   a deliberate break. */
 main > img,
 main > figure,
 main > .feature-image {
-  width: min(calc(100% - 4rem), 1100px);
+  width: min(100%, var(--content-size));
   margin-inline: auto;
 }
 

@@ -720,6 +720,15 @@ main > :last-child { margin-bottom: 3rem; }
   margin-inline: auto;
 }
 
+/* A card grid is not prose. Inside the 840px reading measure it could only fit
+   two 300px tracks, so seven cards ran to four rows with about 220px of dead
+   gutter either side. Widening to --wide-size gives three. The heading and its
+   intro are single centred lines, so the wider container costs them nothing.
+   --wide-size was declared in :root and used nowhere; this is what it is for. */
+.therapy-cards-section > .constrained {
+  width: min(100%, var(--wide-size));
+}
+
 .therapy-cards-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -727,13 +736,24 @@ main > :last-child { margin-bottom: 3rem; }
   margin-top: 2rem;
 }
 
+/* The grid already stretches every card in a row to the same height, but the
+   button followed its own card's text, so a row's buttons landed at three
+   different heights and the row read as ragged. Pushing the link to the bottom
+   of the card lines them up. */
 .therapy-card {
+  display: flex;
+  flex-direction: column;
   background: #fff;
   border-radius: 12px;
   padding: 2rem;
   box-shadow: 0 4px 6px rgb(0 0 0 / 10%);
   transition: transform var(--transition-speed) ease, box-shadow var(--transition-speed) ease;
   text-align: center;
+}
+
+.therapy-card > .btn {
+  margin-top: auto;
+  align-self: center;
 }
 
 .therapy-card:hover {
